@@ -4,9 +4,9 @@ CONFIG   -= app_bundle
 QT += qml quick websockets
 CONFIG += c++11
 
-SOURCES += main.cpp
+SOURCES += src/main.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += res/qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
