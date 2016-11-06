@@ -1,29 +1,25 @@
 import QtQuick 2.5
+import QtQuick.Controls 2.0
 
 Rectangle {
-    property alias mouseArea: mouseArea
-    property alias textEdit: textEdit
+    property alias startButton: startButton
+    property alias statusText: statusText
 
     width: 360
     height: 360
 
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
+    Button {
+        id: startButton
+        x: 29
+        y: 37
+        text: "Start"
     }
 
-    TextEdit {
-        id: textEdit
-        text: qsTr("Enter some text...")
-        verticalAlignment: Text.AlignVCenter
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: 20
-        Rectangle {
-            anchors.fill: parent
-            anchors.margins: -10
-            color: "transparent"
-            border.width: 1
-        }
+    Label {
+        id: statusText
+        x: 29
+        y: 239
+        width: 302
+        height: 59
     }
 }

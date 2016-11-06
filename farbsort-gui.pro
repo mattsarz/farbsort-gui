@@ -1,6 +1,7 @@
 TEMPLATE = app
+CONFIG   -= app_bundle
 
-QT += qml quick
+QT += qml quick websockets
 CONFIG += c++11
 
 SOURCES += main.cpp
