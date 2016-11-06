@@ -3,6 +3,7 @@ import QtQuick.Controls 2.0
 
 Rectangle {
     property alias startButton: startButton
+    property alias stopButton: stopButton
     property alias statusText: statusText
 
     width: 360
@@ -21,5 +22,12 @@ Rectangle {
         y: 239
         width: 302
         height: 59
+    }
+
+    Button {
+        id: stopButton
+        x: 144
+        y: 37
+        text: "Stop"
     }
 }
