@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file alias="main.qml">../qml/main.qml</file>
         <file alias="MainForm.ui.qml">../qml/MainForm.ui.qml</file>
+        <file alias="WebSocketClient.qml">../qml/WebSocketClient.qml</file>
     </qresource>
 </RCC>

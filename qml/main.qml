@@ -1,6 +1,5 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
-import Qt.WebSockets 1.0
 
 Window {
     visible: true
@@ -8,32 +7,9 @@ Window {
     height: 768
     title: qsTr("farbsort")
 
-    WebSocket {
+
+    WebSocketClient {
         id: websocket
-        url: "ws://10.0.1.12:8888/ws"
-
-        property bool motor_started: false
-
-        onTextMessageReceived: {
-            if(message == "started") {
-                motor_started = true;
-                ui.statusText.text += "\nmotor is switched on"
-            } else if(message == "stopped") {
-                motor_started = false;
-                ui.statusText.text += "\nmotor is switched off"
-            }
-        }
-
-        onStatusChanged: {
-            if (websocket.status == WebSocket.Error) {
-                console.log("Error: " + websocke.errorString)
-            } else if (websocket.status == WebSocket.Open) {
-                ui.statusText.text += "\nWebsocket opened"
-            } else if (websocket.status == WebSocket.Closed) {
-                ui.statusText.text += "\nWebsocked closed"
-            }
-        }
-        active: true
     }
 
     MainForm {
@@ -45,14 +21,14 @@ Window {
         anchors.fill: parent
 
         // connection buttons
-        startButton.enabled: !websocket.motor_started
-        stopButton.enabled: websocket.motor_started
+        startButton.enabled: !websocket.motorSwitchedOn
+        stopButton.enabled: websocket.motorSwitchedOn
 
         startButton.onClicked: {
-            websocket.sendTextMessage("motor.start")
+            websocket.motorSwitchedOn = true
         }
         stopButton.onClicked: {
-            websocket.sendTextMessage("motor.stop")
+            websocket.motorSwitchedOn = false
         }
     }
 }
