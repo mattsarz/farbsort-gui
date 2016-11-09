@@ -30,18 +30,8 @@ Rectangle {
         x: 873
         y: 195
         text: qsTr("Push ejectort #1")
-        onClicked: {
-            simulator.conveyorRunning = !simulator.conveyorRunning;
-
-            if(simulator.ejectorState != "ejecting") {
-                simulator.ejectorState = "ejecting"
-            } else {
-                simulator.ejectorState = "idle"
-            }
-
-            console.log("running = " + simulator.conveyorRunning)
-        }
-u
+        enabled: simulator.ejectorOneState == "idle"
+        onClicked: simulator.ejectorOneState = "ejecting"
     }
 
     Simulator {

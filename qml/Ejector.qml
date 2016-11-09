@@ -33,14 +33,24 @@ Item {
                 PropertyChanges { target: element; y: 15 }
             }
 
-        transitions: Transition {
-            PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: {
-                    if(state == "ejecting")
-                        return 250;
-                    else
-                        return 1000; }
+        transitions: [
+            Transition {
+                from: "idle";
+                to: "ejecting";
+                animations: PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: 250; }
+                onRunningChanged: {
+                    if( running == false)
+                    {
+                        element.state = "idle"
+                    }
+                }
+            },
+            Transition {
+                from: "ejecting";
+                to: "idle";
+                animations: PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: 1000; }
             }
-        }
+        ]
 
         state: "idle"
     }
