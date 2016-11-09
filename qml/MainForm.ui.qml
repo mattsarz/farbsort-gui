@@ -28,10 +28,28 @@ Rectangle {
     Button {
         id: pushEjectorOneButton
         x: 873
-        y: 195
+        y: 219
         text: qsTr("Push ejectort #1")
         enabled: simulator.ejectorOne.state === "idle"
         onClicked: simulator.ejectorOne.eject()
+    }
+
+    Button {
+        id: pushEjectorTwoButton
+        x: 873
+        y: 247
+        text: qsTr("Push ejectort #2")
+        enabled: simulator.ejectorTwo.state === "idle"
+        onClicked: simulator.ejectorTwo.eject()
+    }
+
+    Button {
+        id: pushEjectorThreeButton
+        x: 873
+        y: 275
+        text: qsTr("Push ejectort #3")
+        enabled: simulator.ejectorThree.state === "idle"
+        onClicked: simulator.ejectorThree.eject()
     }
 
     Simulator {
@@ -43,5 +61,13 @@ Rectangle {
 
         // todo: scale animation drawing depending on screen size
         // transform: Scale { xScale: 1.2; yScale: 1.2}
+    }
+
+    Text {
+        id: simulationControlTitle
+        x: 869
+        y: 193
+        text: qsTr("Simulation controls")
+        font.pixelSize: 12
     }
 }

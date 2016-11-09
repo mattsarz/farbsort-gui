@@ -8,6 +8,8 @@ Item {
     property alias conveyorRunning: conveyor.running
     property alias conveyorVelocity: conveyor.velocity
     property alias ejectorOne: ejector1
+    property alias ejectorTwo: ejector2
+    property alias ejectorThree: ejector3
 
     Conveyor {
         id: conveyor
@@ -22,7 +24,25 @@ Item {
 
     Ejector {
         id: ejector1
-        x: 100
+        x: 350
+        transform: Scale {
+            yScale: 0.75
+            xScale: 0.75
+        }
+    }
+
+    Ejector {
+        id: ejector2
+        x: 450
+        transform: Scale {
+            yScale: 0.75
+            xScale: 0.75
+        }
+    }
+
+    Ejector {
+        id: ejector3
+        x: 550
         transform: Scale {
             yScale: 0.75
             xScale: 0.75
