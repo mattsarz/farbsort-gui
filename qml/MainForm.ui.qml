@@ -21,17 +21,17 @@ Rectangle {
         y: 148
         width: 131
         height: 22
-        anchors.horizontalCenter: parent
         minimumValue: 0.5
         maximumValue: 2
     }
 
     Button {
+        id: pushEjectorOneButton
         x: 873
         y: 195
         text: qsTr("Push ejectort #1")
-        enabled: simulator.ejectorOneState == "idle"
-        onClicked: simulator.ejectorOneState = "ejecting"
+        enabled: simulator.ejectorOne.state === "idle"
+        onClicked: simulator.ejectorOne.eject()
     }
 
     Simulator {

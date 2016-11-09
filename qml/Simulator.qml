@@ -7,7 +7,7 @@ Item {
 
     property alias conveyorRunning: conveyor.running
     property alias conveyorVelocity: conveyor.velocity
-    property alias ejectorOneState: ejector1.state
+    property alias ejectorOne: ejector1
 
     Conveyor {
         id: conveyor

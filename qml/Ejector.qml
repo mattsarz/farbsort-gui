@@ -6,13 +6,18 @@ Item {
     width: 50
     height: 150
 
-    property alias state: element.state
+    signal eject
+    readonly property alias state: element.state
 
     Rectangle {
         id: surface
         anchors.fill: parent
         color: "grey"
         border.color: "black"
+    }
+
+    onEject: {
+        element.state = "ejecting"
     }
 
     Rectangle {
