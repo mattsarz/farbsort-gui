@@ -29,26 +29,35 @@ Item {
                 PropertyChanges { target: element; y: 100 }
             }
             State {
-                name: "idle"
+                name: "pulling"
                 PropertyChanges { target: element; y: 15 }
+            }
+            State {
+                name: "idle"
             }
 
         transitions: [
             Transition {
                 from: "idle";
                 to: "ejecting";
-                animations: PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: 250; }
+                animations: PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: 150; }
+                onRunningChanged: {
+                    if( running == false)
+                    {
+                        element.state = "pulling"
+                    }
+                }
+            },
+            Transition {
+                from: "ejecting";
+                to: "pulling";
+                animations: PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: 1000; }
                 onRunningChanged: {
                     if( running == false)
                     {
                         element.state = "idle"
                     }
                 }
-            },
-            Transition {
-                from: "ejecting";
-                to: "idle";
-                animations: PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: 1000; }
             }
         ]
 
