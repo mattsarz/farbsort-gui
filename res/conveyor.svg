@@ -1,0 +1,40 @@
+<svg viewBox="0 0 610 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+     <rect id="background"
+       style="fill:#6fd4ff;fill-opacity:0.21461188;fill-rule:evenodd;stroke:#000000;stroke-width:0.89831728px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       width="610"
+       height="150"
+       x="0"
+       y="0"/>
+
+    <!-- list resourses in a <defs> element -->
+    <defs>
+         <rect id="single-belt"
+             y="5"
+             x="0"
+             height="140"
+             width="10"
+             style="fill:#3d495a;fill-opacity:0.21461188">
+      </rect>
+    </defs>
+
+    <!-- reference resourses by ID in xlink:href attribute -->
+    <use xlink:href="#single-belt" transform="translate(20 0)"/>
+    <use xlink:href="#single-belt" transform="translate(60 0)"/>
+    <use xlink:href="#single-belt" transform="translate(100 0)"/>
+    <use xlink:href="#single-belt" transform="translate(140 0)"/>
+    <use xlink:href="#single-belt" transform="translate(180 0)"/>
+    <use xlink:href="#single-belt" transform="translate(220 0)"/>
+    <use xlink:href="#single-belt" transform="translate(260 0)"/>
+    <use xlink:href="#single-belt" transform="translate(300 0)"/>
+    <use xlink:href="#single-belt" transform="translate(340 0)"/>
+    <use xlink:href="#single-belt" transform="translate(380 0)"/>
+    <use xlink:href="#single-belt" transform="translate(420 0)"/>
+    <use xlink:href="#single-belt" transform="translate(460 0)"/>
+    <use xlink:href="#single-belt" transform="translate(500 0)"/>
+    <use xlink:href="#single-belt" transform="translate(540 0)"/>
+    <use xlink:href="#single-belt" transform="translate(580 0)"/>
+    
+    <animate xlink:href="#single-belt" attributeType="CSS" attributeName="x" from="-20" to="+20" dur="1s" repeatCount="indefinite" begin="0s" />
+
+</svg>
+

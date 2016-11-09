@@ -4,6 +4,7 @@ import Qt.WebSockets 1.0
 Item {
     id: client
     property bool motorSwitchedOn: false
+    readonly property bool connected: websocket.active
 
     WebSocket {
         id: websocket

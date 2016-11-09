@@ -21,14 +21,10 @@ Window {
         anchors.fill: parent
 
         // connection buttons
-        startButton.enabled: !websocket.motorSwitchedOn
-        stopButton.enabled: websocket.motorSwitchedOn
-
-        startButton.onClicked: {
-            websocket.motorSwitchedOn = true
-        }
-        stopButton.onClicked: {
-            websocket.motorSwitchedOn = false
+        motorStatusButton.checked: websocket.motorSwitchedOn
+        motorStatusButton.checkable: websocket.connected
+        motorStatusButton.onCheckedChanged: {
+            websocket.motorSwitchedOn = motorStatusButton.checked
         }
     }
 }

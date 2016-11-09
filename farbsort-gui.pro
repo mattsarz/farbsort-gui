@@ -16,4 +16,5 @@ target.path = /opt/$${TARGET}/bin
 INSTALLS += target
 
 DISTFILES += \
-    farbsort-gui_git.bb
+    farbsort-gui_git.bb \
+    qml/Simulator.qml

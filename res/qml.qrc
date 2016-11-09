@@ -3,5 +3,8 @@
         <file alias="main.qml">../qml/main.qml</file>
         <file alias="MainForm.ui.qml">../qml/MainForm.ui.qml</file>
         <file alias="WebSocketClient.qml">../qml/WebSocketClient.qml</file>
+        <file alias="Simulator.qml">../qml/Simulator.qml</file>
+        <file alias="Conveyor.qml">../qml/Conveyor.qml</file>
+        <file alias="Ejector.qml">../qml/Ejector.qml</file>
     </qresource>
 </RCC>
