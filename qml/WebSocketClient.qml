@@ -4,7 +4,7 @@ import Qt.WebSockets 1.0
 Item {
     id: client
     property bool motorSwitchedOn: false
-    readonly property bool connected: websocket.active
+    property bool compressorSwitchedOn: false
 
     WebSocket {
         id: websocket
@@ -37,6 +37,14 @@ Item {
             websocket.sendTextMessage("motor.start");
         } else {
             websocket.sendTextMessage("motor.stop");
+        }
+    }
+
+    onCompressorSwitchedOnChanged: {
+        if(compressorSwitchedOn) {
+            websocket.sendTextMessage("compressor.start");
+        } else {
+            websocket.sendTextMessage("compressor.stop");
         }
     }
 }

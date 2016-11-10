@@ -5,8 +5,7 @@ Item {
     width: 800
     height: 400
 
-    property alias conveyorRunning: conveyor.running
-    property alias conveyorVelocity: conveyor.velocity
+    property alias conveyor: conveyor
     property alias ejectorOne: ejector1
     property alias ejectorTwo: ejector2
     property alias ejectorThree: ejector3

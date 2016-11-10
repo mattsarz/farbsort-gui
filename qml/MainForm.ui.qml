@@ -4,6 +4,7 @@ import QtQuick.Extras 1.4
 
 Rectangle {
     property alias motorStatusButton: motorStatusButton
+    property alias compressorStatusButton: compressorStatusButton
 
     width: 1000
     height: 480
@@ -13,6 +14,13 @@ Rectangle {
         x: 880
         y: 8
         text: "Motor running"
+    }
+
+    ToggleButton {
+        id: compressorStatusButton
+        x: 700
+        y: 8
+        text: "Compressor running"
     }
 
     Slider {
@@ -56,8 +64,8 @@ Rectangle {
         id: simulator
         x: 0
         y: 0
-        conveyorVelocity: conveyorVelocityControl.value
-        conveyorRunning: motorStatusButton.checked
+        conveyor.velocity: conveyorVelocityControl.value
+        conveyor.running: motorStatusButton.checked
 
         // todo: scale animation drawing depending on screen size
         // transform: Scale { xScale: 1.2; yScale: 1.2}

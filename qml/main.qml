@@ -20,11 +20,16 @@ Window {
         anchors.topMargin: 0
         anchors.fill: parent
 
-        // connection buttons
+        // connection status buttons
         motorStatusButton.checked: websocket.motorSwitchedOn
-        motorStatusButton.checkable: websocket.connected
+        motorStatusButton.enabled: websocket.connected
         motorStatusButton.onCheckedChanged: {
             websocket.motorSwitchedOn = motorStatusButton.checked
+        }
+        compressorStatusButton.checked: websocket.compressorSwitchedOn
+        compressorStatusButton.enabled: websocket.connected
+        compressorStatusButton.onCheckedChanged: {
+            websocket.compressorSwitchedOn = compressorStatusButton.checked
         }
     }
 }
