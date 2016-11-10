@@ -5,6 +5,7 @@ Item {
     id: client
     property bool motorSwitchedOn: false
     property bool compressorSwitchedOn: false
+    readonly property bool connected: { websocket.state === WebSocket.Open }
 
     WebSocket {
         id: websocket

@@ -22,14 +22,14 @@ Window {
 
         // connection status buttons
         motorStatusButton.checked: websocket.motorSwitchedOn
-        motorStatusButton.enabled: websocket.connected
         motorStatusButton.onCheckedChanged: {
             websocket.motorSwitchedOn = motorStatusButton.checked
         }
         compressorStatusButton.checked: websocket.compressorSwitchedOn
-        compressorStatusButton.enabled: websocket.connected
         compressorStatusButton.onCheckedChanged: {
             websocket.compressorSwitchedOn = compressorStatusButton.checked
         }
+
+        websocketConnected: websocket.connected
     }
 }

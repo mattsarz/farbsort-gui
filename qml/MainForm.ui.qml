@@ -5,9 +5,12 @@ import QtQuick.Extras 1.4
 Rectangle {
     property alias motorStatusButton: motorStatusButton
     property alias compressorStatusButton: compressorStatusButton
+    property bool websocketConnected: false
 
     width: 1000
     height: 480
+
+    enabled: websocketConnected
 
     ToggleButton {
         id: motorStatusButton
@@ -38,7 +41,7 @@ Rectangle {
         x: 873
         y: 219
         text: qsTr("Push ejectort #1")
-        enabled: simulator.ejectorOne.state === "idle"
+        enabled: simulator.ejectorOne.state === "idle" && compressorStatusButton.checked
         onClicked: simulator.ejectorOne.eject()
     }
 
@@ -47,7 +50,7 @@ Rectangle {
         x: 873
         y: 247
         text: qsTr("Push ejectort #2")
-        enabled: simulator.ejectorTwo.state === "idle"
+        enabled: simulator.ejectorTwo.state === "idle" && compressorStatusButton.checked
         onClicked: simulator.ejectorTwo.eject()
     }
 
@@ -56,7 +59,7 @@ Rectangle {
         x: 873
         y: 275
         text: qsTr("Push ejectort #3")
-        enabled: simulator.ejectorThree.state === "idle"
+        enabled: simulator.ejectorThree.state === "idle" && compressorStatusButton.checked
         onClicked: simulator.ejectorThree.eject()
     }
 
