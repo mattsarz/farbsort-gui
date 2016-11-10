@@ -1,6 +1,8 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
 
+import "screens"
+
 Window {
     visible: true
     width: 1024
@@ -12,7 +14,7 @@ Window {
         id: websocket
     }
 
-    MainForm {
+    MainScreen {
         id: ui
         anchors.rightMargin: 0
         anchors.bottomMargin: 0
