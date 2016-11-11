@@ -2,6 +2,7 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QResource>
 #include <QCommandLineParser>
 #include <QQmlContext>
 #include <QDebug>
@@ -25,6 +26,9 @@ int main(int argc, char *argv[])
     qDebug() << "CommandLineOption::ipAddress: " << parser.value("ip-address");
 
     // start application
+    QResource::registerResource("qml.qrc");
+    QResource::registerResource("images.qrc");
+
     QQmlApplicationEngine engine;
 
     ApplicationConfig config(parser.value("ip-address"));

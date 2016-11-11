@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Extras 1.4
 
+import "."
+
 Item {
     id: simulator
     width: 610

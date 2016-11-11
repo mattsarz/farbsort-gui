@@ -9,7 +9,11 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 SOURCES += src/main.cpp
 
-RESOURCES += res/qml.qrc
+HEADERS += \
+    src/applicationconfig.h
+
+RESOURCES += res/qml.qrc \
+	res/images.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -18,9 +22,13 @@ QML_IMPORT_PATH =
 target.path = /opt/$${TARGET}/bin
 INSTALLS += target
 
+OTHER_FILES +=
+
 DISTFILES += \
     farbsort-gui_git.bb \
-    qml/Simulator.qml
-
-HEADERS += \
-    src/applicationconfig.h
+    qml/main.qml \
+    qml/Simulator.qml \
+    qml/WebSocketClient.qml \
+    qml/components/Conveyor.qml \
+    qml/components/Ejector.qml \
+    qml/screens/MainScreen.qml
