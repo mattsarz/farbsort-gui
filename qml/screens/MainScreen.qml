@@ -1,17 +1,22 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.2
 import QtQuick.Extras 1.4
+import QtQuick.Layouts 1.3
 
-import ".."
+
 import "../components"
+import "../items"
+
 
 Rectangle {
+    id: mainScreen
     property alias motorStatusButton: motorStatusButton
     property alias compressorStatusButton: compressorStatusButton
     property bool websocketConnected: false
+    anchors.fill: parent
+    color: "#eeeeee"
 
-    width: 1000
-    height: 480
+    GridLayout{}
 
     enabled: websocketConnected
 

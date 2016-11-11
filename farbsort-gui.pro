@@ -25,10 +25,12 @@ INSTALLS += target
 OTHER_FILES +=
 
 DISTFILES += \
-    farbsort-gui_git.bb \
-    qml/main.qml \
-    qml/Simulator.qml \
-    qml/WebSocketClient.qml \
-    qml/components/Conveyor.qml \
-    qml/components/Ejector.qml \
-    qml/screens/MainScreen.qml
+	farbsort-gui_git.bb \
+	qml/main.qml \
+	qml/components/Conveyor.qml \
+	qml/components/Ejector.qml \
+	qml/screens/MainScreen.qml \
+	qml/items/Simulator.qml \
+	qml/items/WebSocketClient.qml \
+    qml/screens/SettingsScreen.qml \
+    qml/screens/DiagnosticScreen.qml

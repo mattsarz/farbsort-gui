@@ -1,15 +1,16 @@
 <RCC>
-    <qresource prefix="/components">
-        <file alias="Conveyor.qml">../qml/components/Conveyor.qml</file>
-        <file alias="Ejector.qml">../qml/components/Ejector.qml</file>
-        <file alias="Simulator.qml">../qml/components/Simulator.qml</file>
-        <file alias="Tray.qml">../qml/components/Tray.qml</file>
-    </qresource>
-    <qresource prefix="/">
-        <file alias="main.qml">../qml/main.qml</file>
-        <file alias="WebSocketClient.qml">../qml/WebSocketClient.qml</file>
-    </qresource>
-    <qresource prefix="/screens">
-        <file alias="MainScreen.qml">../qml/screens/MainScreen.qml</file>
-    </qresource>
+	<qresource prefix="/components">
+		<file alias="Conveyor.qml">../qml/components/Conveyor.qml</file>
+		<file alias="Ejector.qml">../qml/components/Ejector.qml</file>
+	</qresource>
+	<qresource prefix="/">
+		<file alias="main.qml">../qml/main.qml</file>
+	</qresource>
+        <qresource prefix="/items">
+            <file alias="WebSocketClient.qml">../qml/items/WebSocketClient.qml</file>
+            <file alias="Simulator.qml">../qml/items/Simulator.qml</file>
+        </qresource>
+	<qresource prefix="/screens">
+		<file alias="MainScreen.qml">../qml/screens/MainScreen.qml</file>
+	</qresource>
 </RCC>
