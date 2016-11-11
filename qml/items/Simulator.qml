@@ -1,53 +1,78 @@
 import QtQuick 2.0
+import QtQuick.Extras 1.4
 
 import "../components"
 
 Item {
     id: simulator
-    width: 800
-    height: 400
+    width: 610
+    height: 450
 
-    property alias conveyorRunning: conveyor.running
-    property alias conveyorVelocity: conveyor.velocity
-    property alias ejectorOne: ejector1
-    property alias ejectorTwo: ejector2
-    property alias ejectorThree: ejector3
+    property alias conveyor: conveyor
+    property alias ejectorOne: ejectorOne
+    property alias ejectorTwo: ejectorTwo
+    property alias ejectorThree: ejectorThree
+    property bool lightbarrierBeforeColorDetectionState: false
+    property bool lightbarrierAfterColorDetectionState: false
+    property alias lightbarrierTrayOne: lightbarrierTrayOne
+    property alias lightbarrierTrayTwo: lightbarrierTrayTwo
+    property alias lightbarrierTrayThree: lightbarrierTrayTree
 
     Conveyor {
         id: conveyor
-        x: 30
-        y: 70
-
-        // adjust size
-        transform: Scale {
-            yScale: 0.75
-        }
+        x: 0
+        y: 150
     }
 
     Ejector {
-        id: ejector1
-        x: 350
-        transform: Scale {
-            yScale: 0.75
-            xScale: 0.75
-        }
+        id: ejectorOne
+        x: 300
+        y: 0
     }
 
     Ejector {
-        id: ejector2
-        x: 450
-        transform: Scale {
-            yScale: 0.75
-            xScale: 0.75
-        }
+        id: ejectorTwo
+        x: 400
+        y: 0
     }
 
     Ejector {
-        id: ejector3
-        x: 550
-        transform: Scale {
-            yScale: 0.75
-            xScale: 0.75
-        }
+        id: ejectorThree
+        x: 500
+        y: 0
+    }
+
+    StatusIndicator {
+        id: lightbarrierBeforeColorDetection
+        x: 100
+        y: 310
+        color: "green"
+        active:  lightbarrierBeforeColorDetectionState
+    }
+
+    StatusIndicator {
+        id: lightbarrierAfterColorDetection
+        x: 200
+        y: 310
+        color: "green"
+        active:  lightbarrierAfterColorDetectionState
+    }
+
+    Tray {
+        id: lightbarrierTrayOne
+        y: 300
+        x: 300
+    }
+
+    Tray {
+        id: lightbarrierTrayTwo
+        y: 300
+        x: 400
+    }
+
+    Tray {
+        id: lightbarrierTrayTree
+        y: 300
+        x: 500
     }
 }

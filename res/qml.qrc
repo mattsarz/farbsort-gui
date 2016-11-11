@@ -2,6 +2,7 @@
 	<qresource prefix="/components">
 		<file alias="Conveyor.qml">../qml/components/Conveyor.qml</file>
 		<file alias="Ejector.qml">../qml/components/Ejector.qml</file>
+                <file alias="Tray.qml">../qml/components/Tray.qml</file>
 	</qresource>
 	<qresource prefix="/">
 		<file alias="main.qml">../qml/main.qml</file>
