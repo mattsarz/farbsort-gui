@@ -32,8 +32,4 @@ Window {
 
         websocketConnected: websocket.connected
     }
-
-    Component.onCompleted: {
-        console.log("ip-address: " + applicationConfig.ipAddress())
-    }
 }

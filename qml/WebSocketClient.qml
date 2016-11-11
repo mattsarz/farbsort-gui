@@ -5,7 +5,7 @@ Item {
     id: client
     property bool motorSwitchedOn: false
     property bool compressorSwitchedOn: false
-    readonly property bool connected: { websocket.state === WebSocket.Open }
+    property bool connected: false
 
     WebSocket {
         id: websocket
@@ -29,6 +29,9 @@ Item {
             } else if (websocket.status == WebSocket.Closed) {
                 console.log("Websocked closed");
             }
+
+            connected = (websocket.status == WebSocket.Open)
+            console.log("connected state: " + connected)
         }
         active: true
     }
