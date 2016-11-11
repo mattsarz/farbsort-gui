@@ -4,6 +4,9 @@ CONFIG   -= app_bundle
 QT += core qml quick websockets
 CONFIG += c++11
 
+VERSION = 0.1
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
+
 SOURCES += src/main.cpp
 
 RESOURCES += res/qml.qrc
@@ -18,3 +21,6 @@ INSTALLS += target
 DISTFILES += \
     farbsort-gui_git.bb \
     qml/Simulator.qml
+
+HEADERS += \
+    src/applicationconfig.h

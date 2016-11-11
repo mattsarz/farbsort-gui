@@ -9,7 +9,7 @@ Item {
 
     WebSocket {
         id: websocket
-        url: "ws://10.0.1.12:8888/ws"
+        url: "ws://" + applicationConfig.ipAddress() + ":8888/ws"
 
         onTextMessageReceived: {
             if(message == "started") {
