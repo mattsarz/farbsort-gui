@@ -34,4 +34,5 @@ DISTFILES += \
     qml/items/Simulator.qml \
     qml/items/WebSocketClient.qml \
     qml/screens/SettingsScreen.qml \
-    qml/screens/DiagnosticScreen.qml
+    qml/screens/DiagnosticScreen.qml \
+    qml/screens/MainScreen/MainTitleBar.qml

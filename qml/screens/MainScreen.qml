@@ -3,7 +3,7 @@ import QtQuick.Controls 1.2
 import QtQuick.Extras 1.4
 import QtQuick.Layouts 1.3
 
-
+import "MainScreen"
 import "../components"
 import "../items"
 
@@ -16,7 +16,23 @@ Rectangle {
     anchors.fill: parent
     color: "#eeeeee"
 
-    GridLayout{}
+
+
+    GridLayout{
+        id: mainGrid
+        rows: 6
+        anchors.fill: parent
+
+        MainTitleBar { id:mainTitle }
+
+        Rectangle {
+            id: schematicView
+            color: "white"
+
+            Layout.rowSpan: 4
+        }
+
+    }
 
     enabled: websocketConnected
 
