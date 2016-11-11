@@ -69,6 +69,11 @@ Rectangle {
         y: 0
         conveyor.velocity: conveyorVelocityControl.value
         conveyor.running: motorStatusButton.checked
+        lightbarrierBeforeColorDetectionState: websocket.lightBarrierOneInterrupted
+        lightbarrierAfterColorDetectionState: websocket.lightBarrierTwoInterrupted
+        lightbarrierTrayOne.lightbarrierInterruted: websocket.lightBarrierThreeInterrupted
+        lightbarrierTrayTwo.lightbarrierInterruted: websocket.lightBarrierFourInterrupted
+        lightbarrierTrayThree.lightbarrierInterruted: websocket.lightBarrierFiveInterrupted
 
         // todo: scale animation drawing depending on screen size
         // transform: Scale { xScale: 1.2; yScale: 1.2}

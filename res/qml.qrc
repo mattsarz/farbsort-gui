@@ -6,5 +6,6 @@
         <file alias="Simulator.qml">../qml/Simulator.qml</file>
         <file alias="Conveyor.qml">../qml/Conveyor.qml</file>
         <file alias="Ejector.qml">../qml/Ejector.qml</file>
+        <file alias="Tray.qml">../qml/Tray.qml</file>
     </qresource>
 </RCC>

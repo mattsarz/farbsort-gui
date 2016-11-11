@@ -12,7 +12,7 @@ Item {
     Rectangle {
         id: surface
         anchors.fill: parent
-        color: "grey"
+        color: "lightgrey"
         border.color: "black"
     }
 
@@ -26,7 +26,7 @@ Item {
         width: 40
         x: 5
         y: 15
-        color: "black"
+        color: "grey"
 
         states:
             State {
