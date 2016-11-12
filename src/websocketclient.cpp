@@ -8,6 +8,7 @@ WebSocketClient::WebSocketClient(const QString ipAddress)
     : QObject(NULL)
     , m_url(QUrl("ws://" + ipAddress + ":8888/ws"))
     , m_motorRunning(false)
+    , m_compressorRunning(false)
 {
     qDebug() << "wsc: WebSocketClient created:" << m_url;
     connect(&m_webSocket, &QWebSocket::connected, this, &WebSocketClient::onConnected);
@@ -29,11 +30,29 @@ void WebSocketClient::toggleMotorRunning()
     }
 }
 
+void WebSocketClient::toggleCompressorRunning()
+{
+    qDebug() << "wsc: toggle compressor running";
+    if(m_compressorRunning) {
+        m_webSocket.sendTextMessage("compressor.stop");
+    } else {
+        m_webSocket.sendTextMessage("compressor.start");
+    }
+}
+
 void WebSocketClient::setMotorRunning(const bool motorRunning)
 {
     if(motorRunning != m_motorRunning) {
         m_motorRunning = motorRunning;
         emit motorRunningChanged();
+    }
+}
+
+void WebSocketClient::setCompressorRunning(const bool compressorRunning)
+{
+    if(compressorRunning != m_compressorRunning) {
+        m_compressorRunning = compressorRunning;
+        emit compressorRunningChanged();
     }
 }
 
@@ -54,6 +73,14 @@ void WebSocketClient::onTextMessageReceived(QString message)
         } else {
             qDebug() << "wsc: motor was stopped";
             setMotorRunning(false);
+        }
+    } else if(message.startsWith("compressor")) {
+        if(message.endsWith("started")) {
+            qDebug() << "wsc: compressor was started";
+            setCompressorRunning(true);
+        } else {
+            qDebug() << "wsc: compressor was stopped";
+            setCompressorRunning(false);
         }
     }
 }

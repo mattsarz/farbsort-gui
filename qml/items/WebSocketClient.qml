@@ -5,8 +5,6 @@ Item {
     id: client
     property bool connected: false
 
-    property bool compressorSwitchedOn: false
-
     property bool lightBarrierOneInterrupted: false
     property bool lightBarrierTwoInterrupted: false
     property bool lightBarrierThreeInterrupted: false
@@ -46,13 +44,7 @@ Item {
         url: "ws://" + applicationConfig.ipAddress() + ":8888/ws"
 
         onTextMessageReceived: {
-            if(message == "compressor.started") {
-                client.compressorSwitchedOn = true;
-                console.log("compressor is switched on");
-            } else if(message == "compressor.stopped") {
-                client.compressorSwitchedOn = false;
-                console.log("compressor is switched off");
-            } else if (message.substring(0, 12) == "lightbarrier" ){
+            if (message.substring(0, 12) == "lightbarrier" ){
                 if(handleLightbarrierMessage(message))
                     console.log("lightbarrier state received")
                 else
@@ -76,13 +68,5 @@ Item {
             console.log("connected state: " + connected)
         }
         active: true
-    }
-
-    onCompressorSwitchedOnChanged: {
-        if(compressorSwitchedOn) {
-            websocket.sendTextMessage("compressor.start");
-        } else {
-            websocket.sendTextMessage("compressor.stop");
-        }
     }
 }

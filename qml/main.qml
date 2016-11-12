@@ -39,13 +39,6 @@ ApplicationWindow {
     MainScreen {
         id: mainScreen
         anchors.fill: stackView
-
-        // connection status buttons
-        compressorStatusButton.checked: websocket.compressorSwitchedOn
-        compressorStatusButton.onCheckedChanged: {
-            websocket.compressorSwitchedOn = compressorStatusButton.checked
-        }
-
         websocketConnected: websocket.connected
     }
 

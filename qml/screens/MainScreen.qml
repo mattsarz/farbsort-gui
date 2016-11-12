@@ -17,7 +17,6 @@ Rectangle {
     enabled: websocketConnected
 
     property alias motorStatusButton: motorStatusButton
-    property alias compressorStatusButton: compressorStatusButton
     property bool websocketConnected: false
 
     GridLayout{
@@ -79,6 +78,8 @@ Rectangle {
                 ToggleButton {
                     id: compressorStatusButton
                     text: "Compressor running"
+                    checked: websocketClient.compressorRunning
+                    onClicked: { websocketClient.toggleCompressorRunning() }
                 }
 
                 Slider {
@@ -96,21 +97,21 @@ Rectangle {
                 Button {
                     id: pushEjectorOneButton
                     text: qsTr("Push ejectort #1")
-                    enabled: simulator.ejectorOne.state === "idle" && compressorStatusButton.checked
+                    enabled: simulator.ejectorOne.state === "idle" && websocketClient.compressorRunning
                     onClicked: simulator.ejectorOne.eject()
                 }
 
                 Button {
                     id: pushEjectorTwoButton
                     text: qsTr("Push ejectort #2")
-                    enabled: simulator.ejectorTwo.state === "idle" && compressorStatusButton.checked
+                    enabled: simulator.ejectorTwo.state === "idle" && websocketClient.compressorRunning
                     onClicked: simulator.ejectorTwo.eject()
                 }
 
                 Button {
                     id: pushEjectorThreeButton
                     text: qsTr("Push ejectort #3")
-                    enabled: simulator.ejectorThree.state === "idle" && compressorStatusButton.checked
+                    enabled: simulator.ejectorThree.state === "idle" && websocketClient.compressorRunning
                     onClicked: simulator.ejectorThree.eject()
                 }
             }
