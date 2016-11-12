@@ -11,7 +11,6 @@ SOURCES += src/main.cpp \
     src/websocketclient.cpp
 
 HEADERS += \
-    src/applicationconfig.h \
     src/websocketclient.h
 
 RESOURCES += res/qml.qrc \

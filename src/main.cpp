@@ -1,4 +1,3 @@
-#include "applicationconfig.h"
 #include "websocketclient.h"
 
 #include <QGuiApplication>
@@ -33,11 +32,7 @@ int main(int argc, char *argv[])
     QResource::registerResource("images.qrc");
 
     QQmlApplicationEngine engine;
-
-    ApplicationConfig config(parser.value("ip-address"));
-    engine.rootContext()->setContextProperty("applicationConfig", &config);
     engine.rootContext()->setContextProperty("websocketClient", &webSocketClient);
-
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     return app.exec();
 }
