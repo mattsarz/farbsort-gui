@@ -47,12 +47,18 @@ Item {
         url: "ws://" + applicationConfig.ipAddress() + ":8888/ws"
 
         onTextMessageReceived: {
-            if(message == "started") {
+            if(message == "motor.started") {
                 client.motorSwitchedOn = true;
                 console.log("motor is switched on");
-            } else if(message == "stopped") {
+            } else if(message == "motor.stopped") {
                 client.motorSwitchedOn = false;
                 console.log("motor is switched off");
+            } else if(message == "compressor.started") {
+                client.compressorSwitchedOn = true;
+                console.log("compressor is switched on");
+            } else if(message == "compressor.stopped") {
+                client.compressorSwitchedOn = false;
+                console.log("compressor is switched off");
             } else if (message.substring(0, 12) == "lightbarrier" ){
                 if(handleLightbarrierMessage(message))
                     console.log("lightbarrier state received")
