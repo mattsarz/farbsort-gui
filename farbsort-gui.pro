@@ -7,10 +7,12 @@ CONFIG += c++11
 VERSION = 0.1
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
-SOURCES += src/main.cpp
+SOURCES += src/main.cpp \
+    src/websocketclient.cpp
 
 HEADERS += \
-    src/applicationconfig.h
+    src/applicationconfig.h \
+    src/websocketclient.h
 
 RESOURCES += res/qml.qrc \
 	res/images.qrc

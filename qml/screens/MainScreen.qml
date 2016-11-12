@@ -49,7 +49,7 @@ Rectangle {
             Layout.preferredHeight: parent.height * 0.5
             Layout.preferredWidth: parent.width * 0.75
             conveyor.velocity: conveyorVelocityControl.value
-            conveyor.running: motorStatusButton.checked
+            conveyor.running: websocketClient.motorRunning
             lightbarrierBeforeColorDetectionState: websocket.lightBarrierOneInterrupted
             lightbarrierAfterColorDetectionState: websocket.lightBarrierTwoInterrupted
             lightbarrierTrayOne.lightbarrierInterruted: websocket.lightBarrierThreeInterrupted
@@ -72,6 +72,8 @@ Rectangle {
                 ToggleButton {
                     id: motorStatusButton
                     text: "Motor running"
+                    checked: websocketClient.motorRunning
+                    onClicked: { websocketClient.toggleMotorRunning() }
                 }
 
                 ToggleButton {

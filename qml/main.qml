@@ -23,13 +23,6 @@ import "screens"
 //        anchors.leftMargin: 0
 //        anchors.topMargin: 0
 //        anchors.fill: parent
-
-//        // connection buttons
-//        motorStatusButton.checked: websocket.motorSwitchedOn
-//        motorStatusButton.checkable: websocket.connected
-//        motorStatusButton.onCheckedChanged: {
-//            websocket.motorSwitchedOn = motorStatusButton.checked
-//        }
 //    }
 //}
 
@@ -48,10 +41,6 @@ ApplicationWindow {
         anchors.fill: stackView
 
         // connection status buttons
-        motorStatusButton.checked: websocket.motorSwitchedOn
-        motorStatusButton.onCheckedChanged: {
-            websocket.motorSwitchedOn = motorStatusButton.checked
-        }
         compressorStatusButton.checked: websocket.compressorSwitchedOn
         compressorStatusButton.onCheckedChanged: {
             websocket.compressorSwitchedOn = compressorStatusButton.checked
