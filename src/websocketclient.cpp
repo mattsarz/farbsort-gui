@@ -2,8 +2,6 @@
 
 #include <QtCore/QDebug>
 
-QT_USE_NAMESPACE
-
 WebSocketClient::WebSocketClient(const QString ipAddress)
     : QObject(NULL)
     , m_url(QUrl("ws://" + ipAddress + ":8888/ws"))
@@ -61,6 +59,51 @@ void WebSocketClient::setCompressorRunning(const bool compressorRunning)
     }
 }
 
+void WebSocketClient::setLightbarrierState(const int number, const bool state)
+{
+    qDebug() << "wsc: lightbarrier " << number << " state is " << state;
+    switch(number) {
+        case 1: {
+            if(state != m_lightbarrierOneState) {
+                qDebug() << "wsc: lightbarrierOneState changed";
+                m_lightbarrierOneState = state;
+                emit lightbarrierOneStateChanged();
+            } break;
+        }
+        case 2: {
+            if(state != m_lightbarrierTwoState) {
+                qDebug() << "wsc: lightbarrierTwoState changed";
+                m_lightbarrierTwoState = state;
+                emit lightbarrierTwoStateChanged();
+            } break;
+        }
+        case 3: {
+            if(state != m_lightbarrierThreeState) {
+                qDebug() << "wsc: lightbarrierThreeState changed";
+                m_lightbarrierThreeState = state;
+                emit lightbarrierThreeStateChanged();
+            } break;
+        }
+        case 4: {
+            if(state != m_lightbarrierFourState) {
+                qDebug() << "wsc: lightbarrierFourState changed";
+                m_lightbarrierFourState = state;
+                emit lightbarrierFourStateChanged();
+            } break;
+        }
+        case 5: {
+            if(state != m_lightbarrierFiveState) {
+                qDebug() << "wsc: lightbarrierFiveState changed";
+                m_lightbarrierFiveState = state;
+                emit lightbarrierFiveStateChanged();
+            } break;
+        }
+        default: {
+            qWarning() << "wsc: received unknown lightbarrier state number: " << number;
+        } break;
+    }
+}
+
 void WebSocketClient::onConnected()
 {
     qDebug() << "wsc: WebSocket connected";
@@ -72,66 +115,13 @@ void WebSocketClient::onTextMessageReceived(QString message)
 {
     qDebug() << "wsc: received message: " << message;
     if(message.startsWith("motor")) {
-        if(message.endsWith("started")) {
-            qDebug() << "wsc: motor was started";
-            setMotorRunning(true);
-        } else {
-            qDebug() << "wsc: motor was stopped";
-            setMotorRunning(false);
-        }
+        setMotorRunning(message.endsWith("started"));
     } else if(message.startsWith("compressor")) {
-        if(message.endsWith("started")) {
-            qDebug() << "wsc: compressor was started";
-            setCompressorRunning(true);
-        } else {
-            qDebug() << "wsc: compressor was stopped";
-            setCompressorRunning(false);
-        }
+        setCompressorRunning(message.endsWith("started"));
     } else if(message.startsWith("lightbarrier")) {
-        bool lightbarrierState = false;
-        if(message.endsWith("on")) {
-            lightbarrierState = true;
-        }
-        QStringRef lightbarrierId(&message, 12, 1);
-        qDebug() << "wsc: lightbarrier " << lightbarrierId << " state is " << lightbarrierState;
-        switch(lightbarrierId.toInt()) {
-            case 1: {
-                if(lightbarrierState != m_lightbarrierOneState) {
-                    qDebug() << "wsc: lightbarrierOneState changed";
-                    m_lightbarrierOneState = lightbarrierState;
-                    emit lightbarrierOneStateChanged();
-                }
-            }
-            case 2: {
-                if(lightbarrierState != m_lightbarrierTwoState) {
-                    qDebug() << "wsc: lightbarrierTwoState changed";
-                    m_lightbarrierTwoState = lightbarrierState;
-                    emit lightbarrierTwoStateChanged();
-                }
-            }
-            case 3: {
-                if(lightbarrierState != m_lightbarrierThreeState) {
-                    qDebug() << "wsc: lightbarrierThreeState changed";
-                    m_lightbarrierThreeState = lightbarrierState;
-                    emit lightbarrierThreeStateChanged();
-                }
-            }
-            case 4: {
-                if(lightbarrierState != m_lightbarrierFourState) {
-                    qDebug() << "wsc: lightbarrierFourState changed";
-                    m_lightbarrierFourState = lightbarrierState;
-                    emit lightbarrierFourStateChanged();
-                }
-            }
-            case 5: {
-                if(lightbarrierState != m_lightbarrierFiveState) {
-                    qDebug() << "wsc: lightbarrierFiveState changed";
-                    m_lightbarrierFiveState = lightbarrierState;
-                    emit lightbarrierFiveStateChanged();
-                }
-            }
-            default: break;
-        }
+        const bool lightbarrierState = message.endsWith("on");
+        QStringRef lightbarrierNumber(&message, 12, 1);
+        setLightbarrierState(lightbarrierNumber.toInt(), lightbarrierState);
     }
 }
 

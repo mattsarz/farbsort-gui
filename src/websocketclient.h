@@ -44,6 +44,8 @@ protected:
     bool lightbarrierThreeState() const { return m_lightbarrierThreeState; }
     bool lightbarrierFourState() const { return m_lightbarrierFourState; }
     bool lightbarrierFiveState() const { return m_lightbarrierFiveState; }
+    /** sets the state for the given light barrier */
+    void setLightbarrierState(const int number, const bool state);
 
 private Q_SLOTS:
     void onConnected();
