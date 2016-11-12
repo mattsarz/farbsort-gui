@@ -49,11 +49,11 @@ Rectangle {
             Layout.preferredWidth: parent.width * 0.75
             conveyor.velocity: conveyorVelocityControl.value
             conveyor.running: websocketClient.motorRunning
-            lightbarrierBeforeColorDetectionState: websocket.lightBarrierOneInterrupted
-            lightbarrierAfterColorDetectionState: websocket.lightBarrierTwoInterrupted
-            lightbarrierTrayOne.lightbarrierInterruted: websocket.lightBarrierThreeInterrupted
-            lightbarrierTrayTwo.lightbarrierInterruted: websocket.lightBarrierFourInterrupted
-            lightbarrierTrayThree.lightbarrierInterruted: websocket.lightBarrierFiveInterrupted
+            lightbarrierBeforeColorDetectionState: websocketClient.lightbarrierOneState
+            lightbarrierAfterColorDetectionState: websocketClient.lightbarrierTwoState
+            lightbarrierTrayOne.lightbarrierInterruted: websocketClient.lightbarrierThreeState
+            lightbarrierTrayTwo.lightbarrierInterruted: websocketClient.lightbarrierFourState
+            lightbarrierTrayThree.lightbarrierInterruted: websocketClient.lightbarrierFiveState
 
             // todo: scale animation drawing depending on screen size
             // transform: Scale { xScale: 1.2; yScale: 1.2}

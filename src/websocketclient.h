@@ -9,10 +9,20 @@ class WebSocketClient : public QObject
     Q_OBJECT
     Q_PROPERTY(bool motorRunning READ motorRunning WRITE setMotorRunning NOTIFY motorRunningChanged)
     Q_PROPERTY(bool compressorRunning READ compressorRunning WRITE setCompressorRunning NOTIFY compressorRunningChanged)
+    Q_PROPERTY(bool lightbarrierOneState READ lightbarrierOneState NOTIFY lightbarrierOneStateChanged)
+    Q_PROPERTY(bool lightbarrierTwoState READ lightbarrierTwoState NOTIFY lightbarrierTwoStateChanged)
+    Q_PROPERTY(bool lightbarrierThreeState READ lightbarrierThreeState NOTIFY lightbarrierThreeStateChanged)
+    Q_PROPERTY(bool lightbarrierFourState READ lightbarrierFourState NOTIFY lightbarrierFourStateChanged)
+    Q_PROPERTY(bool lightbarrierFiveState READ lightbarrierFiveState NOTIFY lightbarrierFiveStateChanged)
 
 Q_SIGNALS:
     void motorRunningChanged();
     void compressorRunningChanged();
+    void lightbarrierOneStateChanged();
+    void lightbarrierTwoStateChanged();
+    void lightbarrierThreeStateChanged();
+    void lightbarrierFourStateChanged();
+    void lightbarrierFiveStateChanged();
 
 public:
     explicit WebSocketClient(const QString ipAddress);
@@ -29,6 +39,11 @@ protected:
     bool motorRunning() const { return m_motorRunning; }
     void setCompressorRunning(const bool compressorRunning);
     bool compressorRunning() const { return m_compressorRunning; }
+    bool lightbarrierOneState() const { return m_lightbarrierOneState; }
+    bool lightbarrierTwoState() const { return m_lightbarrierTwoState; }
+    bool lightbarrierThreeState() const { return m_lightbarrierThreeState; }
+    bool lightbarrierFourState() const { return m_lightbarrierFourState; }
+    bool lightbarrierFiveState() const { return m_lightbarrierFiveState; }
 
 private Q_SLOTS:
     void onConnected();
@@ -42,6 +57,11 @@ private:
     // members
     bool m_motorRunning;
     bool m_compressorRunning;
+    bool m_lightbarrierOneState;
+    bool m_lightbarrierTwoState;
+    bool m_lightbarrierThreeState;
+    bool m_lightbarrierFourState;
+    bool m_lightbarrierFiveState;
 };
 
 #endif // WEBSOCKETCLIENT_H
