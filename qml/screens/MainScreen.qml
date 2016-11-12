@@ -14,6 +14,7 @@ Rectangle {
     width: 1024
     height: 768
     color: "#eeeeee"
+    enabled: websocketConnected
 
     property alias motorStatusButton: motorStatusButton
     property alias compressorStatusButton: compressorStatusButton
@@ -33,11 +34,11 @@ Rectangle {
             Layout.preferredHeight: parent.height * 0.1
         }
 
-        Rectangle {
-            id: schematicView
-            Layout.rowSpan: 4
-            color: "white"
-        }
+//        Rectangle {
+//            id: schematicView
+//            Layout.rowSpan: 4
+//            color: "white"
+//        }
 
         Simulator {
             id: simulator
@@ -59,64 +60,58 @@ Rectangle {
             // transform: Scale { xScale: 1.2; yScale: 1.2}
         }
 
-    }
-    enabled: websocketConnected
-    ToggleButton {
-        id: motorStatusButton
-        x: 884
-        y: 123
-        text: "Motor running"
-    }
+        Item {
+            Layout.row: 1
+            Layout.column: 2
+            Layout.rowSpan: 3
+            height: parent.height * 0.9
+            width: parent.width * 0.25
 
-    ToggleButton {
-        id: compressorStatusButton
-        x: 704
-        y: 123
-        text: "Compressor running"
-    }
+            ColumnLayout {
 
-    Slider {
-        id: conveyorVelocityControl
-        x: 865
-        y: 263
-        width: 131
-        height: 22
-        minimumValue: 0.5
-        maximumValue: 2
-    }
+                ToggleButton {
+                    id: motorStatusButton
+                    text: "Motor running"
+                }
 
-    Button {
-        id: pushEjectorOneButton
-        x: 877
-        y: 334
-        text: qsTr("Push ejectort #1")
-        enabled: simulator.ejectorOne.state === "idle" && compressorStatusButton.checked
-        onClicked: simulator.ejectorOne.eject()
-    }
+                ToggleButton {
+                    id: compressorStatusButton
+                    text: "Compressor running"
+                }
 
-    Button {
-        id: pushEjectorTwoButton
-        x: 877
-        y: 362
-        text: qsTr("Push ejectort #2")
-        enabled: simulator.ejectorTwo.state === "idle" && compressorStatusButton.checked
-        onClicked: simulator.ejectorTwo.eject()
-    }
+                Slider {
+                    id: conveyorVelocityControl
+                    minimumValue: 0.5
+                    maximumValue: 2
+                }
 
-    Button {
-        id: pushEjectorThreeButton
-        x: 877
-        y: 390
-        text: qsTr("Push ejectort #3")
-        enabled: simulator.ejectorThree.state === "idle" && compressorStatusButton.checked
-        onClicked: simulator.ejectorThree.eject()
-    }
+                Text {
+                    id: simulationControlTitle
+                    text: qsTr("Simulate ejectors")
+                    font.pixelSize: 12
+                }
 
-    Text {
-        id: simulationControlTitle
-        x: 873
-        y: 308
-        text: qsTr("Simulation controls")
-        font.pixelSize: 12
+                Button {
+                    id: pushEjectorOneButton
+                    text: qsTr("Push ejectort #1")
+                    enabled: simulator.ejectorOne.state === "idle" && compressorStatusButton.checked
+                    onClicked: simulator.ejectorOne.eject()
+                }
+
+                Button {
+                    id: pushEjectorTwoButton
+                    text: qsTr("Push ejectort #2")
+                    enabled: simulator.ejectorTwo.state === "idle" && compressorStatusButton.checked
+                    onClicked: simulator.ejectorTwo.eject()
+                }
+
+                Button {
+                    id: pushEjectorThreeButton
+                    text: qsTr("Push ejectort #3")
+                    enabled: simulator.ejectorThree.state === "idle" && compressorStatusButton.checked
+                    onClicked: simulator.ejectorThree.eject()
+                }
+            }
+        }
     }
 }
