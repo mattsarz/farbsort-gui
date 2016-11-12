@@ -52,6 +52,10 @@ Rectangle {
             lightbarrierTrayTwo.lightbarrierInterruted: websocketClient.lightbarrierFourState
             lightbarrierTrayThree.lightbarrierInterruted: websocketClient.lightbarrierFiveState
 
+            Component.onCompleted: {
+                websocketClient.valveEjected.connect(simulator.valveEjected)
+            }
+
             // todo: scale animation drawing depending on screen size
             // transform: Scale { xScale: 1.2; yScale: 1.2}
         }
@@ -95,21 +99,21 @@ Rectangle {
                     id: pushEjectorOneButton
                     text: qsTr("Push ejectort #1")
                     enabled: simulator.ejectorOne.state === "idle" && websocketClient.compressorRunning
-                    onClicked: simulator.ejectorOne.eject()
+                    onClicked: { websocketClient.ejectValve(1) }
                 }
 
                 Button {
                     id: pushEjectorTwoButton
                     text: qsTr("Push ejectort #2")
                     enabled: simulator.ejectorTwo.state === "idle" && websocketClient.compressorRunning
-                    onClicked: simulator.ejectorTwo.eject()
+                    onClicked: { websocketClient.ejectValve(2) }
                 }
 
                 Button {
                     id: pushEjectorThreeButton
                     text: qsTr("Push ejectort #3")
                     enabled: simulator.ejectorThree.state === "idle" && websocketClient.compressorRunning
-                    onClicked: simulator.ejectorThree.eject()
+                    onClicked: { websocketClient.ejectValve(3) }
                 }
             }
         }

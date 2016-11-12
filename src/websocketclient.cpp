@@ -46,6 +46,13 @@ void WebSocketClient::toggleCompressorRunning()
     }
 }
 
+void WebSocketClient::ejectValve(int number)
+{
+    if(1 <= number && 3 >= number) {
+        m_webSocket.sendTextMessage("valve" + QString::number(number) + ".eject");
+    }
+}
+
 void WebSocketClient::reconnectService()
 {
     qDebug() << "wsc: reconnect to service";
@@ -144,6 +151,11 @@ void WebSocketClient::onTextMessageReceived(QString message)
         const bool lightbarrierState = message.endsWith("on");
         QStringRef lightbarrierNumber(&message, 12, 1);
         setLightbarrierState(lightbarrierNumber.toInt(), lightbarrierState);
+    } else if(message.startsWith("valve") && message.endsWith("ejected")) {
+        QStringRef valveNumber(&message, 5, 1);
+        emit valveEjected(valveNumber.toInt());
+    } else {
+        qWarning() << "wsc: message '" << message << "' was not handled";
     }
 }
 

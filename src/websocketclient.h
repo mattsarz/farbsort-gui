@@ -25,6 +25,7 @@ Q_SIGNALS:
     void lightbarrierThreeStateChanged();
     void lightbarrierFourStateChanged();
     void lightbarrierFiveStateChanged();
+    void valveEjected(int number);
 
 public:
     explicit WebSocketClient(const QString ipAddress);
@@ -35,6 +36,8 @@ public slots:
     void toggleMotorRunning();
     /** slot to toggle the compressor to switch on/off */
     void toggleCompressorRunning();
+    /** sends a eject valve request with the given number */
+    void ejectValve(int number);
     /** slot to reconnect to websocket service */
     void reconnectService();
 

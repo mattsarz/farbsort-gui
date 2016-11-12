@@ -17,6 +17,21 @@ Item {
     property alias lightbarrierTrayOne: lightbarrierTrayOne
     property alias lightbarrierTrayTwo: lightbarrierTrayTwo
     property alias lightbarrierTrayThree: lightbarrierTrayTree
+    signal valveEjected(int number)
+
+    onValveEjected: {
+        switch(number) {
+            case 1:  {
+                ejectorOne.eject()
+            } break;
+            case 2:  {
+                ejectorTwo.eject()
+            } break;
+            case 3:  {
+                ejectorThree.eject()
+            } break;
+        }
+    }
 
     Conveyor {
         id: conveyor
