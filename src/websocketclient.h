@@ -7,6 +7,7 @@
 class WebSocketClient : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(bool connected READ connected NOTIFY connectedChanged)
     Q_PROPERTY(bool motorRunning READ motorRunning WRITE setMotorRunning NOTIFY motorRunningChanged)
     Q_PROPERTY(bool compressorRunning READ compressorRunning WRITE setCompressorRunning NOTIFY compressorRunningChanged)
     Q_PROPERTY(bool lightbarrierOneState READ lightbarrierOneState NOTIFY lightbarrierOneStateChanged)
@@ -16,6 +17,7 @@ class WebSocketClient : public QObject
     Q_PROPERTY(bool lightbarrierFiveState READ lightbarrierFiveState NOTIFY lightbarrierFiveStateChanged)
 
 Q_SIGNALS:
+    void connectedChanged();
     void motorRunningChanged();
     void compressorRunningChanged();
     void lightbarrierOneStateChanged();
@@ -35,6 +37,7 @@ public slots:
     void toggleCompressorRunning();
 
 protected:
+    bool connected() const { return m_connected; }
     void setMotorRunning(const bool motorRunning);
     bool motorRunning() const { return m_motorRunning; }
     void setCompressorRunning(const bool compressorRunning);
@@ -49,6 +52,7 @@ protected:
 
 private Q_SLOTS:
     void onConnected();
+    void onDisconneced();
     void onTextMessageReceived(QString message);
 
 private:
@@ -57,6 +61,7 @@ private:
     const QUrl m_url;
 
     // members
+    bool m_connected;
     bool m_motorRunning;
     bool m_compressorRunning;
     bool m_lightbarrierOneState;

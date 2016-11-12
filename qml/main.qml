@@ -32,14 +32,9 @@ ApplicationWindow {
     height: 768
     visible: true
 
-    WebSocketClient {
-        id: websocket
-    }
-
     MainScreen {
         id: mainScreen
         anchors.fill: stackView
-        websocketConnected: websocket.connected
     }
 
     ListModel {

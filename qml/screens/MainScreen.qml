@@ -14,10 +14,7 @@ Rectangle {
     width: 1024
     height: 768
     color: "#eeeeee"
-    enabled: websocketConnected
-
-    property alias motorStatusButton: motorStatusButton
-    property bool websocketConnected: false
+    enabled: WebSocketClient.connected
 
     GridLayout{
         id: mainGrid

@@ -5,6 +5,7 @@
 WebSocketClient::WebSocketClient(const QString ipAddress)
     : QObject(NULL)
     , m_url(QUrl("ws://" + ipAddress + ":8888/ws"))
+    , m_connected(false)
     , m_motorRunning(false)
     , m_compressorRunning(false)
     , m_lightbarrierOneState(false)
@@ -15,6 +16,7 @@ WebSocketClient::WebSocketClient(const QString ipAddress)
 {
     qDebug() << "wsc: WebSocketClient created:" << m_url;
     connect(&m_webSocket, &QWebSocket::connected, this, &WebSocketClient::onConnected);
+    connect(&m_webSocket, &QWebSocket::disconnected, this, &WebSocketClient::onDisconneced);
     m_webSocket.open(m_url);
 }
 
@@ -108,7 +110,15 @@ void WebSocketClient::onConnected()
 {
     qDebug() << "wsc: WebSocket connected";
     connect(&m_webSocket, &QWebSocket::textMessageReceived, this, &WebSocketClient::onTextMessageReceived);
-    m_webSocket.sendTextMessage(QStringLiteral("Hello, world!"));
+    m_connected = true;
+    emit connectedChanged();
+}
+
+void WebSocketClient::onDisconneced()
+{
+    qDebug() << "wsc: WebSocket disconnected";
+    m_connected = false;
+    emit connectedChanged();
 }
 
 void WebSocketClient::onTextMessageReceived(QString message)
