@@ -35,6 +35,8 @@ public slots:
     void toggleMotorRunning();
     /** slot to toggle the compressor to switch on/off */
     void toggleCompressorRunning();
+    /** slot to reconnect to websocket service */
+    void reconnectService();
 
 protected:
     bool connected() const { return m_connected; }

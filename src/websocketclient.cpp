@@ -1,6 +1,7 @@
 #include "websocketclient.h"
 
 #include <QtCore/QDebug>
+#include <QTimer>
 
 WebSocketClient::WebSocketClient(const QString ipAddress)
     : QObject(NULL)
@@ -45,6 +46,12 @@ void WebSocketClient::toggleCompressorRunning()
     }
 }
 
+void WebSocketClient::reconnectService()
+{
+    qDebug() << "wsc: reconnect to service";
+    m_webSocket.open(m_url);
+}
+
 void WebSocketClient::setMotorRunning(const bool motorRunning)
 {
     if(motorRunning != m_motorRunning) {
@@ -63,39 +70,38 @@ void WebSocketClient::setCompressorRunning(const bool compressorRunning)
 
 void WebSocketClient::setLightbarrierState(const int number, const bool state)
 {
-    qDebug() << "wsc: lightbarrier " << number << " state is " << state;
     switch(number) {
         case 1: {
             if(state != m_lightbarrierOneState) {
-                qDebug() << "wsc: lightbarrierOneState changed";
+                qDebug() << "wsc: lightbarrierOneState changed " << state;
                 m_lightbarrierOneState = state;
                 emit lightbarrierOneStateChanged();
             } break;
         }
         case 2: {
             if(state != m_lightbarrierTwoState) {
-                qDebug() << "wsc: lightbarrierTwoState changed";
+                qDebug() << "wsc: lightbarrierTwpState changed " << state;
                 m_lightbarrierTwoState = state;
                 emit lightbarrierTwoStateChanged();
             } break;
         }
         case 3: {
             if(state != m_lightbarrierThreeState) {
-                qDebug() << "wsc: lightbarrierThreeState changed";
+                qDebug() << "wsc: lightbarrierThreeState changed " << state;
                 m_lightbarrierThreeState = state;
                 emit lightbarrierThreeStateChanged();
             } break;
         }
         case 4: {
             if(state != m_lightbarrierFourState) {
-                qDebug() << "wsc: lightbarrierFourState changed";
+                qDebug() << "wsc: lightbarrierFourState changed " << state;
                 m_lightbarrierFourState = state;
                 emit lightbarrierFourStateChanged();
             } break;
         }
         case 5: {
             if(state != m_lightbarrierFiveState) {
-                qDebug() << "wsc: lightbarrierFiveState changed";
+                qDebug() << "wsc: lightbarrierFiveState changed " << state;
                 m_lightbarrierFiveState = state;
                 emit lightbarrierFiveStateChanged();
             } break;
@@ -119,6 +125,12 @@ void WebSocketClient::onDisconneced()
     qDebug() << "wsc: WebSocket disconnected";
     m_connected = false;
     emit connectedChanged();
+    setMotorRunning(false);
+    setCompressorRunning(false);
+    for(int number = 1; number <= 5; number++) {
+        setLightbarrierState(number, false);
+    }
+    QTimer::singleShot(1000, this, SLOT(reconnectService()));
 }
 
 void WebSocketClient::onTextMessageReceived(QString message)
