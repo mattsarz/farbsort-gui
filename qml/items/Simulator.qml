@@ -8,6 +8,11 @@ Item {
     width: 610
     height: 450
 
+//    Rectangle {
+//        anchors.fill: parent
+//        color: "white"
+//    }
+
     property alias conveyor: conveyor
     property alias ejectorOne: ejectorOne
     property alias ejectorTwo: ejectorTwo

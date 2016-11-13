@@ -9,24 +9,18 @@ Item {
     signal eject
     readonly property alias state: element.state
 
-    Rectangle {
-        id: surface
-        anchors.fill: parent
-        color: "lightgrey"
-        border.color: "black"
-    }
-
     onEject: {
         element.state = "ejecting"
     }
 
-    Rectangle {
+    Image {
         id: element
-        height: 130
-        width: 40
         x: 5
         y: 15
-        color: "grey"
+        height: 130
+        width: 40
+        source: "qrc:/ejector.svg"
+
 
         states:
             State {
@@ -67,5 +61,12 @@ Item {
         ]
 
         state: "idle"
+    }
+
+    Rectangle {
+        id: surface
+        anchors.fill: parent
+        color: "#C4CACD"
+        opacity: 0.5
     }
 }

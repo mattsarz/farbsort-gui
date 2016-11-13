@@ -13,7 +13,7 @@ Rectangle {
     anchors.fill: parent
     width: 1024
     height: 768
-    color: "#eeeeee"
+    color: "#EEEEEE"
     enabled: websocketClient.connected
 
     GridLayout{
