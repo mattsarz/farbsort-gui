@@ -11,11 +11,10 @@ import "../items"
 
 Rectangle {
     id: mainScreen
-    anchors.fill: parent
-    width: 1024
-    height: 768
     color: "#EEEEEE"
 //    enabled: websocketClient.connected // TODO: This disables all mouse events. Please fix it
+
+    signal settingsBtnClicked
 
     MainTitleBar {
         id:mainTitle
@@ -24,6 +23,10 @@ Rectangle {
         anchors.right: parent.right
         height: parent.height/10
         z:10
+
+        onSettingsButtonClicked: {
+            settingsBtnClicked()
+        }
     }
 
     GridLayout{
@@ -91,7 +94,7 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth : true
             Layout.preferredWidth: parent.width/4
-            Layout.preferredHeight:simulator.height/4
+            Layout.preferredHeight:simulator.height/6
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
         }
@@ -106,7 +109,7 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth : true
             Layout.preferredWidth: parent.width/4
-            Layout.preferredHeight:simulator.height*3/4
+            Layout.preferredHeight:simulator.height*5/6
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
         }
