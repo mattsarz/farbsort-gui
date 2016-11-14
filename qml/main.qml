@@ -4,60 +4,21 @@ import QtQuick.Controls 2.0
 
 import "items"
 import "screens"
-
-//Window {
-//    visible: true
-//    width: 1024
-//    height: 768
-//    title: qsTr("farbsort")
+import "screens/MainScreen"
+import "controls"
+import "components"
 
 
-//    WebSocketClient {
-//        id: websocket
-//    }
-
-//    MainScreen {
-//        id: ui
-//        anchors.rightMargin: 0
-//        anchors.bottomMargin: 0
-//        anchors.leftMargin: 0
-//        anchors.topMargin: 0
-//        anchors.fill: parent
-//    }
-//}
-
-ApplicationWindow {
-    title: qsTr("Hello World")
+Window {
+    title: qsTr("Swiss Top Sort")
     width: 1024
     height: 768
     visible: true
-
-    MainScreen {
-        id: mainScreen
-        anchors.fill: stackView
-    }
-
-    ListModel {
-        id: pageModel
-        ListElement {
-            title: "Mainscreen"
-            page: "screens/MainScreen.qml"
-        }
-        ListElement {
-            title: "SettingsScreen"
-            page: "screens/SettingsScreen.qml"
-        }
-        ListElement {
-            title: "DiagnosticScreen"
-            page: "screens/DiagnosticScreen.qml"
-        }
-    }
 
     StackView {
         id: stackView
         initialItem: mainScreen
         anchors.fill: parent
-        z:1
 
         pushEnter: Transition {
             PropertyAnimation {
@@ -93,21 +54,8 @@ ApplicationWindow {
         }
     }
 
-//    Row {
-//        spacing: 10
-
-//        Button {
-//            text: "Push"
-//            onClicked: stack.push(mainView)
-//        }
-//        Button {
-//            text: "Pop"
-//            enabled: stack.depth > 1
-//            onClicked: stack.pop()
-
-//        }
-//        Text {
-//            text: stack.depth
-//        }
-//    }
+    MainScreen {
+        id: mainScreen
+        anchors.fill: stackView
+    }
 }

@@ -4,6 +4,12 @@
         <file alias="Ejector.qml">../qml/components/Ejector.qml</file>
         <file alias="Tray.qml">../qml/components/Tray.qml</file>
     </qresource>
+    <qresource prefix="/controls">
+        <file alias="EmergencyButton.qml">../qml/controls/EmergencyButton.qml</file>
+        <file alias="StartStopControl.qml">../qml/controls/StartStopControl.qml</file>
+        <file alias="TestControl.qml">../qml/controls/TestControl.qml</file>
+        <file alias="ToggleButton.qml">../qml/controls/ToggleButton.qml</file>
+    </qresource>
     <qresource prefix="/">
         <file alias="main.qml">../qml/main.qml</file>
     </qresource>

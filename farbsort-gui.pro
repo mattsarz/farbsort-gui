@@ -36,4 +36,8 @@ DISTFILES += \
     qml/items/WebSocketClient.qml \
     qml/screens/SettingsScreen.qml \
     qml/screens/DiagnosticScreen.qml \
-    qml/screens/MainScreen/MainTitleBar.qml
+    qml/screens/MainScreen/MainTitleBar.qml \
+    qml/controls/TestControl.qml \
+    qml/controls/StartStopControl.qml \
+    qml/controls/ToggleButton.qml \
+    qml/controls/EmergencyButton.qml

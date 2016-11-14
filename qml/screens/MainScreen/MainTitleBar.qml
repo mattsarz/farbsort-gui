@@ -6,7 +6,6 @@ Rectangle {
     color: "white"
     anchors.left: parent.left
     anchors.right: parent.right
-    height: 44
 
     signal diagButtonClicked
 
@@ -49,6 +48,9 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
         }
+
+        onPressed: scale  = 0.8
+        onReleased: scale = 1.0
 
         onClicked: {
             diagButtonClicked();
