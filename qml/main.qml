@@ -25,7 +25,7 @@ Window {
                 property: "opacity"
                 from: 0
                 to:1
-                duration: 400
+                duration: 300
             }
         }
         pushExit: Transition {
@@ -33,7 +33,7 @@ Window {
                 property: "opacity"
                 from: 1
                 to:0
-                duration: 400
+                duration: 300
             }
         }
         popEnter: Transition {
@@ -41,7 +41,7 @@ Window {
                 property: "opacity"
                 from: 0
                 to:1
-                duration: 400
+                duration: 300
             }
         }
         popExit: Transition {
@@ -49,13 +49,30 @@ Window {
                 property: "opacity"
                 from: 1
                 to:0
-                duration: 400
+                duration: 300
             }
         }
     }
 
     MainScreen {
         id: mainScreen
-        anchors.fill: stackView
+
+        onSettingsBtnClicked: {
+            stackView.push(diagnosticScreen)
+        }
+    }
+
+    SettingsScreen {
+        id: settingsScreen
+        visible: false
+
+        onExitClicked: stackView.push(mainScreen)
+    }
+
+    DiagnosticScreen {
+        id: diagnosticScreen
+        visible: false
+
+        onExitClicked: stackView.push(mainScreen)
     }
 }

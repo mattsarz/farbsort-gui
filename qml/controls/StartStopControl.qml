@@ -12,7 +12,7 @@ Rectangle {
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 12
-        spacing: 12
+        spacing: 8
 
         Text {
             id:startStopTitle

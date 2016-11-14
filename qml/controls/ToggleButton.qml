@@ -12,18 +12,22 @@ Rectangle {
 
     width: 149
     height: 30
-    radius: 3
+    radius: 2
     color: active ? activeColor : inactiveColor
     border.width: 1
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: 8
+        spacing: 8
+        anchors.margins: 5
 
         Image {
             id: icon;
+            smooth: true
             fillMode: Image.PreserveAspectFit
             source: root.active ?  "qrc:/stop.png" : "qrc:/start.png"
+            Layout.preferredHeight: parent.height *0.8
+            Layout.preferredWidth: parent.widtht/4
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignCenter
         }
@@ -31,10 +35,12 @@ Rectangle {
         Text {
             id: text
             color: "white"
-            anchors.centerIn: parent
+//            anchors.centerIn: parent
             font.pixelSize: 14
             Layout.fillHeight: true
-            Layout.alignment: Qt.AlignCenter
+            Layout.preferredHeight: parent.height *0.8
+            Layout.preferredWidth: parent.widtht*3/4
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             text: root.active ?  "STOP" : "START"
         }
     }

@@ -7,7 +7,7 @@ Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
 
-    signal diagButtonClicked
+    signal settingsButtonClicked
 
 
     Image {
@@ -45,15 +45,18 @@ Rectangle {
         Image {
             id: name
             source: "qrc:/settings.png"
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.margins: 16
+            fillMode: Image.PreserveAspectFit
         }
 
         onPressed: scale  = 0.8
         onReleased: scale = 1.0
 
         onClicked: {
-            diagButtonClicked();
+            settingsButtonClicked();
         }
     }
 }
