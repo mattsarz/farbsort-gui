@@ -99,9 +99,9 @@ Rectangle {
             Layout.margins: 0
         }
 
-        Rectangle {
+        Status {
             id: stateControl
-            color: "yellow"
+
             Layout.row: 1
             Layout.rowSpan: 3
             Layout.column: 3

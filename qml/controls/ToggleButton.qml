@@ -22,25 +22,42 @@ Rectangle {
 
         Image {
             id: icon;
+            source: active ? "qrc:/stop.png" : "qrc:/start.png"
             smooth: true
             fillMode: Image.PreserveAspectFit
-            source: root.active ?  "qrc:/stop.png" : "qrc:/start.png"
-            Layout.preferredHeight: parent.height *0.8
-            Layout.preferredWidth: parent.widtht/4
+            horizontalAlignment: Image.AlignRight
+            verticalAlignment: Image.AlignVCenter
+
+            Layout.alignment: Qt.AlignLeft
+            Layout.preferredHeight: parent.height
+            Layout.preferredWidth: parent.width/3 * 1.2
             Layout.fillHeight: true
-            Layout.alignment: Qt.AlignCenter
         }
 
         Text {
             id: text
             color: "white"
-            anchors.centerIn: parent
-            font.pixelSize: Style.controlFontSize
-            Layout.fillHeight: true
-            Layout.preferredHeight: parent.height *0.8
-            Layout.preferredWidth: parent.widtht*3/4
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            font.pixelSize: 18
             text: root.active ?  "STOP" : "START"
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignLeft
+
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.preferredHeight: parent.height
+            Layout.preferredWidth: parent.width/3
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+        }
+
+        Item {
+            id: spacer
+            width: parent.widtht/3
+
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.preferredHeight: parent.height
+            Layout.preferredWidth: parent.width/3
+            Layout.alignment: Qt.AlignLeft
         }
     }
 

@@ -44,4 +44,5 @@ DISTFILES += \
     qml/Style.qml \
     qml/qmldir \
     qml/components/Legend.qml \
-    qml/components/Statistic.qml
+    qml/components/Statistic.qml \
+    qml/components/Status.qml
