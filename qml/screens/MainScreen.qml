@@ -114,9 +114,9 @@ Rectangle {
             Layout.margins: 0
         }
 
-        Rectangle {
+        Legend {
             id: legendRect
-            color: "white"
+
             Layout.row: 4
             Layout.rowSpan: 2
             Layout.column: 0
@@ -129,9 +129,9 @@ Rectangle {
             Layout.margins: 0
         }
 
-        Rectangle {
+        Statistic {
             id: statisticRect
-            color: "blue"
+
             Layout.row: 4
             Layout.rowSpan: 2
             Layout.column: 2

@@ -15,7 +15,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.margins: Style.smallMargin
-        text: "Notfall"
+        text: qsTr("Notfall")
         font.pixelSize: Style.titleFontSize
     }
 
@@ -45,7 +45,7 @@ Rectangle {
 
         onPressed: {
             e_stop_handle.color = "crimson"
-            e_stop_handle.scale = 0.8
+            e_stop_handle.scale = 0.9
         }
 
         onReleased: {

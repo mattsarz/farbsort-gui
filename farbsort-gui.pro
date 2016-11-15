@@ -42,4 +42,6 @@ DISTFILES += \
     qml/controls/ToggleButton.qml \
     qml/controls/EmergencyButton.qml \
     qml/Style.qml \
-    qml/qmldir
+    qml/qmldir \
+    qml/components/Legend.qml \
+    qml/components/Statistic.qml
