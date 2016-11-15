@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 
+import "../../"
+
 Rectangle {
     id: mainTitleBar
     color: "white"
@@ -18,14 +20,14 @@ Rectangle {
         smooth: true
         anchors.verticalCenter: parent.verticalCenter
         anchors.left:parent.left
-        anchors.leftMargin: 12
+        anchors.leftMargin: Style.medMargin
     }
 
     Text {
         id: titleText
         text: qsTr("Swiss Top Sort")
         color: "red"
-        font.pixelSize: 26
+        font.pixelSize: Style.mainTitleFontSize
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: bbvLogo.right
         anchors.leftMargin: 30
@@ -36,7 +38,7 @@ Rectangle {
         width: parent.height
         height: parent.height
         anchors.right: parent.right
-        anchors.rightMargin: 8
+        anchors.rightMargin: Style.smallMargin
 
         background: Rectangle{
             color: "transparent"
@@ -48,7 +50,7 @@ Rectangle {
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            anchors.margins: 16
+            anchors.margins: Style.bigMargin
             fillMode: Image.PreserveAspectFit
         }
 

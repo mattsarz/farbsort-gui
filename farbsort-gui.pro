@@ -40,4 +40,6 @@ DISTFILES += \
     qml/controls/TestControl.qml \
     qml/controls/StartStopControl.qml \
     qml/controls/ToggleButton.qml \
-    qml/controls/EmergencyButton.qml
+    qml/controls/EmergencyButton.qml \
+    qml/Style.qml \
+    qml/qmldir

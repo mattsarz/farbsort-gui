@@ -4,6 +4,7 @@ import QtQuick.Extras 1.4
 import QtQuick.Layouts 1.3
 
 import "MainScreen"
+import ".."
 import "../controls"
 import "../components"
 import "../items"
@@ -21,8 +22,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: parent.height/10
-        z:10
+        height: parent.height/12
 
         onSettingsButtonClicked: {
             settingsBtnClicked()
@@ -35,11 +35,11 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins: 16
+        anchors.margins: Style.bigMargin
         columns: 4
         rows: 6
-        rowSpacing: 16
-        columnSpacing: 16
+        rowSpacing: Style.bigMargin
+        columnSpacing: Style.bigMargin
 
         Simulator {
             id: simulator
@@ -94,7 +94,7 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth : true
             Layout.preferredWidth: parent.width/4
-            Layout.preferredHeight:simulator.height/6
+            Layout.preferredHeight:simulator.height/5
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
         }
@@ -109,7 +109,7 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth : true
             Layout.preferredWidth: parent.width/4
-            Layout.preferredHeight:simulator.height*5/6
+            Layout.preferredHeight:simulator.height*4/5
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
         }
@@ -161,17 +161,19 @@ Rectangle {
         // ================================================================================
         // For test only
         // ================================================================================
-        TestControl {
-            id: testControl
-            color: "white"
-            Layout.row: 1
-            Layout.rowSpan: 3
-            Layout.column: 3
-            Layout.columnSpan: 1
-            Layout.fillHeight: true
-            Layout.fillWidth : true
-            Layout.preferredWidth: parent.width/4
-            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-        }
+//        TestControl {
+//            id: testControl
+//            color: "white"
+//            Layout.row: 1
+//            Layout.rowSpan: 3
+//            Layout.column: 3
+//            Layout.columnSpan: 1
+//            Layout.fillHeight: true
+//            Layout.fillWidth : true
+//            Layout.preferredWidth: parent.width/4
+//            Layout.preferredHeight:simulator.height*5/6
+//            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+//            Layout.margins: 0
+//        }
     } // GridLayout
 }

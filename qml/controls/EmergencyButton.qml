@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 
+import ".."
+
 Rectangle {
     id: emergencyButton
     color: "white"
@@ -12,20 +14,20 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.margins: 12
+        anchors.margins: Style.smallMargin
         text: "Notfall"
-        font.pixelSize: 30
+        font.pixelSize: Style.titleFontSize
     }
 
     Image {
         id: backgroundImage
         source: "qrc:/e_stop_background.png"
-        fillMode: Image.PreserveAspectFit
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: startStopTitle.bottom
+        fillMode:       Image.PreserveAspectFit
+        anchors.left:   parent.left
+        anchors.right:  parent.right
+        anchors.top:    startStopTitle.bottom
         anchors.bottom: parent.bottom
-        anchors.margins: 12
+        anchors.margins: Style.medMargin
     }
 
     Rectangle {

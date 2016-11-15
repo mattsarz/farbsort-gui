@@ -1,6 +1,8 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.3
 
+import ".."
+
 Rectangle {
     id: startStopControl
     color: "white"
@@ -11,24 +13,26 @@ Rectangle {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 12
-        spacing: 8
+        anchors.margins: Style.smallMargin
+        spacing: 4
 
         Text {
-            id:startStopTitle
+            id: startStopTitle
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.preferredHeight: parent/2
+            Layout.preferredHeight: parent.height/2
+            Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            text: "Steuerung"
-            font.pixelSize: 30
+            text: qsTr("Steuerung")
+            font.pixelSize: Style.titleFontSize
         }
 
         ToggleButton {
             id: startStopButton
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.preferredHeight: parent/2
+            Layout.preferredHeight: parent.height/2
+            Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignCenter
         }
     }
