@@ -16,6 +16,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: Style.smallMargin
         text: qsTr("Legende")
+        color: Style.textColor
         font.pixelSize: Style.titleFontSize
     }
 
@@ -33,6 +34,9 @@ Rectangle {
 
         Text {
             id: ejectorText1
+            text: "A1   " + qsTr("Ausstosser")
+            color: Style.textColor
+
             Layout.row: 0
             Layout.rowSpan: 1
             Layout.column: 0
@@ -43,11 +47,13 @@ Rectangle {
             Layout.preferredHeight:parent.height/7
             Layout.alignment:  Qt.AlignLeft
             Layout.margins: 0
-            text: "A1   " + qsTr("Ausstosser")
         }
 
         Text {
             id: ejectorText2
+            text: "A2   " + qsTr("Ausstosser")
+            color: Style.textColor
+
             Layout.row: 1
             Layout.rowSpan: 1
             Layout.column: 0
@@ -58,11 +64,13 @@ Rectangle {
             Layout.preferredHeight:parent.height/7
             Layout.alignment: Qt.AlignLeft
             Layout.margins: 0
-            text: "A2   " + qsTr("Ausstosser")
         }
 
         Text {
             id: ejectorText3
+            text: "A3   " + qsTr("Ausstosser")
+            color: Style.textColor
+
             Layout.row: 2
             Layout.rowSpan: 1
             Layout.column: 0
@@ -73,11 +81,13 @@ Rectangle {
             Layout.preferredHeight:parent.height/7
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.margins: 0
-            text: "A3   " + qsTr("Ausstosser")
         }
 
         Text {
             id: lightBarrierText1
+            text: "S1   " + qsTr("Lichtschranke")
+            color: Style.textColor
+
             Layout.row: 0
             Layout.rowSpan: 1
             Layout.column: 1
@@ -88,11 +98,13 @@ Rectangle {
             Layout.preferredHeight:parent.height/7
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.margins: 0
-            text: "S1   " + qsTr("Lichtschranke")
         }
 
         Text {
             id: lightBarrierText2
+            text: "S2   " + qsTr("Lichtschranke")
+            color: Style.textColor
+
             Layout.row: 1
             Layout.rowSpan: 1
             Layout.column: 1
@@ -103,11 +115,13 @@ Rectangle {
             Layout.preferredHeight:parent.height/7
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.margins: 0
-            text: "S2   " + qsTr("Lichtschranke")
         }
 
         Text {
             id: lightBarrierText3
+            text: "S3   " + qsTr("Lichtschranke")
+            color: Style.textColor
+
             Layout.row: 2
             Layout.rowSpan: 1
             Layout.column: 1
@@ -118,11 +132,13 @@ Rectangle {
             Layout.preferredHeight:parent.height/7
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.margins: 0
-            text: "S3   " + qsTr("Lichtschranke")
         }
 
         Text {
             id: lightBarrierText4
+            text: "S4   " + qsTr("Lichtschranke")
+            color: Style.textColor
+
             Layout.row: 3
             Layout.rowSpan: 1
             Layout.column: 1
@@ -133,11 +149,13 @@ Rectangle {
             Layout.preferredHeight:parent.height/7
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.margins: 0
-            text: "S4   " + qsTr("Lichtschranke")
         }
 
         Text {
             id: lightBarrierText5
+            text: "S5   " + qsTr("Lichtschranke")
+            color: Style.textColor
+
             Layout.row: 4
             Layout.rowSpan: 1
             Layout.column: 1
@@ -148,7 +166,6 @@ Rectangle {
             Layout.preferredHeight:parent.height/7
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.margins: 0
-            text: "S5   " + qsTr("Lichtschranke")
         }
     } // GridLayout
 }

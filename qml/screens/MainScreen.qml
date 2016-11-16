@@ -22,7 +22,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: parent.height/12
+        height: parent.height/13
 
         onSettingsButtonClicked: {
             settingsBtnClicked()
@@ -43,17 +43,6 @@ Rectangle {
 
         Simulator {
             id: simulator
-        Layout.row: 0
-        Layout.rowSpan: 4
-        Layout.column: 0
-        Layout.columnSpan: 3
-        Layout.fillHeight: true
-        Layout.fillWidth : true
-        Layout.preferredWidth: parent.width * 0.75
-        Layout.preferredHeight: parent.height * 0.75
-        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-        Layout.margins: 0
-
             conveyor.velocity: testControl.conveyorVelocityControl.value
             conveyor.running:                             websocketClient.motorRunning
             lightbarrierBeforeColorDetectionState:        websocketClient.lightbarrierOneState
@@ -61,6 +50,17 @@ Rectangle {
             lightbarrierTrayOne.lightbarrierInterruted:   websocketClient.lightbarrierThreeState
             lightbarrierTrayTwo.lightbarrierInterruted:   websocketClient.lightbarrierFourState
             lightbarrierTrayThree.lightbarrierInterruted: websocketClient.lightbarrierFiveState
+
+            Layout.row: 0
+            Layout.rowSpan: 4
+            Layout.column: 0
+            Layout.columnSpan: 3
+            Layout.fillHeight: true
+            Layout.fillWidth : true
+            Layout.preferredWidth: parent.width * 0.75
+            Layout.preferredHeight: parent.height * 0.75
+            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+            Layout.margins: 0
 
             Component.onCompleted: {
                 websocketClient.valveEjected.connect(simulator.valveEjected)
@@ -87,6 +87,7 @@ Rectangle {
 
         StartStopControl {
             id: startStopControl
+
             Layout.row: 0
             Layout.rowSpan: 1
             Layout.column: 3
@@ -97,6 +98,8 @@ Rectangle {
             Layout.preferredHeight:simulator.height/5
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
+
+            onButtonToggled: { startStopControl.active ? simulator.conveyor.running = true : simulator.conveyor.running = false }
         }
 
         Status {

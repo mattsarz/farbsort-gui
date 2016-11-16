@@ -3,7 +3,7 @@ import QtQuick 2.0
 Item {
     id: conveyor
     width: 610
-    height: 150
+    height: 100
 
     property bool running: false
     property double velocity: 1.0
@@ -27,7 +27,7 @@ Item {
                         y: 5
                         x: startPosition
                         width: 10
-                        height: 140
+                        height: conveyor.height -10
                         color: "#3d495a"
 
                         property int startPosition: modelData

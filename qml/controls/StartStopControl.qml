@@ -6,7 +6,7 @@ import ".."
 Rectangle {
     id: startStopControl
     color: "white"
-
+    property alias active: startStopButton.active
     property alias title: startStopTitle.text
 
     signal buttonToggled(bool state)
@@ -34,6 +34,8 @@ Rectangle {
             Layout.preferredHeight: parent.height/2
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignCenter
+
+            onToggled: {buttonToggled(startStopButton.active)}
         }
     }
 }

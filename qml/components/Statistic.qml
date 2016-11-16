@@ -14,6 +14,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: Style.smallMargin
         text: qsTr("Statistik")
+        color: Style.textColor
         font.pixelSize: Style.titleFontSize
     }
 
@@ -113,6 +114,7 @@ Rectangle {
         Text{
             id: whiteText
             text: qsTr("weiss")
+            color: Style.textColor
 
             Layout.row: 0
             Layout.rowSpan: 1
@@ -127,6 +129,7 @@ Rectangle {
         Text{
             id: redText
             text: qsTr("red")
+            color: Style.textColor
 
             Layout.row: 2
             Layout.rowSpan: 1
@@ -141,6 +144,7 @@ Rectangle {
         Text{
             id: blueText
             text: qsTr("blue")
+            color: Style.textColor
 
             Layout.row: 4
             Layout.rowSpan: 1
@@ -155,6 +159,7 @@ Rectangle {
         Text{
             id: whiteNoOfPiecesText
             text: qsTr("%1 Stk.").arg(17)
+            color: Style.textColor
 
             Layout.row: 0
             Layout.rowSpan: 1
@@ -169,6 +174,7 @@ Rectangle {
         Text{
             id: redNoOfPiecesText
             text: qsTr("%1 Stk.").arg(22)
+            color: Style.textColor
 
             Layout.row: 2
             Layout.rowSpan: 1
@@ -183,6 +189,7 @@ Rectangle {
         Text{
             id: blueNoOfPiecesText
             text: qsTr("%1 Stk.").arg(14)
+            color: Style.textColor
 
             Layout.row: 4
             Layout.rowSpan: 1
@@ -197,6 +204,7 @@ Rectangle {
         Text{
             id: whiteSpeedText
             text: qsTr("\u00D8 %1 s").arg(3.8)
+            color: Style.textColor
 
             Layout.row: 0
             Layout.rowSpan: 1
@@ -211,6 +219,7 @@ Rectangle {
         Text{
             id: redSpeedText
             text: qsTr("\u00D8 %1 s").arg(4.3)
+            color: Style.textColor
 
             Layout.row: 2
             Layout.rowSpan: 1
@@ -225,6 +234,7 @@ Rectangle {
         Text{
             id: blueSpeedText
             text: qsTr("\u00D8 %1 s").arg(4.7)
+            color: Style.textColor
 
             Layout.row: 4
             Layout.rowSpan: 1

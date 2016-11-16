@@ -14,7 +14,7 @@ HEADERS += \
     src/websocketclient.h
 
 RESOURCES += res/qml.qrc \
-	res/images.qrc
+    res/images.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -45,4 +45,9 @@ DISTFILES += \
     qml/qmldir \
     qml/components/Legend.qml \
     qml/components/Statistic.qml \
-    qml/components/Status.qml
+    qml/components/Status.qml \
+    qml/components/LightBarrier.qml
+
+lupdate_only{
+SOURCES += $${DISTFILES}
+}

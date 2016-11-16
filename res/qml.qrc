@@ -3,6 +3,7 @@
         <file alias="Conveyor.qml">../qml/components/Conveyor.qml</file>
         <file alias="Ejector.qml">../qml/components/Ejector.qml</file>
         <file alias="Legend.qml">../qml/components/Legend.qml</file>
+        <file alias="LightBarrier.qml">../qml/components/LightBarrier.qml</file>
         <file alias="Tray.qml">../qml/components/Tray.qml</file>
         <file alias="Statistic.qml">../qml/components/Statistic.qml</file>
         <file alias="Status.qml">../qml/components/Status.qml</file>

@@ -3,7 +3,7 @@ import QtQuick 2.0
 
 Item {
     id: ejector
-    width: 50
+    width: 40
     height: 150
 
     signal eject
@@ -15,10 +15,10 @@ Item {
 
     Image {
         id: element
-        x: 5
-        y: 15
-        height: 130
-        width: 40
+        anchors.fill: parent
+        anchors.topMargin: 12
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
         source: "qrc:/ejector.svg"
 
 
@@ -66,6 +66,7 @@ Item {
     Rectangle {
         id: surface
         anchors.fill: parent
+        anchors.bottomMargin: 10
         color: "#C4CACD"
         opacity: 0.5
     }

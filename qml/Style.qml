@@ -9,4 +9,6 @@ QtObject {
     property int mainTitleFontSize: 28
     property int titleFontSize:     24
     property int controlFontSize:   14
+
+    property color textColor: "#0e6a8b"
 }

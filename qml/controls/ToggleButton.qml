@@ -9,7 +9,7 @@ Rectangle {
     property color inactiveColor: "darkgreen"
     property alias textColor: text.color
     property bool active: false
-    signal toggled
+    signal toggled(bool active)
 
     radius: 2
     color: active ? activeColor : inactiveColor
@@ -63,7 +63,7 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: { active = !active; root.toggled() }
+        onClicked: { active = !active; root.toggled(active) }
         onPressed: {root.scale = 0.95}
         onReleased:{root.scale = 1.0}
     }
