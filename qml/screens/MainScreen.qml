@@ -101,8 +101,8 @@ Rectangle {
             active: websocketClient.motorRunning
 
             onButtonToggled: {
-                websocketClient.sendMotorRunningRequest(startStopControl.active)
-                websocketClient.sendCompressorRunningRequest(startStopControl.active)
+                websocketClient.sendMotorRunningRequest(state)
+                websocketClient.sendCompressorRunningRequest(state)
             }
         }
 

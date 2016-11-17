@@ -63,7 +63,7 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: { active = !active; root.toggled(active) }
+        onClicked: {root.toggled(!active) }
         onPressed: {root.scale = 0.95}
         onReleased:{root.scale = 1.0}
     }
