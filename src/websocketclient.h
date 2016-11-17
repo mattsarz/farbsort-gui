@@ -2,7 +2,6 @@
 #define WEBSOCKETCLIENT_H
 
 #include <QtCore/QObject>
-#include <QtWebSockets/QWebSocket>
 
 class WebSocketClient : public QObject
 {
@@ -28,18 +27,15 @@ Q_SIGNALS:
     void valveEjected(int number);
 
 public:
-    explicit WebSocketClient(const QString ipAddress);
-    ~WebSocketClient();
+    WebSocketClient();
 
 public slots:
     /** slot to set the motor to switch on/off */
-    void sendMotorRunningRequest(const bool motorRunning);
+    virtual void sendMotorRunningRequest(const bool motorRunning) = 0;
     /** slot to set the compressor to switch on/off */
-    void sendCompressorRunningRequest(const bool compressorRunning);
+    virtual void sendCompressorRunningRequest(const bool compressorRunning) = 0;
     /** sends a eject valve request with the given number */
-    void ejectValve(int number);
-    /** slot to reconnect to websocket service */
-    void reconnectService();
+    virtual void ejectValve(int number) = 0;
 
 protected:
     bool connected() const { return m_connected; }
@@ -55,17 +51,7 @@ protected:
     /** sets the state for the given light barrier */
     void setLightbarrierState(const int number, const bool state);
 
-private Q_SLOTS:
-    void onConnected();
-    void onDisconneced();
-    void onTextMessageReceived(QString message);
-
-private:
-    // websocket stuff
-    QWebSocket m_webSocket;
-    const QUrl m_url;
-
-    // members
+protected:
     bool m_connected;
     bool m_motorRunning;
     bool m_compressorRunning;

@@ -1,4 +1,4 @@
-#include "websocketclient.h"
+#include "websocketclientimplementation.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
     qDebug() << "CommandLineOption::ipAddress: " << parser.value("ip-address");
 
-    WebSocketClient webSocketClient(QString(parser.value("ip-address")));
+    WebSocketClientImplementation webSocketClient(QString(parser.value("ip-address")));
 
     // start application
     QResource::registerResource("qml.qrc");
