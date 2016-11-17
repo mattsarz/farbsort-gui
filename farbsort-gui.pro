@@ -9,11 +9,13 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 SOURCES += src/main.cpp \
     src/websocketclientimplementation.cpp \
-    src/websocketclient.cpp
+    src/websocketclient.cpp \
+    src/websocketclientsimulation.cpp
 
 HEADERS += \
     src/websocketclient.h \
-    src/websocketclientimplementation.h
+    src/websocketclientimplementation.h \
+    src/websocketclientsimulation.h
 
 RESOURCES += res/qml.qrc \
     res/images.qrc

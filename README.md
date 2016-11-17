@@ -15,6 +15,13 @@ QML user interface for farbsort showcase.
 
 ### Run
 
+#### Real target
+
 Start [farbsort-websocket](https://github.com/bbvch/farbsort-websocket) service on beaglebone black. 
 
-    ./farbsort-gui -i WEBSOCKET_HOST_IP
+    ./farbsort-gui --ip-address WEBSOCKET_HOST_IP
+
+
+#### Simulated target
+
+    ./farbsort-gui --simulation
