@@ -8,6 +8,7 @@ import ".."
 Rectangle {
     id: stateControl
     color: "white"
+    property bool running: false
 
     Text {
         id:startStopTitle
@@ -23,6 +24,7 @@ Rectangle {
         id: statusGauge
         anchors{ left: parent.left; right: parent.right;  top: startStopTitle.bottom }
         anchors.margins: Style.bigMargin
+        value: stateControl.running ? maximumValue : 0
 
         style: CircularGaugeStyle {
             needle: Rectangle {
@@ -44,6 +46,12 @@ Rectangle {
                   implicitHeight: outerRadius * 0.03
                   color: "#e5e5e5"
               }
+        }
+
+        Behavior on value {
+            NumberAnimation {
+                duration: 500
+            }
         }
     }
 }

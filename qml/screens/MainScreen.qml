@@ -119,6 +119,7 @@ Rectangle {
             Layout.preferredHeight:simulator.height*4/5
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
+            running: websocketClient.compressorRunning
         }
 
         Legend {
