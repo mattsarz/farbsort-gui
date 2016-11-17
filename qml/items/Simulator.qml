@@ -73,6 +73,7 @@ Rectangle {
         LightBarrier {
             id: bevorColorRecognition
             active:  lightbarrierBeforeColorDetectionState
+            stoneColor: "transparent"
 
             Layout.row: 2
             Layout.rowSpan: 3
@@ -82,6 +83,7 @@ Rectangle {
             Layout.preferredHeight: parent.height/3
             Layout.alignment: Qt.AlignHCenter
             Layout.margins: 0
+
         }
 
         Item {
@@ -117,6 +119,7 @@ Rectangle {
         LightBarrier {
             id: afterColorRecognition
             active: lightbarrierAfterColorDetectionState
+            stoneColor: "blue"
 
             Layout.row: 2
             Layout.rowSpan: 3

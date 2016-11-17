@@ -3,6 +3,7 @@ import QtQuick 2.0
 Item {
     id: lightBarrier
     property bool active: false
+    property alias stoneColor: stone.color
 
     Image {
         id: lightSender
@@ -18,6 +19,14 @@ Item {
         anchors.top:    lightSender.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: lightReceiver.top
+
+        Stone {
+            id: stone
+            visible: lightBarrier.active
+            width: lightBarrier.width * 0.9
+            height: width
+            anchors.centerIn: lightBeam
+        }
     }
 
     Image {

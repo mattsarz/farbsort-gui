@@ -73,7 +73,7 @@ Rectangle {
             visible: simulationModeActive
             text: qsTr("Activate lightbarrier pre-color-detection")
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            onClicked: { websocketClient.simulateLightbarrierActivated(1) }
+            onPressedChanged: { websocketClient.lightbarrierActivated(1, pressed) }
         }
 
         Button {
@@ -81,7 +81,7 @@ Rectangle {
             visible: simulationModeActive
             text: qsTr("Activate lightbarrier post-color-detection")
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            onClicked: { websocketClient.simulateLightbarrierActivated(2) }
+            onPressedChanged: { websocketClient.lightbarrierActivated(2, pressed) }
         }
 
         Button {
@@ -89,7 +89,7 @@ Rectangle {
             visible: simulationModeActive
             text: qsTr("Activate lightbarrier Tray #1")
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            onClicked: { websocketClient.simulateLightbarrierActivated(3) }
+            onPressedChanged: { websocketClient.lightbarrierActivated(3, pressed) }
         }
 
         Button {
@@ -97,7 +97,7 @@ Rectangle {
             visible: simulationModeActive
             text: qsTr("Activate lightbarrier Tray #2")
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            onClicked: { websocketClient.simulateLightbarrierActivated(4) }
+            onPressedChanged: { websocketClient.lightbarrierActivated(4, pressed) }
         }
 
         Button {
@@ -105,7 +105,7 @@ Rectangle {
             visible: simulationModeActive
             text: qsTr("Activate lightbarrier Tray #3")
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            onClicked: { websocketClient.simulateLightbarrierActivated(5) }
+            onPressedChanged: { websocketClient.lightbarrierActivated(5, pressed) }
         }
     }
 }
