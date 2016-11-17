@@ -8,28 +8,39 @@ Item {
 
     signal eject
     readonly property alias state: element.state
+    property int ejectDistance: height / 2
 
     onEject: {
         element.state = "ejecting"
     }
 
+    Rectangle {
+        id: surface
+        anchors.fill: parent
+        anchors.bottomMargin: 10
+        color: "#C4CACD"
+        opacity: 0.5
+    }
+
     Image {
         id: element
-        anchors.fill: parent
-        anchors.topMargin: 12
-        anchors.leftMargin: 5
-        anchors.rightMargin: 5
+        x: surface.width / 8
+        y: yOffset
+        width: surface.width * 6 / 8
+        height: surface.height - yOffset
         source: "qrc:/ejector.svg"
+
+        readonly property int yOffset: surface.height / 10
 
 
         states:
             State {
                 name: "ejecting"
-                PropertyChanges { target: element; y: 100 }
+                PropertyChanges { target: element; y: yOffset + ejectDistance }
             }
             State {
                 name: "pulling"
-                PropertyChanges { target: element; y: 15 }
+                PropertyChanges { target: element; y: yOffset }
             }
             State {
                 name: "idle"
@@ -61,13 +72,5 @@ Item {
         ]
 
         state: "idle"
-    }
-
-    Rectangle {
-        id: surface
-        anchors.fill: parent
-        anchors.bottomMargin: 10
-        color: "#C4CACD"
-        opacity: 0.5
     }
 }

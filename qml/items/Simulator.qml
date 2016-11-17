@@ -156,6 +156,7 @@ Rectangle {
             Layout.preferredHeight: parent.height*3/8
             Layout.alignment: Qt.AlignBottom| Qt.AlignRight
             Layout.margins: 0
+            ejectDistance: conveyor.height
         }
 
         Ejector {
@@ -169,6 +170,7 @@ Rectangle {
             Layout.preferredHeight: parent.height*3/8
             Layout.alignment: Qt.AlignBottom| Qt.AlignHCenter
             Layout.margins: 0
+            ejectDistance: conveyor.height
         }
 
         Ejector {
@@ -182,6 +184,7 @@ Rectangle {
             Layout.preferredHeight: parent.height*3/8
             Layout.alignment: Qt.AlignBottom| Qt.AlignLeft
             Layout.margins: 0
+            ejectDistance: conveyor.height
         }
 
         Tray {
