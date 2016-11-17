@@ -163,6 +163,10 @@ Rectangle {
             Layout.preferredHeight:parent.height/3
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
+            onButtonClicked: {
+                websocketClient.sendMotorRunningRequest(false)
+                websocketClient.sendCompressorRunningRequest(false)
+            }
         }
 
         // ================================================================================
