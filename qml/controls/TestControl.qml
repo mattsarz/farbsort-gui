@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 
 Rectangle {
     id: testControl
-    color: "red"
 
     property alias conveyorVelocityControl: conveyorVelocityControl
 
@@ -13,19 +12,22 @@ Rectangle {
         anchors.fill: parent
 
         ToggleButton {
-            id: motorStatusButton
-            text: "Motor running"
-            checked: websocketClient.motorRunning
-            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            onClicked: { websocketClient.toggleMotorRunning() }
-        }
-
-        ToggleButton {
             id: compressorStatusButton
             text: "Compressor running"
             checked: websocketClient.compressorRunning
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            onClicked: { websocketClient.toggleCompressorRunning() }
+            onClicked: {
+                websocketClient.sendCompressorRunningRequest(!websocketClient.compressorRunning)
+            }
+
+
+        }
+
+        Text {
+            id: conveyorVelocityTitle
+            text: qsTr("Conveyor velocity")
+            font.pixelSize: 12
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         }
 
         Slider {
@@ -37,7 +39,7 @@ Rectangle {
 
         Text {
             id: simulationControlTitle
-            text: qsTr("Simulate ejectors")
+            text: qsTr("Test ejectors")
             font.pixelSize: 12
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         }

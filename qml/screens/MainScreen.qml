@@ -15,7 +15,8 @@ Rectangle {
     color: "#EEEEEE"
 //    enabled: websocketClient.connected // TODO: This disables all mouse events. Please fix it
 
-    signal settingsBtnClicked
+    signal settingsScreenRequested
+    signal diagnosticsScreenRequested
 
     MainTitleBar {
         id:mainTitle
@@ -25,7 +26,11 @@ Rectangle {
         height: parent.height/13
 
         onSettingsButtonClicked: {
-            settingsBtnClicked()
+            settingsScreenRequested()
+        }
+
+        onDiagnosticsButtonClicked: {
+            diagnosticsScreenRequested()
         }
     }
 
@@ -65,25 +70,7 @@ Rectangle {
             Component.onCompleted: {
                 websocketClient.valveEjected.connect(simulator.valveEjected)
             }
-
-            // todo: scale animation drawing depending on screen size
-            // transform: Scale { xScale: 1.2; yScale: 1.2}
         }
-
-//        Rectangle{
-//            id: simulator
-//            color: "red"
-//            Layout.row: 0
-//            Layout.rowSpan: 4
-//            Layout.column: 0
-//            Layout.columnSpan: 3
-//            Layout.fillHeight: true
-//            Layout.fillWidth : true
-//            Layout.preferredWidth: parent.width * 0.75
-//            Layout.preferredHeight: parent.height * 0.75
-//            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-//            Layout.margins: 0
-//        }
 
         StartStopControl {
             id: startStopControl

@@ -57,7 +57,11 @@ Window {
     MainScreen {
         id: mainScreen
 
-        onSettingsBtnClicked: {
+        onSettingsScreenRequested: {
+            stackView.push(settingsScreen)
+        }
+
+        onDiagnosticsScreenRequested: {
             stackView.push(diagnosticScreen)
         }
     }

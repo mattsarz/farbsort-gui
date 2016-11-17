@@ -13,6 +13,7 @@
         <file alias="start.png">images/controls/start.png</file>
         <file alias="stop.png">images/controls/stop.png</file>
         <file alias="e_stop_background.png">images/controls/e_stop_background.png</file>
+        <file alias="stethoscope.svg">images/controls/stethoscope.svg</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="conveyor.svg">images/conveyor.svg</file>
