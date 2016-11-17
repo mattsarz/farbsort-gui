@@ -35,7 +35,7 @@ Rectangle {
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignCenter
 
-            onToggled: {buttonToggled(startStopButton.active)}
+            onToggled: { buttonToggled(state) }
         }
     }
 }

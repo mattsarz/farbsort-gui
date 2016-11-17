@@ -26,23 +26,25 @@ WebSocketClient::~WebSocketClient()
     m_webSocket.close();
 }
 
-void WebSocketClient::toggleMotorRunning()
+void WebSocketClient::sendMotorRunningRequest(const bool motorRunning)
 {
-    qDebug() << "wsc: toggle motor running";
-    if(m_motorRunning) {
-        m_webSocket.sendTextMessage("motor.stop");
-    } else {
-        m_webSocket.sendTextMessage("motor.start");
+    if(motorRunning != m_motorRunning) {
+        if(motorRunning) {
+            m_webSocket.sendTextMessage("motor.start");
+        } else {
+            m_webSocket.sendTextMessage("motor.stop");
+        }
     }
 }
 
-void WebSocketClient::toggleCompressorRunning()
+void WebSocketClient::sendCompressorRunningRequest(const bool compressorRunning)
 {
-    qDebug() << "wsc: toggle compressor running";
-    if(m_compressorRunning) {
-        m_webSocket.sendTextMessage("compressor.stop");
-    } else {
-        m_webSocket.sendTextMessage("compressor.start");
+    if(compressorRunning != m_compressorRunning) {
+        if(compressorRunning) {
+            m_webSocket.sendTextMessage("compressor.start");
+        } else {
+            m_webSocket.sendTextMessage("compressor.stop");
+        }
     }
 }
 

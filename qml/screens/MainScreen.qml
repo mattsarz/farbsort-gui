@@ -98,8 +98,12 @@ Rectangle {
             Layout.preferredHeight:simulator.height/5
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
+            active: websocketClient.motorRunning
 
-            onButtonToggled: { startStopControl.active ? simulator.conveyor.running = true : simulator.conveyor.running = false }
+            onButtonToggled: {
+                websocketClient.sendMotorRunningRequest(startStopControl.active)
+                websocketClient.sendCompressorRunningRequest(startStopControl.active)
+            }
         }
 
         Status {

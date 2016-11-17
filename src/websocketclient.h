@@ -32,10 +32,10 @@ public:
     ~WebSocketClient();
 
 public slots:
-    /** slot to toggle the motor to switch on/off */
-    void toggleMotorRunning();
-    /** slot to toggle the compressor to switch on/off */
-    void toggleCompressorRunning();
+    /** slot to set the motor to switch on/off */
+    void sendMotorRunningRequest(const bool motorRunning);
+    /** slot to set the compressor to switch on/off */
+    void sendCompressorRunningRequest(const bool compressorRunning);
     /** sends a eject valve request with the given number */
     void ejectValve(int number);
     /** slot to reconnect to websocket service */
