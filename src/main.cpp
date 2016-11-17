@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("websocketClient", webSocketClient.data());
+    engine.rootContext()->setContextProperty("simulationModeActive", QVariant(parser.isSet("simulation")));
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     return app.exec();
 }

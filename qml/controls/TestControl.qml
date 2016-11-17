@@ -67,5 +67,45 @@ Rectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             onClicked: { websocketClient.ejectValve(3) }
         }
+
+        Button {
+            id: simulateLightbarrierOneActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier pre-color-detection")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onClicked: { websocketClient.simulateLightbarrierActivated(1) }
+        }
+
+        Button {
+            id: simulateLightbarrierTwoActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier post-color-detection")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onClicked: { websocketClient.simulateLightbarrierActivated(2) }
+        }
+
+        Button {
+            id: simulateLightbarrierThreeActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier Tray #1")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onClicked: { websocketClient.simulateLightbarrierActivated(3) }
+        }
+
+        Button {
+            id: simulateLightbarrierFourActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier Tray #2")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onClicked: { websocketClient.simulateLightbarrierActivated(4) }
+        }
+
+        Button {
+            id: simulateLightbarrierFiveActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier Tray #3")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onClicked: { websocketClient.simulateLightbarrierActivated(5) }
+        }
     }
 }
