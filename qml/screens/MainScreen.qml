@@ -43,7 +43,7 @@ Rectangle {
 
         Simulator {
             id: simulator
-            conveyor.velocity: testControl.conveyorVelocityControl.value
+            //conveyor.velocity: testControl.conveyorVelocityControl.value
             conveyor.running:                             websocketClient.motorRunning
             lightbarrierBeforeColorDetectionState:        websocketClient.lightbarrierOneState
             lightbarrierAfterColorDetectionState:         websocketClient.lightbarrierTwoState

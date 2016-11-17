@@ -9,38 +9,61 @@ Item {
     property double velocity: 1.0
 
     Rectangle {
-        id: background
+        id: conveyorArea
         anchors.fill: parent
         color: "#6fd4ff"
         opacity: 0.21461188
         border.color: "black"
+
+        property int numberOfElements: 15
+        property int beltElementWidth: conveyor.width / 61
+        property double offsetBetweenBeltElements: (conveyor.width - beltElementWidth) / numberOfElements
+
+        signal resized
+
+        onWidthChanged: {
+            resized()
+        }
 
         Row {
             spacing: 30
 
             Repeater {
                 id: repeater
-                model: [0, 40, 80, 120, 160, 200, 240, 280, 320, 360, 400, 440, 480, 520, 560]
+                model: conveyorArea.numberOfElements
                 delegate:
                     Rectangle {
                         id: beltElement
                         y: 5
                         x: startPosition
-                        width: 10
-                        height: conveyor.height -10
+                        width: conveyorArea.beltElementWidth
+                        height: conveyorArea.height -10
                         color: "#3d495a"
 
-                        property int startPosition: modelData
+                        property int index: modelData
+                        readonly property double startPosition: index * conveyorArea.offsetBetweenBeltElements
+
+                        function restartAnimation() {
+                            animation.restart()
+                            if(!conveyor.running) {
+                                animation.stop()
+                            }
+                        }
 
                         SequentialAnimation on x {
+                            id: animation
                             loops: Animation.Infinite
                             running: conveyor.running
 
                             PropertyAnimation {
                                 from: beltElement.startPosition
-                                to: beltElement.startPosition + 40
+                                to: beltElement.startPosition + conveyorArea.offsetBetweenBeltElements
                                 duration: 1000 / conveyor.velocity;
                             }
+                        }
+
+                        Component.onCompleted: {
+                            conveyorArea.resized.connect(restartAnimation)
                         }
                     }
             }
