@@ -8,6 +8,7 @@
         <file alias="Statistic.qml">../qml/components/Statistic.qml</file>
         <file alias="Status.qml">../qml/components/Status.qml</file>
         <file alias="Stone.qml">../qml/components/Stone.qml</file>
+        <file alias="ColorRecognitionUnit.qml">../qml/components/ColorRecognitionUnit.qml</file>
     </qresource>
     <qresource prefix="/controls">
         <file alias="EmergencyButton.qml">../qml/controls/EmergencyButton.qml</file>

@@ -18,6 +18,8 @@ public slots:
     void ejectValve(int number) override;
     /** slot to set the state of an lightbarrier */
     void lightbarrierActivated(int number, bool state);
+    /** slot to set the detected color */
+    void sendDetectedColor(const QColor color);
 };
 
 #endif // WEBSOCKETCLIENTSIMULATION_H

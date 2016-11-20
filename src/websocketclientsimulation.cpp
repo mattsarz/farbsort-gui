@@ -29,3 +29,8 @@ void WebSocketClientSimulation::lightbarrierActivated(int number, bool state)
 {
     setLightbarrierState(number, state);
 }
+
+void WebSocketClientSimulation::sendDetectedColor(const QColor color)
+{
+    setDetectedColor(color);
+}

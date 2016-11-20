@@ -18,6 +18,7 @@ Rectangle {
     property alias lightbarrierTrayOne: lightbarrierTrayOne
     property alias lightbarrierTrayTwo: lightbarrierTrayTwo
     property alias lightbarrierTrayThree: lightbarrierTrayTree
+    property alias detectedColor: colorRecongnition.color
     signal valveEjected(int number)
 
 // The Conveyor has to be outside of the grid layout because of gridlayout waring "cell already taken
@@ -101,10 +102,9 @@ Rectangle {
             Layout.margins: 0
         }
 
-        Rectangle {
+        ColorRecognitionUnit {
             id: colorRecongnition
-            color: "#0e6a8b"
-            opacity: 0.5
+            color: "red"
 
             Layout.row: 2
             Layout.rowSpan: 3
@@ -119,7 +119,7 @@ Rectangle {
         LightBarrier {
             id: afterColorRecognition
             active: lightbarrierAfterColorDetectionState
-            stoneColor: "blue"
+            stoneColor: detectedColor
 
             Layout.row: 2
             Layout.rowSpan: 3

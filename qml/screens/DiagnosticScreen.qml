@@ -39,6 +39,7 @@ Rectangle {
             lightbarrierTrayOne.lightbarrierInterruted:   websocketClient.lightbarrierThreeState
             lightbarrierTrayTwo.lightbarrierInterruted:   websocketClient.lightbarrierFourState
             lightbarrierTrayThree.lightbarrierInterruted: websocketClient.lightbarrierFiveState
+            detectedColor:                                websocketClient.detectedColor
 
             Layout.row: 0
             Layout.rowSpan: 4

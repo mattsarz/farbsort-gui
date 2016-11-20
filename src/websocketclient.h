@@ -2,6 +2,7 @@
 #define WEBSOCKETCLIENT_H
 
 #include <QtCore/QObject>
+#include <QColor>
 
 class WebSocketClient : public QObject
 {
@@ -14,6 +15,7 @@ class WebSocketClient : public QObject
     Q_PROPERTY(bool lightbarrierThreeState READ lightbarrierThreeState NOTIFY lightbarrierThreeStateChanged)
     Q_PROPERTY(bool lightbarrierFourState READ lightbarrierFourState NOTIFY lightbarrierFourStateChanged)
     Q_PROPERTY(bool lightbarrierFiveState READ lightbarrierFiveState NOTIFY lightbarrierFiveStateChanged)
+    Q_PROPERTY(QColor detectedColor READ detectedColor NOTIFY detectedColorChanged)
 
 Q_SIGNALS:
     void connectedChanged();
@@ -25,6 +27,7 @@ Q_SIGNALS:
     void lightbarrierFourStateChanged();
     void lightbarrierFiveStateChanged();
     void valveEjected(int number);
+    void detectedColorChanged();
 
 public:
     WebSocketClient();
@@ -38,18 +41,22 @@ public slots:
     virtual void ejectValve(int number) = 0;
 
 protected:
+    /** getters */
     bool connected() const { return m_connected; }
-    void setMotorRunning(const bool motorRunning);
     bool motorRunning() const { return m_motorRunning; }
-    void setCompressorRunning(const bool compressorRunning);
     bool compressorRunning() const { return m_compressorRunning; }
     bool lightbarrierOneState() const { return m_lightbarrierOneState; }
     bool lightbarrierTwoState() const { return m_lightbarrierTwoState; }
     bool lightbarrierThreeState() const { return m_lightbarrierThreeState; }
     bool lightbarrierFourState() const { return m_lightbarrierFourState; }
     bool lightbarrierFiveState() const { return m_lightbarrierFiveState; }
+    QColor detectedColor() const { return m_detectedColor; }
+    /** setters */
+    void setMotorRunning(const bool motorRunning);
+    void setCompressorRunning(const bool compressorRunning);
     /** sets the state for the given light barrier */
     void setLightbarrierState(const int number, const bool state);
+    void setDetectedColor(const QColor color);
 
 protected:
     bool m_connected;
@@ -60,6 +67,7 @@ protected:
     bool m_lightbarrierThreeState;
     bool m_lightbarrierFourState;
     bool m_lightbarrierFiveState;
+    QColor m_detectedColor;
 };
 
 #endif // WEBSOCKETCLIENT_H

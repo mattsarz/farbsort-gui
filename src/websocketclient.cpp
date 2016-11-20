@@ -12,6 +12,7 @@ WebSocketClient::WebSocketClient()
     , m_lightbarrierThreeState(false)
     , m_lightbarrierFourState(false)
     , m_lightbarrierFiveState(false)
+    , m_detectedColor(QColor("transparent"))
 {
 }
 
@@ -72,6 +73,14 @@ void WebSocketClient::setLightbarrierState(const int number, const bool state)
         default: {
             qWarning() << "wsc: received unknown lightbarrier state number: " << number;
         } break;
+    }
+}
+
+void WebSocketClient::setDetectedColor(const QColor color)
+{
+    if(color != m_detectedColor) {
+        m_detectedColor = color;
+        emit detectedColorChanged();
     }
 }
 

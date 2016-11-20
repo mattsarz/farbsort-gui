@@ -2,6 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.2
 import QtQuick.Extras 1.4
 import QtQuick.Layouts 1.3
+import QtQuick.Controls.Styles 1.4
 
 Rectangle {
     id: testControl
@@ -19,8 +20,6 @@ Rectangle {
             onClicked: {
                 websocketClient.sendCompressorRunningRequest(!websocketClient.compressorRunning)
             }
-
-
         }
 
         Text {
@@ -106,6 +105,29 @@ Rectangle {
             text: qsTr("Activate lightbarrier Tray #3")
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             onPressedChanged: { websocketClient.lightbarrierActivated(5, pressed) }
+        }
+
+        RowLayout {
+            Repeater {
+                model: ["white", "blue", "red", "transparent"]
+
+                Button {
+                    text: modelData
+                    style: ButtonStyle {
+                        background: Rectangle {
+                            border.width: control.activeFocus ? 2 : 1
+                            border.color: "black"
+                            implicitWidth: testControl.width / 5
+                            implicitHeight: implicitWidth / 3
+                            color: modelData
+                            radius: 4
+                        }
+                    }
+                    onClicked: {
+                        websocketClient.sendDetectedColor(modelData)
+                    }
+                }
+            }
         }
     }
 }

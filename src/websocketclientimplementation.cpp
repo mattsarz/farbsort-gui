@@ -87,6 +87,9 @@ void WebSocketClientImplementation::onTextMessageReceived(QString message)
     } else if(message.startsWith("valve") && message.endsWith("ejected")) {
         QStringRef valveNumber(&message, 5, 1);
         emit valveEjected(valveNumber.toInt());
+    } else if(message.startsWith("color")) {
+        QColor color = QColor(message.right(message.length() - 6));
+        setDetectedColor(color);
     } else {
         qWarning() << "wsc: message '" << message << "' was not handled";
     }

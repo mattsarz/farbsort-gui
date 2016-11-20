@@ -51,7 +51,8 @@ DISTFILES += \
     qml/components/Statistic.qml \
     qml/components/Status.qml \
     qml/components/LightBarrier.qml \
-    qml/components/Stone.qml
+    qml/components/Stone.qml \
+    qml/components/ColorRecognitionUnit.qml
 
 lupdate_only{
 SOURCES += $${DISTFILES}
