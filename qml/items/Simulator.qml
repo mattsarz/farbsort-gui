@@ -1,6 +1,6 @@
-import QtQuick 2.0
-import QtQuick.Extras 1.4
-import QtQuick.Layouts 1.1
+import QtQuick 2.7
+import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.0
 
 import ".."
 import "../components"
@@ -261,6 +261,87 @@ Rectangle {
             Layout.preferredHeight: parent.height / 3
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
+        }
+
+        Rectangle {
+            id: chipObject
+
+            property int startPosX: 16
+            property int stopPosX: parent.width-100
+
+            property int startPosY: parent.height/2 - chipObject.height/2
+            property int stopPosY: startPosY + 100
+            property int colorId: 4
+
+            width: 50
+            height: 50
+            radius: 25
+            color: detectedColor
+            border.color: "black"
+
+            x: startPosX
+            y: parent.height/2 - chipObject.height/2
+
+            MouseArea {
+                id:mouseArea
+                anchors.fill: parent
+
+                onClicked: { chipObject.x = 0; chipObject.y=chipObject.startPosY; chipObject.color="transparent"; conveyorAnimation.stop(); ejectorAnimation.stop(); detectionAnimation.restart() }
+            }
+        }
+
+        PropertyAnimation {
+            id: detectionAnimation
+            loops: 1
+            alwaysRunToEnd: true
+            target: chipObject; property: "x";
+            to: colorRecongnition.x + colorRecongnition.width/2
+            easing.type: Easing.Linear; duration: 800
+
+            onStopped: {
+                if(chipObject.x === (colorRecongnition.x + colorRecongnition.width/2)){
+                    chipObject.colorId = Math.floor((Math.random() * 4) + 1)
+
+                    switch(chipObject.colorId){
+                    case 1:
+                        chipObject.color = lightbarrierTrayOne.trayColor
+                        conveyorAnimation.to = lightbarrierTrayOne.x
+                        break;
+                    case 2:
+                        chipObject.color = lightbarrierTrayTwo.trayColor
+                        conveyorAnimation.to = lightbarrierTrayTwo.x
+                        break;
+                    case 3:
+                        chipObject.color = lightbarrierTrayThree.trayColor
+                        conveyorAnimation.to = lightbarrierTrayTree.x -200
+                        break;
+                     default:
+                         conveyorAnimation.to = unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - chipObject / 2
+                         break;
+                    }
+                }
+                conveyorAnimation.duration = detectionAnimation.duration*(conveyorAnimation.to-chipObject.x)/(detectionAnimation.to-chipObject.startPosX)
+                conveyorAnimation.start()
+            }
+        }
+
+        // Move from minHeight to maxHeight in 300ms, using the OutExpo easing function
+        NumberAnimation {
+            id: conveyorAnimation
+            target: chipObject; property: "x";
+            easing.type: Easing.Linear; duration: 2000
+
+            onStopped: {
+                if(chipObject.colorId !== 4)
+                   ejectorAnimation.start()
+            }
+        }
+
+        NumberAnimation {
+            id: ejectorAnimation
+            target: chipObject; property: "y"
+            from: chipObject.startPosY; to: chipObject.stopPosY
+            easing.type: Easing.Linear; duration: 300
         }
     } // GridLayout
 
