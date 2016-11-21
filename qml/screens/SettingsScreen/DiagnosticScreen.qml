@@ -1,25 +1,18 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.2
-import QtQuick.Extras 1.4
+import QtQuick 2.0
+import QtQuick.Controls 2.0
+
 import QtQuick.Layouts 1.3
 
-import "MainScreen"
 import ".."
-import "../controls"
-import "../components"
-import "../items"
+import "../.."
+import "../../controls"
+import "../../components"
+import "../../items"
 
 
 Rectangle {
     id: diagnosticScreen
-    color: "#EEEEEE"
-
-    signal exitClicked
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: exitClicked()
-    }
+    color: "#9aa6ac"
 
     GridLayout{
         id: mainGrid

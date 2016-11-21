@@ -16,7 +16,7 @@ Window {
     visible: true
 
     StackView {
-        id: stackView
+        id: mainStackView
         initialItem: mainScreen
         anchors.fill: parent
 
@@ -58,11 +58,7 @@ Window {
         id: mainScreen
 
         onSettingsScreenRequested: {
-            stackView.push(settingsScreen)
-        }
-
-        onDiagnosticsScreenRequested: {
-            stackView.push(diagnosticScreen)
+            mainStackView.push(settingsScreen)
         }
     }
 
@@ -70,13 +66,8 @@ Window {
         id: settingsScreen
         visible: false
 
-        onExitClicked: stackView.push(mainScreen)
-    }
-
-    DiagnosticScreen {
-        id: diagnosticScreen
-        visible: false
-
-        onExitClicked: stackView.push(mainScreen)
+        onSettingsExitClicked: {
+            mainStackView.push(mainScreen)
+        }
     }
 }

@@ -21,7 +21,7 @@ Rectangle {
     property alias detectedColor: colorRecongnition.color
     signal valveEjected(int number)
 
-// The Conveyor has to be outside of the grid layout because of gridlayout waring "cell already taken
+// The Conveyor has to be outside of the grid layout because of gridlayout warning "cell already taken"
 
     Conveyor {
         id: conveyor
@@ -276,5 +276,9 @@ Rectangle {
                 ejectorThree.eject()
             } break;
         }
+    }
+
+    onLightbarrierBeforeColorDetectionStateChanged: {
+
     }
 }

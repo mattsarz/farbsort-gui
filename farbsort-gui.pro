@@ -7,6 +7,8 @@ CONFIG += c++11
 VERSION = 0.1
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
+INCLUDEPATH += include
+
 SOURCES += src/main.cpp \
     src/websocketclientimplementation.cpp \
     src/websocketclient.cpp \
@@ -18,6 +20,15 @@ HEADERS += \
     src/websocketclientimplementation.h \
     src/websocketclientsimulation.h \
     src/countinglogic.h
+    src/EventLog.cpp \
+    src/StatisticModel.cpp
+
+HEADERS += \
+    include/websocketclient.h \
+    include/websocketclientimplementation.h \
+    include/websocketclientsimulation.h \
+    include/EventLog.h \
+    include/StatisticModel.h
 
 RESOURCES += res/qml.qrc \
     res/images.qrc
@@ -40,8 +51,6 @@ DISTFILES += \
     qml/screens/MainScreen.qml \
     qml/items/Simulator.qml \
     qml/items/WebSocketClient.qml \
-    qml/screens/SettingsScreen.qml \
-    qml/screens/DiagnosticScreen.qml \
     qml/screens/MainScreen/MainTitleBar.qml \
     qml/controls/TestControl.qml \
     qml/controls/StartStopControl.qml \
@@ -54,7 +63,11 @@ DISTFILES += \
     qml/components/Status.qml \
     qml/components/LightBarrier.qml \
     qml/components/Stone.qml \
-    qml/components/ColorRecognitionUnit.qml
+    qml/components/ColorRecognitionUnit.qml \
+    qml/screens/SettingsScreen.qml \
+    qml/screens/SettingsScreen/DiagnosticScreen.qml \
+    qml/screens/SettingsScreen/SettingsScreenTitle.qml \
+    qml/screens/SettingsScreen/ConfigurationScreen.qml
 
 lupdate_only{
 SOURCES += $${DISTFILES}

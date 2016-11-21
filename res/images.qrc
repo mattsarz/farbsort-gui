@@ -14,6 +14,13 @@
         <file alias="stop.png">images/controls/stop.png</file>
         <file alias="e_stop_background.png">images/controls/e_stop_background.png</file>
         <file alias="stethoscope.svg">images/controls/stethoscope.svg</file>
+        <file alias="arrow_down.png">images/controls/arrow_down.png</file>
+        <file alias="arrow_up.png">images/controls/arrow_up.png</file>
+        <file alias="cancelmark.png">images/controls/cancelmark.png</file>
+        <file alias="checkmark.png">images/controls/checkmark.png</file>
+        <file alias="blue_chip.png">images/items/blue_chip.png</file>
+        <file alias="red_chip.png">images/items/red_chip.png</file>
+        <file alias="white_chip.png">images/items/white_chip.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="conveyor.svg">images/conveyor.svg</file>
