@@ -1,0 +1,4 @@
+#ifndef STATISTICMODEL_H
+#define STATISTICMODEL_H
+
+#endif // STATISTICMODEL_H
