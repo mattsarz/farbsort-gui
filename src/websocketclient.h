@@ -23,9 +23,9 @@ Q_SIGNALS:
     void compressorRunningChanged();
     void lightbarrierOneStateChanged();
     void lightbarrierTwoStateChanged();
-    void lightbarrierThreeStateChanged();
-    void lightbarrierFourStateChanged();
-    void lightbarrierFiveStateChanged();
+    void lightbarrierThreeStateChanged(const bool active);
+    void lightbarrierFourStateChanged(const bool active);
+    void lightbarrierFiveStateChanged(const bool active);
     void valveEjected(int number);
     void detectedColorChanged();
 

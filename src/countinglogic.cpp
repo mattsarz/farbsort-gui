@@ -8,22 +8,28 @@ CountingLogic::CountingLogic()
 {
 }
 
-void CountingLogic::trayOneLightbarrierActivated()
+void CountingLogic::trayOneLightbarrierActivationChanged(const bool active)
 {
-    m_redStoneCounter++;
-    emit redStoneCounterChanged();
+    if(active) {
+        m_redStoneCounter++;
+        emit redStoneCounterChanged();
+    }
 }
 
-void CountingLogic::trayTwoLightbarrierActivated()
+void CountingLogic::trayTwoLightbarrierActivationChanged(const bool active)
 {
-    m_blueStoneCounter++;
-    emit blueStoneCounterChanged();
+    if(active) {
+        m_blueStoneCounter++;
+        emit blueStoneCounterChanged();
+    }
 }
 
-void CountingLogic::trayThreeLightbarrierActivated()
+void CountingLogic::trayThreeLightbarrierActivationChanged(const bool active)
 {
-    m_whiteStoneCounter++;
-    emit whiteStoneCounterChanged();
+    if(active) {
+        m_whiteStoneCounter++;
+        emit whiteStoneCounterChanged();
+    }
 }
 
 void CountingLogic::resetRedStoneCounter()

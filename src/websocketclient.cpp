@@ -53,21 +53,21 @@ void WebSocketClient::setLightbarrierState(const int number, const bool state)
             if(state != m_lightbarrierThreeState) {
                 qDebug() << "wsc: lightbarrierThreeState changed " << state;
                 m_lightbarrierThreeState = state;
-                emit lightbarrierThreeStateChanged();
+                emit lightbarrierThreeStateChanged(state);
             } break;
         }
         case 4: {
             if(state != m_lightbarrierFourState) {
                 qDebug() << "wsc: lightbarrierFourState changed " << state;
                 m_lightbarrierFourState = state;
-                emit lightbarrierFourStateChanged();
+                emit lightbarrierFourStateChanged(state);
             } break;
         }
         case 5: {
             if(state != m_lightbarrierFiveState) {
                 qDebug() << "wsc: lightbarrierFiveState changed " << state;
                 m_lightbarrierFiveState = state;
-                emit lightbarrierFiveStateChanged();
+                emit lightbarrierFiveStateChanged(state);
             } break;
         }
         default: {

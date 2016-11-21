@@ -7,9 +7,11 @@
 class CountingLogic : public QObject
 {
     Q_OBJECT
+    // counters
     Q_PROPERTY(unsigned int redStoneCounter READ redStoneCounter RESET resetRedStoneCounter  NOTIFY redStoneCounterChanged)
     Q_PROPERTY(unsigned int blueStoneCounter READ blueStoneCounter RESET resetBlueStoneCounter  NOTIFY blueStoneCounterChanged)
     Q_PROPERTY(unsigned int whiteStoneCounter READ whiteStoneCounter RESET resetWhiteStoneCounter  NOTIFY whiteStoneCounterChanged)
+
 public:
     explicit CountingLogic();
 
@@ -19,9 +21,9 @@ signals:
     void whiteStoneCounterChanged();
 
 public slots:
-    void trayOneLightbarrierActivated();
-    void trayTwoLightbarrierActivated();
-    void trayThreeLightbarrierActivated();
+    void trayOneLightbarrierActivationChanged(const bool active);
+    void trayTwoLightbarrierActivationChanged(const bool active);
+    void trayThreeLightbarrierActivationChanged(const bool active);
 
 protected:
     /// getter

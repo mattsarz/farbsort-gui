@@ -38,9 +38,9 @@ int main(int argc, char *argv[])
     }
 
     CountingLogic countingLogic;
-    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierThreeStateChanged()), &countingLogic, SLOT(trayOneLightbarrierActivated()));
-    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierFourStateChanged()), &countingLogic, SLOT(trayTwoLightbarrierActivated()));
-    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierFiveStateChanged()), &countingLogic, SLOT(trayThreeLightbarrierActivated()));
+    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierThreeStateChanged(bool)), &countingLogic, SLOT(trayOneLightbarrierActivationChanged(bool)));
+    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierFourStateChanged(bool)), &countingLogic, SLOT(trayTwoLightbarrierActivationChanged(bool)));
+    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierFiveStateChanged(bool)), &countingLogic, SLOT(trayThreeLightbarrierActivationChanged(bool)));
 
     // start application
     QResource::registerResource("qml.qrc");
