@@ -158,7 +158,7 @@ Rectangle {
 
         Text{
             id: whiteNoOfPiecesText
-            text: qsTr("%1 Stk.").arg(17)
+            text: qsTr("%1 Stk.").arg(countingLogic.whiteStoneCounter)
             color: Style.textColor
 
             Layout.row: 0
@@ -173,7 +173,7 @@ Rectangle {
 
         Text{
             id: redNoOfPiecesText
-            text: qsTr("%1 Stk.").arg(22)
+            text: qsTr("%1 Stk.").arg(countingLogic.redStoneCounter)
             color: Style.textColor
 
             Layout.row: 2
@@ -188,7 +188,7 @@ Rectangle {
 
         Text{
             id: blueNoOfPiecesText
-            text: qsTr("%1 Stk.").arg(14)
+            text: qsTr("%1 Stk.").arg(countingLogic.blueStoneCounter)
             color: Style.textColor
 
             Layout.row: 4

@@ -1,5 +1,6 @@
 #include "websocketclientimplementation.h"
 #include "websocketclientsimulation.h"
+#include "countinglogic.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -36,6 +37,11 @@ int main(int argc, char *argv[])
         webSocketClient.reset(new WebSocketClientImplementation(QString(parser.value("ip-address"))));
     }
 
+    CountingLogic countingLogic;
+    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierThreeStateChanged()), &countingLogic, SLOT(trayOneLightbarrierActivated()));
+    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierFourStateChanged()), &countingLogic, SLOT(trayTwoLightbarrierActivated()));
+    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierFiveStateChanged()), &countingLogic, SLOT(trayThreeLightbarrierActivated()));
+
     // start application
     QResource::registerResource("qml.qrc");
     QResource::registerResource("images.qrc");
@@ -43,6 +49,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("websocketClient", webSocketClient.data());
     engine.rootContext()->setContextProperty("simulationModeActive", QVariant(parser.isSet("simulation")));
+    engine.rootContext()->setContextProperty("countingLogic", &countingLogic);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     return app.exec();
 }

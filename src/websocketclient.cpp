@@ -3,7 +3,7 @@
 #include <QtCore/QDebug>
 
 WebSocketClient::WebSocketClient()
-    : QObject(NULL)
+    : QObject(nullptr)
     , m_connected(false)
     , m_motorRunning(false)
     , m_compressorRunning(false)
