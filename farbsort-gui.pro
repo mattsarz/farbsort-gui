@@ -16,17 +16,10 @@ SOURCES += src/main.cpp \
     src/countinglogic.cpp
 
 HEADERS += \
-    src/websocketclient.h \
-    src/websocketclientimplementation.h \
-    src/websocketclientsimulation.h \
-    src/countinglogic.h
-    src/EventLog.cpp \
-    src/StatisticModel.cpp
-
-HEADERS += \
     include/websocketclient.h \
     include/websocketclientimplementation.h \
     include/websocketclientsimulation.h \
+    include/countinglogic.h \
     include/EventLog.h \
     include/StatisticModel.h
 
