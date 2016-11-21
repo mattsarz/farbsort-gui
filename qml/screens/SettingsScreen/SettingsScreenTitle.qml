@@ -10,8 +10,11 @@ Item {
     anchors.right: parent.right
     anchors.top: parent.top
     anchors.margins: Style.bigMargin
+    property alias diagnosticButton: diagnosticButton
+    property alias configurationButton: configurationButton
 
     signal exitClicked
+    signal buttonClicked(var button)
 
     Button{
         id: exitButton
@@ -45,6 +48,7 @@ Item {
         checkedButton: diagnosticButton
 
         onCheckedButtonChanged: {
+            buttonClicked(buttonGroup.checkedButton)
             console.log("Checked button: " + buttonGroup.checkedButton.text)
         }
     }
@@ -63,6 +67,7 @@ Item {
             anchors.bottom: parent.bottom
             anchors.margins: 0
             text: qsTr("DIAGNOSE")
+            property int buttonId: 0
 
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width/6
@@ -77,6 +82,7 @@ Item {
             anchors.bottom: parent.bottom
             anchors.margins: 0
             text: qsTr("KONFIGURATION")
+            property int buttonId: 1
 
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width/6

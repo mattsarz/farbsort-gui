@@ -9,12 +9,7 @@ Rectangle {
     id: settingsScreen
     color: "#9aa6ac"
 
-    signal exitClicked
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: exitClicked()
-    }
+    signal settingsExitClicked
 
     SettingsScreenTitle{
         id:settingsTitle
@@ -24,8 +19,16 @@ Rectangle {
         height: parent.height/13
 
         onExitClicked:{
-//            stackView.clear()
-            exitClicked()
+            settingsExitClicked()
+        }
+
+        onButtonClicked: {
+            if(settingsTitle.diagnosticButton === button && settingsStackView.currentItem !== diagnosticScreen){
+                settingsStackView.push(diagnosticScreen)
+            }
+            else if(settingsTitle.configurationButton === button && settingsStackView.currentItem !== configurationScreen){
+                settingsStackView.push(configurationScreen)
+            }
         }
     }
 
@@ -81,5 +84,4 @@ Rectangle {
         id: configurationScreen
         visible: false
     }
-
 }

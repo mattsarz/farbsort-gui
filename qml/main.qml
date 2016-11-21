@@ -66,6 +66,8 @@ Window {
         id: settingsScreen
         visible: false
 
-        onExitClicked: mainStackView.push(mainScreen)
+        onSettingsExitClicked: {
+            mainStackView.push(mainScreen)
+        }
     }
 }
