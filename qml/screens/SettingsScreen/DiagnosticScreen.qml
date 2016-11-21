@@ -18,6 +18,7 @@ Rectangle {
         id: mainGrid
         anchors.fill: parent
         anchors.margins: Style.bigMargin
+        anchors.topMargin: 0
         columns: 4
         rows: 6
         rowSpacing: Style.bigMargin

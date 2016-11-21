@@ -35,39 +35,11 @@ Rectangle {
     }
 
     Button {
-        id: diagnosticsButton
-        width: parent.height
-        height: parent.height
-        anchors.right: settingsButton.left
-        anchors.rightMargin: Style.smallMargin
-
-        background: Rectangle{
-            color: "transparent"
-        }
-
-        Image {
-            source: "qrc:/stethoscope.svg"
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.margins: Style.bigMargin
-            fillMode: Image.PreserveAspectFit
-        }
-
-        onPressed: scale  = 0.8
-        onReleased: scale = 1.0
-
-        onClicked: {
-            diagnosticsButtonClicked();
-        }
-    }
-
-    Button {
         id: settingsButton
         width: parent.height
         height: parent.height
         anchors.right: parent.right
-        anchors.rightMargin: Style.smallMargin
+        anchors.rightMargin: 0
 
         background: Rectangle{
             color: "transparent"
