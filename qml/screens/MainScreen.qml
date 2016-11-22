@@ -16,7 +16,6 @@ Rectangle {
 //    enabled: websocketClient.connected // TODO: This disables all mouse events. Please fix it
 
     signal settingsScreenRequested
-    signal diagnosticsScreenRequested
 
     MainTitleBar {
         id:mainTitle
@@ -27,10 +26,6 @@ Rectangle {
 
         onSettingsButtonClicked: {
             settingsScreenRequested()
-        }
-
-        onDiagnosticsButtonClicked: {
-            diagnosticsScreenRequested()
         }
     }
 
