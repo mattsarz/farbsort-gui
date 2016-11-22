@@ -9,6 +9,7 @@ Item {
 
     property bool lightbarrierInterruted: false
     property alias trayColor: trayRect.color
+    property int trayRectVerticalMiddle: trayRect.y + trayRect.height / 2
 
     Rectangle {
         id: backgroundChannel

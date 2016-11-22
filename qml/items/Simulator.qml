@@ -268,13 +268,13 @@ Rectangle {
             id: chipObject
 
             property int startPosX: 16
-            property int stopPosX: parent.width-100
+            property int stopPosX: 0
 
             property int startPosY: parent.height/2 - chipObject.height/2
-            property int stopPosY: startPosY + 100
+            property int stopPosY: lightbarrierTrayOne.y + lightbarrierTrayOne.trayRectVerticalMiddle - height / 2
 
-            height: 50
-            width: 50
+            height: 40
+            width: 40
             radius: 90
             color: "transparent"
             border.color: "black"
@@ -313,17 +313,17 @@ Rectangle {
                     if(chipObject.colorRecognized()) {
                         console.log("color recognized")
                         if(chipObject.color === lightbarrierTrayOne.trayColor) {
-                            conveyorAnimation.to = lightbarrierTrayOne.x
+                            conveyorAnimation.to = lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - chipObject.width / 2
                         } else if(chipObject.color === lightbarrierTrayTwo.trayColor) {
-                            conveyorAnimation.to = lightbarrierTrayTwo.x
+                            conveyorAnimation.to = lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - chipObject.width / 2
                         } else {
-                            conveyorAnimation.to = lightbarrierTrayThree.x
+                            conveyorAnimation.to = lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - chipObject.width / 2
                         }
                     } else {
                         conveyorAnimation.to = unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - chipObject.width / 2
                     }
                 }
-                conveyorAnimation.duration = detectionAnimation.duration*(conveyorAnimation.to-chipObject.x)/(detectionAnimation.to-chipObject.startPosX)
+                conveyorAnimation.duration = detectionAnimation.duration*(conveyorAnimation.to - chipObject.x)/(detectionAnimation.to - chipObject.startPosX)
                 conveyorAnimation.start()
             }
         }
@@ -344,8 +344,10 @@ Rectangle {
         NumberAnimation {
             id: ejectorAnimation
             target: chipObject; property: "y"
-            from: chipObject.startPosY; to: chipObject.stopPosY
-            easing.type: Easing.Linear; duration: 300
+            from: chipObject.startPosY
+            to: chipObject.stopPosY
+            easing.type: Easing.Linear
+            duration: 300
         }
     } // GridLayout
 
