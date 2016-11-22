@@ -293,61 +293,61 @@ Rectangle {
             function colorRecognized() {
                 return (Qt.colorEqual(color, "blue") || Qt.colorEqual(color, "red") || Qt.colorEqual(color, "white"))
             }
-        }
 
-        PropertyAnimation {
-            id: detectionAnimation
-            loops: 1
-            alwaysRunToEnd: true
-            target: chipObject; property: "x";
-            to: colorRecognitionUnitMiddle
-            easing.type: Easing.Linear
-            duration: 800
+            PropertyAnimation {
+                id: detectionAnimation
+                loops: 1
+                alwaysRunToEnd: true
+                target: chipObject; property: "x";
+                to: colorRecognitionUnitMiddle
+                easing.type: Easing.Linear
+                duration: 800
 
-            readonly property int colorRecognitionUnitMiddle: colorRecongnition.x + colorRecongnition.width/2
+                readonly property int colorRecognitionUnitMiddle: colorRecongnition.x + colorRecongnition.width/2
 
-            onStopped: {
-                if(chipObject.x === colorRecognitionUnitMiddle) {
-                    chipObject.color = colorRecongnition.color
-                    // TODO: sync animation with colorDetection event
-                    if(chipObject.colorRecognized()) {
-                        console.log("color recognized")
-                        if(chipObject.color === lightbarrierTrayOne.trayColor) {
-                            conveyorAnimation.to = lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - chipObject.width / 2
-                        } else if(chipObject.color === lightbarrierTrayTwo.trayColor) {
-                            conveyorAnimation.to = lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - chipObject.width / 2
+                onStopped: {
+                    if(chipObject.x === colorRecognitionUnitMiddle) {
+                        chipObject.color = colorRecongnition.color
+                        // TODO: sync animation with colorDetection event
+                        if(chipObject.colorRecognized()) {
+                            console.log("color recognized")
+                            if(chipObject.color === lightbarrierTrayOne.trayColor) {
+                                conveyorAnimation.to = lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - chipObject.width / 2
+                            } else if(chipObject.color === lightbarrierTrayTwo.trayColor) {
+                                conveyorAnimation.to = lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - chipObject.width / 2
+                            } else {
+                                conveyorAnimation.to = lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - chipObject.width / 2
+                            }
                         } else {
-                            conveyorAnimation.to = lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - chipObject.width / 2
+                            conveyorAnimation.to = unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - chipObject.width / 2
                         }
-                    } else {
-                        conveyorAnimation.to = unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - chipObject.width / 2
                     }
+                    conveyorAnimation.duration = detectionAnimation.duration*(conveyorAnimation.to - chipObject.x)/(detectionAnimation.to - chipObject.startPosX)
+                    conveyorAnimation.start()
                 }
-                conveyorAnimation.duration = detectionAnimation.duration*(conveyorAnimation.to - chipObject.x)/(detectionAnimation.to - chipObject.startPosX)
-                conveyorAnimation.start()
             }
-        }
 
-        // Move from minHeight to maxHeight in 300ms, using the OutExpo easing function
-        NumberAnimation {
-            id: conveyorAnimation
-            target: chipObject; property: "x";
-            easing.type: Easing.Linear; duration: 2000
-            from: detectionAnimation.colorRecognitionUnitMiddle
+            // Move from minHeight to maxHeight in 300ms, using the OutExpo easing function
+            NumberAnimation {
+                id: conveyorAnimation
+                target: chipObject; property: "x";
+                easing.type: Easing.Linear; duration: 2000
+                from: detectionAnimation.colorRecognitionUnitMiddle
 
-            onStopped: {
-                if(chipObject.colorRecognized())
-                   ejectorAnimation.start()
+                onStopped: {
+                    if(chipObject.colorRecognized())
+                       ejectorAnimation.start()
+                }
             }
-        }
 
-        NumberAnimation {
-            id: ejectorAnimation
-            target: chipObject; property: "y"
-            from: chipObject.startPosY
-            to: chipObject.stopPosY
-            easing.type: Easing.Linear
-            duration: 300
+            NumberAnimation {
+                id: ejectorAnimation
+                target: chipObject; property: "y"
+                from: chipObject.startPosY
+                to: chipObject.stopPosY
+                easing.type: Easing.Linear
+                duration: 300
+            }
         }
     } // GridLayout
 
