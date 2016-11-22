@@ -57,17 +57,19 @@ Rectangle {
         StartStopControl {
             id: startStopControl
 
+            title: qsTr("Testlauf")
+            active: websocketClient.motorRunning
+
             Layout.row: 0
             Layout.rowSpan: 1
             Layout.column: 3
             Layout.columnSpan: 1
             //Layout.fillHeight: true
-            //Layout.fillWidth : true
             Layout.preferredWidth: parent.width/4
             Layout.preferredHeight:simulator.height/5
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
-            active: websocketClient.motorRunning
+
 
             onButtonToggled: {
                 websocketClient.sendMotorRunningRequest(state)
@@ -91,6 +93,7 @@ Rectangle {
 
         TestControl {
             id: testControl
+
             Layout.row: 1
             Layout.rowSpan: 5
             Layout.column: 3

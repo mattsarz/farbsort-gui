@@ -1,9 +1,12 @@
 import QtQuick 2.0
 
-Item {
+Rectangle {
     id: lightBarrier
     property bool active: false
     property alias stoneColor: stone.color
+
+    color: "transparent"
+    border.color: "gray"
 
     Image {
         id: lightSender

@@ -8,7 +8,9 @@ Rectangle {
     property color activeColor: "green"
     property color inactiveColor: "darkgreen"
     property alias textColor: text.color
-    property bool active: false
+    property bool  active: false
+    property string activeText: "START"
+    property string inactiveText: "STOP"
     signal toggled(bool active)
 
     radius: 2
@@ -38,7 +40,7 @@ Rectangle {
             id: text
             color: "white"
             font.pixelSize: 18
-            text: root.active ?  "STOP" : "START"
+            text: root.active ? inactiveText : activeText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
 

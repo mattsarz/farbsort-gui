@@ -1,46 +1,47 @@
 import QtQuick 2.0
 
+import ".."
 
-Item {
+Rectangle {
     id: ejector
     width: 40
     height: 150
+    color: "transparent"
+    border.color: "gray"
 
     signal eject
-    readonly property alias state: element.state
-    property int ejectDistance: height / 2
+    readonly property alias state: ejectorPin.state
+    property int ejectDistance: height / 3
 
     onEject: {
-        element.state = "ejecting"
+        ejectorPin.state = "ejecting"
     }
 
     Rectangle {
-        id: surface
+        id: ejectorSleeve
         anchors.fill: parent
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: Style.bigMargin
         color: "#C4CACD"
         opacity: 0.5
+        z:1
     }
 
     Image {
-        id: element
-        x: surface.width / 8
-        y: yOffset
-        width: surface.width * 6 / 8
-        height: surface.height - yOffset
+        id: ejectorPin
+        anchors.left: parent.left
+        anchors.right: parent.right
+        y: Style.medMargin
+        height: ejectorSleeve.height
         source: "qrc:/ejector.svg"
-
-        readonly property int yOffset: surface.height / 10
-
 
         states:
             State {
                 name: "ejecting"
-                PropertyChanges { target: element; y: yOffset + ejectDistance }
+                PropertyChanges { target: ejectorPin; y: ejector.y+Style.medMargin + ejectDistance }
             }
             State {
                 name: "pulling"
-                PropertyChanges { target: element; y: yOffset }
+                PropertyChanges { target: ejectorPin; y: ejectorSleeve.y+anchors.topMargin }
             }
             State {
                 name: "idle"
@@ -54,7 +55,7 @@ Item {
                 onRunningChanged: {
                     if( running == false)
                     {
-                        element.state = "pulling"
+                        ejectorPin.state = "pulling"
                     }
                 }
             },
@@ -65,7 +66,7 @@ Item {
                 onRunningChanged: {
                     if( running == false)
                     {
-                        element.state = "idle"
+                        ejectorPin.state = "idle"
                     }
                 }
             }
