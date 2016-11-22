@@ -71,6 +71,7 @@ Rectangle {
             enabled: simulator.ejectorOne.state === "idle" && websocketClient.compressorRunning
             onPressed: scale=0.95
             onReleased: scale=1.0
+
             background: Rectangle{
                 color: pushEjectorOneButton.pressed ? Style.btnChecked : Style.btnUnchecked
                 anchors.fill: parent
@@ -99,6 +100,7 @@ Rectangle {
             enabled: simulator.ejectorTwo.state === "idle" && websocketClient.compressorRunning
             onPressed: scale=0.95
             onReleased: scale=1.0
+
             background: Rectangle{
                 color: pushEjectorTwoButton.pressed ? Style.btnChecked : Style.btnUnchecked
                 anchors.fill: parent
@@ -127,6 +129,7 @@ Rectangle {
             enabled: simulator.ejectorThree.state === "idle" && websocketClient.compressorRunning
             onPressed: scale=0.95
             onReleased: scale=1.0
+
             background: Rectangle{
                 color: pushEjectorThreeButton.pressed ? Style.btnChecked : Style.btnUnchecked
                 anchors.fill: parent
@@ -194,6 +197,7 @@ Rectangle {
             scale: checked ? 0.95 : 1.0
             text: checked ? qsTr("Förderband") + " " + qsTr("aus") : qsTr("Förderband") + " " + qsTr("ein")
             font.pixelSize: Style.controlFontSize
+
             background: Rectangle{
                 color: conveyorMotorButton.checked ? Style.btnChecked : Style.btnUnchecked
                 anchors.fill: parent
