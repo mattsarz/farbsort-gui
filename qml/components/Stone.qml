@@ -14,6 +14,10 @@ Item {
     property int ejector2CenterXPos: 600
     property int ejector3CenterXPos: 700
     property int trashBinCenterXPos: 950
+    property color trayOneColor: "blue"
+    property color trayTwoColor: "red"
+    property color trayThreeColor: "white"
+    property color recognizedColor: "transparent"
 
     signal startEjectorAnimation(int chipColorId);
 
@@ -30,8 +34,21 @@ Item {
         id:mouseArea
         anchors.fill: parent
 
-        onClicked: { stoneObject.x = 0; stoneObject.y=stoneObject.startPosY; stoneObject.color="transparent"; conveyorAnimation.stop(); ejectorChipAnimation.stop(); detectionAnimation.restart() }
+        onClicked: {
+            stoneObject.x = 0
+            stoneObject.y = stoneObject.startPosY
+            stoneObject.color = "transparent"
+            conveyorAnimation.stop()
+            ejectorChipAnimation.stop()
+            detectionAnimation.restart()
+        }
     }
+
+    // checks if the color is not set to transparent
+    function colorRecognized() {
+        return (Qt.colorEqual(color, "blue") || Qt.colorEqual(color, "red") || Qt.colorEqual(color, "white"))
+    }
+
 
     PropertyAnimation {
         id: detectionAnimation
@@ -39,33 +56,30 @@ Item {
         alwaysRunToEnd: true
         target: stoneObject; property: "x";
         to: toColorDetectionXPos
-        easing.type: Easing.Linear; duration: conveyorSpeed
+        easing.type: Easing.Linear
+        duration: conveyorSpeed
 
         onStopped: {
-            if(stoneObject.x === toColorDetectionXPos){
-                stoneObject.colorId = Math.floor((Math.random() * 4) + 1)
-
-                switch(stoneObject.colorId){
-                case 1: // red
-                    stoneObject.color = "red"
-                    conveyorAnimation.to = ejector1CenterXPos
-                    break;
-                case 2: // blue
-                    stoneObject.color = "blue"
-                    conveyorAnimation.to = ejector2CenterXPos
-                    break;
-                case 3: // white
-                    stoneObject.color = "white"
-                    conveyorAnimation.to = ejector3CenterXPos
-                    break;
-                 default:
-                     conveyorAnimation.to = trashBinCenterXPos
-                     break;
+            if(stoneObject.x === toColorDetectionXPos) {
+                stoneObject.color = recognizedColor
+                // TODO: sync animation with colorDetection event
+                if(stoneObject.colorRecognized()) {
+                    console.log("color recognized")
+                    if(stoneObject.color === trayOneColor) {
+                        conveyorAnimation.to = ejector1CenterXPos
+                    } else if(stoneObject.color === trayTwoColor) {
+                        conveyorAnimation.to = ejector2CenterXPos
+                    } else {
+                        conveyorAnimation.to = ejector3CenterXPos
+                    }
+                } else {
+                    console.log("color not recognized")
+                    conveyorAnimation.to = trashBinCenterXPos
                 }
             }
-            conveyorAnimation.duration = detectionAnimation.duration*(conveyorAnimation.to-stoneObject.x)/(detectionAnimation.to-stoneObject.startPosX)
+            conveyorAnimation.duration = detectionAnimation.duration*(conveyorAnimation.to - stoneObject.x) / (detectionAnimation.to - stoneObject.startPosX)
             conveyorAnimation.start()
-        } // onStopped
+        }
     } // detectionAnimation
 
     NumberAnimation {
@@ -74,7 +88,7 @@ Item {
         easing.type: Easing.Linear; duration: conveyorSpeed
 
         onStopped: {
-            if(stoneObject.colorId !== 4){
+            if(stoneObject.colorRecognized()) {
                ejectorChipAnimation.start()
             }
         }
