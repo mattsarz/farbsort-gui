@@ -1,6 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import QtQml 2.0
 
 import ".."
 import "../components"
@@ -17,7 +18,7 @@ Rectangle {
     property bool  lightbarrierAfterColorDetectionState: false
     property alias lightbarrierTrayOne: lightbarrierTrayOne
     property alias lightbarrierTrayTwo: lightbarrierTrayTwo
-    property alias lightbarrierTrayThree: lightbarrierTrayTree
+    property alias lightbarrierTrayThree: lightbarrierTrayThree
     property alias detectedColor: colorRecongnition.color
     signal valveEjected(int number)
 
@@ -250,7 +251,7 @@ Rectangle {
         }
 
         Tray {
-            id: lightbarrierTrayTree
+            id: lightbarrierTrayThree
             trayColor: "blue"
             lightbarrierInterruted: false
             Layout.row: 4
@@ -271,22 +272,26 @@ Rectangle {
 
             property int startPosY: parent.height/2 - chipObject.height/2
             property int stopPosY: startPosY + 100
-            property int colorId: 4
 
-            width: 50
             height: 50
-            radius: 25
-            color: detectedColor
+            width: 50
+            radius: 90
+            color: "transparent"
             border.color: "black"
 
             x: startPosX
-            y: parent.height/2 - chipObject.height/2
+            y: startPosY
 
             MouseArea {
                 id:mouseArea
                 anchors.fill: parent
 
-                onClicked: { chipObject.x = 0; chipObject.y=chipObject.startPosY; chipObject.color="transparent"; conveyorAnimation.stop(); ejectorAnimation.stop(); detectionAnimation.restart() }
+                onClicked: { chipObject.x = 0; chipObject.y=chipObject.startPosY; conveyorAnimation.stop(); ejectorAnimation.stop(); detectionAnimation.restart(); console.log("color: " + color) }
+            }
+
+            // checks if the color is not set to transparent
+            function colorRecognized() {
+                return (Qt.colorEqual(color, "blue") || Qt.colorEqual(color, "red") || Qt.colorEqual(color, "white"))
             }
         }
 
@@ -295,29 +300,27 @@ Rectangle {
             loops: 1
             alwaysRunToEnd: true
             target: chipObject; property: "x";
-            to: colorRecongnition.x + colorRecongnition.width/2
-            easing.type: Easing.Linear; duration: 800
+            to: colorRecognitionUnitMiddle
+            easing.type: Easing.Linear
+            duration: 800
+
+            readonly property int colorRecognitionUnitMiddle: colorRecongnition.x + colorRecongnition.width/2
 
             onStopped: {
-                if(chipObject.x === (colorRecongnition.x + colorRecongnition.width/2)){
-                    chipObject.colorId = Math.floor((Math.random() * 4) + 1)
-
-                    switch(chipObject.colorId){
-                    case 1:
-                        chipObject.color = lightbarrierTrayOne.trayColor
-                        conveyorAnimation.to = lightbarrierTrayOne.x
-                        break;
-                    case 2:
-                        chipObject.color = lightbarrierTrayTwo.trayColor
-                        conveyorAnimation.to = lightbarrierTrayTwo.x
-                        break;
-                    case 3:
-                        chipObject.color = lightbarrierTrayThree.trayColor
-                        conveyorAnimation.to = lightbarrierTrayTree.x -200
-                        break;
-                     default:
-                         conveyorAnimation.to = unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - chipObject / 2
-                         break;
+                if(chipObject.x === colorRecognitionUnitMiddle) {
+                    chipObject.color = colorRecongnition.color
+                    // TODO: sync animation with colorDetection event
+                    if(chipObject.colorRecognized()) {
+                        console.log("color recognized")
+                        if(chipObject.color === lightbarrierTrayOne.trayColor) {
+                            conveyorAnimation.to = lightbarrierTrayOne.x
+                        } else if(chipObject.color === lightbarrierTrayTwo.trayColor) {
+                            conveyorAnimation.to = lightbarrierTrayTwo.x
+                        } else {
+                            conveyorAnimation.to = lightbarrierTrayThree.x
+                        }
+                    } else {
+                        conveyorAnimation.to = unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - chipObject.width / 2
                     }
                 }
                 conveyorAnimation.duration = detectionAnimation.duration*(conveyorAnimation.to-chipObject.x)/(detectionAnimation.to-chipObject.startPosX)
@@ -330,9 +333,10 @@ Rectangle {
             id: conveyorAnimation
             target: chipObject; property: "x";
             easing.type: Easing.Linear; duration: 2000
+            from: detectionAnimation.colorRecognitionUnitMiddle
 
             onStopped: {
-                if(chipObject.colorId !== 4)
+                if(chipObject.colorRecognized())
                    ejectorAnimation.start()
             }
         }

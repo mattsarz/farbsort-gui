@@ -16,5 +16,6 @@ Item {
         width: height
         y: colorRecongnition.height - height * 1.2
         x: (colorRecongnition.width - width) / 2
+        // visible: { color.a > 0 }
     }
 }
