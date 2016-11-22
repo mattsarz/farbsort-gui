@@ -19,7 +19,16 @@ Item {
     property color trayThreeColor: "white"
     property color recognizedColor: "transparent"
 
-    signal startEjectorAnimation(int chipColorId);
+    signal startDetection();
+
+    onStartDetection: {
+        x = 0
+        y = startPosY
+        color = "transparent"
+        conveyorAnimation.stop()
+        ejectorChipAnimation.stop()
+        detectionAnimation.restart()
+    }
 
     Rectangle {
         id: circle
@@ -28,20 +37,6 @@ Item {
         color: "red"
         border.color: "black"
         border.width: parent.width * 0.05
-    }
-
-    MouseArea {
-        id:mouseArea
-        anchors.fill: parent
-
-        onClicked: {
-            stoneObject.x = 0
-            stoneObject.y = stoneObject.startPosY
-            stoneObject.color = "transparent"
-            conveyorAnimation.stop()
-            ejectorChipAnimation.stop()
-            detectionAnimation.restart()
-        }
     }
 
     // checks if the color is not set to transparent
