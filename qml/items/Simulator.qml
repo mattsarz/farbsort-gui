@@ -290,22 +290,29 @@ Rectangle {
             Layout.margins: 0
         }
 
-//        Stone {
-//            height: 40
-//            width: 40
-//            startPosY: parent.height/2 - height / 2
-//            stopPosY: lightbarrierTrayOne.y + lightbarrierTrayOne.trayRectVerticalMiddle - height / 2
-//            conveyorSpeed: 800
-//            toColorDetectionXPos: colorRecongnition.x + colorRecongnition.width / 2
-//            ejector1CenterXPos: lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - width / 2
-//            ejector2CenterXPos: lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - width / 2
-//            ejector3CenterXPos: lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - width / 2
-//            trashBinCenterXPos: unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - width / 2
-//            trayOneColor: lightbarrierTrayOne.trayColor
-//            trayTwoColor: lightbarrierTrayTwo.trayColor
-//            trayThreeColor: lightbarrierTrayThree.trayColor
-//            recognizedColor: colorRecongnition.color
-//        }
+        Component {
+            id: preconfigureStone
+
+            Stone {
+                readonly property int diameter: conveyor.height / 2
+                readonly property int radius: diameter  / 2
+                height: diameter
+                width: diameter
+                startPosX: layoutGrid.x + bevorColorRecognition.x + bevorColorRecognition.width / 2 - radius
+                startPosY: conveyor.y + conveyor.height / 2 - radius
+                stopPosY: layoutGrid.y + lightbarrierTrayOne.y + lightbarrierTrayOne.trayRectVerticalMiddle - radius
+                conveyorSpeed: 800
+                toColorDetectionXPos: layoutGrid.x + colorRecongnition.x + colorRecongnition.width / 2 - radius
+                ejector1CenterXPos: layoutGrid.x + lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - radius
+                ejector2CenterXPos: layoutGrid.x + lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - radius
+                ejector3CenterXPos: layoutGrid.x + lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - radius
+                trashBinCenterXPos: unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - radius
+                trayOneColor: lightbarrierTrayOne.trayColor
+                trayTwoColor: lightbarrierTrayTwo.trayColor
+                trayThreeColor: lightbarrierTrayThree.trayColor
+                recognizedColor: colorRecongnition.color
+            }
+        }
     } // GridLayout
 
     onValveEjected: {
@@ -323,6 +330,9 @@ Rectangle {
     }
 
     onLightbarrierBeforeColorDetectionStateChanged: {
-
+        if(lightbarrierBeforeColorDetectionState) {
+            var stone = preconfigureStone.createObject(simulator);
+            stone.startDetection()
+        }
     }
 }
