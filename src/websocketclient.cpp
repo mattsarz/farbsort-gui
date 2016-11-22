@@ -40,6 +40,11 @@ void WebSocketClient::setLightbarrierState(const int number, const bool state)
                 qDebug() << "wsc: lightbarrierOneState changed " << state;
                 m_lightbarrierOneState = state;
                 emit lightbarrierOneStateChanged();
+
+                if(state) {
+                    // TODO: move to a control class
+                    setDetectedColor(Qt::transparent);
+                }
             } break;
         }
         case 2: {
