@@ -1,11 +1,11 @@
 import QtQuick 2.0
 
-Rectangle {
+Item {
     id: lightBarrier
     property bool active: false
 
-    color: "transparent"
-    border.color: "gray"
+//    color: "transparent"
+//    border.color: "gray"
 
     Image {
         id: lightSender

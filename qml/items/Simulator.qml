@@ -57,10 +57,10 @@ Rectangle {
         rowSpacing: 0
         columnSpacing: 0
 
-        Rectangle {
+        Item {
             id:spacer1
-            color: "transparent"
-            border.color: "gray"
+//            color: "transparent"
+//            border.color: "gray"
 
             Layout.row: 0
             Layout.rowSpan: 2
@@ -88,10 +88,10 @@ Rectangle {
 
         }
 
-        Rectangle {
+        Item {
             id:spacer2
-            color: "transparent"
-            border.color: "gray"
+//            color: "transparent"
+//            border.color: "gray"
 
             Layout.row: 5
             Layout.rowSpan: 2
@@ -131,11 +131,11 @@ Rectangle {
             Layout.margins: 0
         }
 
-        Rectangle {
+        Item {
             id:spacer3
             opacity: 0.5
-            color: "olive"
-            border.color: "gray"
+//            color: "olive"
+//            border.color: "gray"
 
             Layout.row: 3
             Layout.rowSpan: 1
@@ -254,10 +254,10 @@ Rectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         }
 
-        Rectangle {
+        Item {
             id: spacer6
-            color: "transparent"
-            border.color: "gray"
+//            color: "transparent"
+//            border.color: "gray"
 
             Layout.row: 0
             Layout.rowSpan: 3
@@ -272,10 +272,10 @@ Rectangle {
             Layout.bottomMargin: 5
         }
 
-        Rectangle {
+        Item {
             id: spacer7
-            color: "transparent"
-            border.color: "gray"
+//            color: "transparent"
+//            border.color: "gray"
 
             Layout.row: 4
             Layout.rowSpan: 3

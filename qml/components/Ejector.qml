@@ -2,12 +2,12 @@ import QtQuick 2.0
 
 import ".."
 
-Rectangle {
+Item {
     id: ejector
     width: 40
     height: 150
-    color: "transparent"
-    border.color: "gray"
+//    color: "transparent"
+//    border.color: "gray"
 
     signal eject
     readonly property alias state: ejectorPin.state
