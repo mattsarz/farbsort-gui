@@ -10,5 +10,7 @@ QtObject {
     property int titleFontSize:     24
     property int controlFontSize:   14
 
-    property color textColor: "#0e6a8b"
+    property color textColor:    "#0e6a8b"
+    property color btnChecked:   "#689f38"
+    property color btnUnchecked: "green"
 }

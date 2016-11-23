@@ -30,8 +30,20 @@ Rectangle {
             id: pneumaticPumpButton
             checkable: true
             scale: checked ? 0.95 : 1.0
-            text: checked ? qsTr("Peumatik") + " " + qsTr("aus") : qsTr("Peumatik") + " " + qsTr("ein")
-            font.pixelSize: Style.controlFontSize
+
+            background: Rectangle{
+                color: pneumaticPumpButton.checked ? Style.btnChecked : Style.btnUnchecked
+                anchors.fill: parent
+            }
+
+            contentItem: Text{
+                color: "white"
+                text: pneumaticPumpButton.checked ? qsTr("Peumatik") + " " + qsTr("aus") : qsTr("Peumatik") + " " + qsTr("ein")
+                anchors.fill: pneumaticPumpButton
+                font.pixelSize: Style.controlFontSize
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
 
             Layout.preferredHeight: parent.height/14
             Layout.preferredWidth: parent.width
@@ -59,12 +71,26 @@ Rectangle {
             enabled: simulator.ejectorOne.state === "idle" && websocketClient.compressorRunning
             onPressed: scale=0.95
             onReleased: scale=1.0
+            background: Rectangle{
+                color: pushEjectorOneButton.pressed ? Style.btnChecked : Style.btnUnchecked
+                anchors.fill: parent
+            }
+
+            contentItem: Text{
+                color: "white"
+                text: "A1" + " " + qsTr("Ausstosser")
+                anchors.fill: pushEjectorOneButton
+                font.pixelSize: Style.controlFontSize
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
 
             Layout.preferredHeight: parent.height/14
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
             onClicked: { websocketClient.ejectValve(1) }
+            onEnabledChanged: {if(enabled) opacity=1; else opacity=0.5}
         }
 
         Button {
@@ -73,12 +99,26 @@ Rectangle {
             enabled: simulator.ejectorTwo.state === "idle" && websocketClient.compressorRunning
             onPressed: scale=0.95
             onReleased: scale=1.0
+            background: Rectangle{
+                color: pushEjectorTwoButton.pressed ? Style.btnChecked : Style.btnUnchecked
+                anchors.fill: parent
+            }
+
+            contentItem: Text{
+                color: "white"
+                text: "A2" + " " + qsTr("Ausstosser")
+                anchors.fill: pushEjectorTwoButton
+                font.pixelSize: Style.controlFontSize
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
 
             Layout.preferredHeight: parent.height/14
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
             onClicked: { websocketClient.ejectValve(2) }
+            onEnabledChanged: {if(enabled) opacity=1; else opacity=0.5}
         }
 
         Button {
@@ -87,26 +127,54 @@ Rectangle {
             enabled: simulator.ejectorThree.state === "idle" && websocketClient.compressorRunning
             onPressed: scale=0.95
             onReleased: scale=1.0
+            background: Rectangle{
+                color: pushEjectorThreeButton.pressed ? Style.btnChecked : Style.btnUnchecked
+                anchors.fill: parent
+            }
+
+            contentItem: Text{
+                color: "white"
+                text: "A3" + " " + qsTr("Ausstosser")
+                anchors.fill: pushEjectorThreeButton
+                font.pixelSize: Style.controlFontSize
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
 
             Layout.preferredHeight: parent.height/14
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
             onClicked: { websocketClient.ejectValve(3) }
+            onEnabledChanged: {if(pushEjectorThreeButton.enabled) pushEjectorThreeButton.opacity=1; else pushEjectorThreeButton.opacity=0.5}
         }
 
         Button {
             id: pushAllEjectorButton
             text: "Alle" + " " + qsTr("Ausstosser")
-            enabled: simulator.ejectorThree.state === "idle" && websocketClient.compressorRunning
+            enabled:  websocketClient.compressorRunning
             onPressed: scale=0.95
             onReleased: scale=1.0
+            background: Rectangle{
+                color: pushAllEjectorButton.pressed ? Style.btnChecked : Style.btnUnchecked
+                anchors.fill: parent
+            }
+
+            contentItem: Text{
+                color: "white"
+                text: "Alle" + " " + qsTr("Ausstosser")
+                anchors.fill: pushAllEjectorButton
+                font.pixelSize: Style.controlFontSize
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
 
             Layout.preferredHeight: parent.height/14
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
             onClicked: { websocketClient.ejectValve(1);websocketClient.ejectValve(2);websocketClient.ejectValve(3) }
+            onEnabledChanged: {if(pushAllEjectorButton.enabled) pushAllEjectorButton.opacity=1; else pushAllEjectorButton.opacity=0.5}
         }
 
         Rectangle {
@@ -126,6 +194,19 @@ Rectangle {
             scale: checked ? 0.95 : 1.0
             text: checked ? qsTr("Förderband") + " " + qsTr("aus") : qsTr("Förderband") + " " + qsTr("ein")
             font.pixelSize: Style.controlFontSize
+            background: Rectangle{
+                color: conveyorMotorButton.checked ? Style.btnChecked : Style.btnUnchecked
+                anchors.fill: parent
+            }
+
+            contentItem: Text{
+                color: "white"
+                text: conveyorMotorButton.checked ? qsTr("Förderband") + " " + qsTr("aus") : qsTr("Förderband") + " " + qsTr("ein")
+                anchors.fill: conveyorMotorButton
+                font.pixelSize: Style.controlFontSize
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
 
             Layout.preferredHeight: parent.height/14
             Layout.preferredWidth: parent.width
