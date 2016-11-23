@@ -59,6 +59,7 @@ Window {
 
         onSettingsScreenRequested: {
             mainStackView.push(settingsScreen)
+            websocketClient.sendProductionModeRequest(false)
         }
     }
 
@@ -68,6 +69,7 @@ Window {
 
         onSettingsExitClicked: {
             mainStackView.push(mainScreen)
+            websocketClient.sendProductionModeRequest(true)
         }
     }
 }

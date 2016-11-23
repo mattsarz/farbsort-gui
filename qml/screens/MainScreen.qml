@@ -87,8 +87,7 @@ Rectangle {
             active: websocketClient.motorRunning
 
             onButtonToggled: {
-                websocketClient.sendMotorRunningRequest(state)
-                websocketClient.sendCompressorRunningRequest(state)
+                websocketClient.sendProductionStart(state)
             }
         }
 
@@ -105,7 +104,7 @@ Rectangle {
             Layout.preferredHeight:simulator.height*4/5
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
-            running: websocketClient.compressorRunning
+            running: websocketClient.motorRunning
         }
 
         Legend {
@@ -117,7 +116,7 @@ Rectangle {
             Layout.columnSpan: 2
             Layout.fillHeight: true
             Layout.fillWidth : true
-            Layout.preferredWidth: parent.width/2
+            Layout.preferredWidth: parent.width/3
             Layout.preferredHeight:parent.height/3
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
@@ -132,7 +131,7 @@ Rectangle {
             Layout.columnSpan: 1
             Layout.fillHeight: true
             Layout.fillWidth : true
-            Layout.preferredWidth: parent.width/4
+            Layout.preferredWidth: parent.width/3
             Layout.preferredHeight:parent.height/3
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
@@ -151,8 +150,7 @@ Rectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
             onButtonClicked: {
-                websocketClient.sendMotorRunningRequest(false)
-                websocketClient.sendCompressorRunningRequest(false)
+                websocketClient.sendProductionStart(state)
             }
         }
     } // GridLayout

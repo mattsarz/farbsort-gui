@@ -3,6 +3,7 @@
 
 #include <QtCore/QObject>
 #include <QColor>
+#include <QtQml>
 
 class WebSocketClient : public QObject
 {
@@ -26,7 +27,7 @@ Q_SIGNALS:
     void lightbarrierThreeStateChanged(const bool active);
     void lightbarrierFourStateChanged(const bool active);
     void lightbarrierFiveStateChanged(const bool active);
-    void valveEjected(int number);
+    void valveEjected(int number, const bool active);
     void detectedColorChanged();
 
 public:
@@ -38,7 +39,11 @@ public slots:
     /** slot to set the compressor to switch on/off */
     virtual void sendCompressorRunningRequest(const bool compressorRunning) = 0;
     /** sends a eject valve request with the given number */
-    virtual void ejectValve(int number) = 0;
+    virtual void ejectValve(int number, const bool active) = 0;
+    virtual void ejectAllValve(const bool active) = 0;
+    virtual void sendProductionModeRequest(const bool active)=0;
+    virtual void sendProductionStart(const bool active)=0;
+    virtual void sendEmergencyStop()=0;
 
 protected:
     /** getters */

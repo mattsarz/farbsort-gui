@@ -22,11 +22,15 @@ public slots:
     /** slot to set the compressor to switch on/off */
     void sendCompressorRunningRequest(const bool compressorRunning) override;
     /** sends a eject valve request with the given number */
-    void ejectValve(int number) override;
+    void ejectValve(int number, const bool active) override;
+    void ejectAllValve(const bool active) override;
+    void sendProductionModeRequest(const bool active) override;
+    void sendProductionStart(const bool active) override;
+    void sendEmergencyStop() override;
 
 private Q_SLOTS:
     void onConnected();
-    void onDisconneced();
+    void onDisconnected();
     void onTextMessageReceived(QString message);
 
 private:

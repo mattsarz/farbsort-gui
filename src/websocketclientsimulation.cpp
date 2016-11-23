@@ -20,9 +20,34 @@ void WebSocketClientSimulation::sendCompressorRunningRequest(const bool compress
     setCompressorRunning(compressorRunning);
 }
 
-void WebSocketClientSimulation::ejectValve(int number)
+void WebSocketClientSimulation::ejectValve(int number, const bool active)
 {
-    emit valveEjected(number);
+    emit valveEjected(number, active);
+}
+
+void WebSocketClientSimulation::ejectAllValve(const bool active)
+{
+    for(int i=1; i<=3; ++i)
+    {
+        ejectValve(i, active);
+    }
+}
+
+void WebSocketClientSimulation::sendProductionModeRequest(const bool active)
+{
+    Q_UNUSED(active)
+    //TODO: Add code for mode switching normal/diagnostic
+}
+
+void WebSocketClientSimulation::sendProductionStart(const bool active)
+{
+    Q_UNUSED(active)
+    //TODO: Add code for starting production
+}
+
+void WebSocketClientSimulation::sendEmergencyStop()
+{
+    //TODO: Add code for emergency stop in simulation mode
 }
 
 void WebSocketClientSimulation::lightbarrierActivated(int number, bool state)

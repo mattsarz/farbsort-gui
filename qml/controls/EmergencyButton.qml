@@ -16,6 +16,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: Style.smallMargin
         text: qsTr("Notfall")
+        color: Style.textColor
         font.pixelSize: Style.titleFontSize
     }
 

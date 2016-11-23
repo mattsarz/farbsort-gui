@@ -2,6 +2,8 @@
     <qresource prefix="/components">
         <file alias="Conveyor.qml">../qml/components/Conveyor.qml</file>
         <file alias="Ejector.qml">../qml/components/Ejector.qml</file>
+        <file alias="EventLog.qml">../qml/components/EventLog.qml</file>
+        <file alias="EventTableView.qml">../qml/components/EventTableView.qml</file>
         <file alias="Legend.qml">../qml/components/Legend.qml</file>
         <file alias="LightBarrier.qml">../qml/components/LightBarrier.qml</file>
         <file alias="Tray.qml">../qml/components/Tray.qml</file>

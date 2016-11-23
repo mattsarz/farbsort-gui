@@ -1,14 +1,15 @@
+#include <QCommandLineParser>
+#include <QDebug>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QQmlEngine>
+#include <QResource>
+#include <QSharedPointer>
+
 #include "websocketclientimplementation.h"
 #include "websocketclientsimulation.h"
 #include "countinglogic.h"
-
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QResource>
-#include <QCommandLineParser>
-#include <QQmlContext>
-#include <QDebug>
-#include <QSharedPointer>
 
 int main(int argc, char *argv[])
 {
@@ -30,12 +31,16 @@ int main(int argc, char *argv[])
 
     qDebug() << "CommandLineOption::ipAddress: " << parser.value("ip-address");
 
+    qmlRegisterType<WebSocketClient>();
+
     QSharedPointer<WebSocketClient> webSocketClient;
     if(parser.isSet("simulation")) {
         webSocketClient.reset(new WebSocketClientSimulation());
     } else {
         webSocketClient.reset(new WebSocketClientImplementation(QString(parser.value("ip-address"))));
     }
+
+//    qmlRegisterType<WebSocketClient>("com.mycompany.qmlcomponents", 1, 0, "Slider");
 
     CountingLogic countingLogic;
     QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierThreeStateChanged(bool)), &countingLogic, SLOT(trayOneLightbarrierActivationChanged(bool)));

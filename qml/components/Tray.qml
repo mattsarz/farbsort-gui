@@ -13,10 +13,9 @@ Item {
 
     Rectangle {
         id: backgroundChannel
-        width: parent.width*2/3
-        height: parent.height
+        width: parent.width/3
         anchors.top: parent.top
-//        anchors.bottom: trayRect.top
+        anchors.bottom: trayRect.top
         anchors.horizontalCenter: parent.horizontalCenter
         color: "lightgray"
     }
@@ -27,16 +26,16 @@ Item {
         border.color: "lightgrey"
         border.width: 2
         radius: 4
-        width: parent.width
-        height: parent.width
+        width: 1.4*parent.width/3
+        height: width
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
     }
 
     LightBarrier {
         id:lightBarrier
-        width: parent.width
-        height: 108
+        width: 1.5*parent.width/6
+        height: parent.width
         rotation: 90
         active: lightbarrierInterruted
 //        anchors.horizontalCenter: parent.horizontalCenter

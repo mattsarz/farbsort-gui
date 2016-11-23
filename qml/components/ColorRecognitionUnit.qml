@@ -1,12 +1,16 @@
 import QtQuick 2.0
 
-Item {
+Rectangle {
     property alias color: colorDetection.color
+
+    color: "transparent"
+    border.color: "gray"
+    opacity: 0.4
 
     Rectangle {
         id: colorRecongnition
         color: "#0e6a8b"
-        opacity: 0.5
+//        opacity: 0.5
         anchors.fill: parent
     }
 

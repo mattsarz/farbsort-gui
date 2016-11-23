@@ -17,6 +17,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: Style.smallMargin
         text: qsTr("Status")
+        color: Style.textColor
         font.pixelSize: Style.titleFontSize
     }
 

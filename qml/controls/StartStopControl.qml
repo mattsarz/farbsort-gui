@@ -24,6 +24,7 @@ Rectangle {
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             text: qsTr("Steuerung")
+            color: Style.textColor
             font.pixelSize: Style.titleFontSize
         }
 
