@@ -75,7 +75,6 @@ Rectangle {
         LightBarrier {
             id: bevorColorRecognition
             active:  lightbarrierBeforeColorDetectionState
-            stoneColor: "transparent"
 
             Layout.row: 2
             Layout.rowSpan: 3
@@ -121,7 +120,6 @@ Rectangle {
         LightBarrier {
             id: afterColorRecognition
             active: lightbarrierAfterColorDetectionState
-            stoneColor: detectedColor
 
             Layout.row: 2
             Layout.rowSpan: 3
@@ -302,7 +300,7 @@ Rectangle {
                 startPosY: conveyor.y + conveyor.height / 2 - radius
                 stopPosY: layoutGrid.y + lightbarrierTrayOne.y + lightbarrierTrayOne.trayRectVerticalMiddle - radius
                 conveyorSpeed: 800
-                toColorDetectionXPos: layoutGrid.x + colorRecongnition.x + colorRecongnition.width / 2 - radius
+                lightbarrierAfterDetectorXPos: layoutGrid.x + afterColorRecognition.x + afterColorRecognition.width / 2 - radius
                 ejector1CenterXPos: layoutGrid.x + lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - radius
                 ejector2CenterXPos: layoutGrid.x + lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - radius
                 ejector3CenterXPos: layoutGrid.x + lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - radius

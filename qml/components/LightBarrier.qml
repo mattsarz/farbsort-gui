@@ -3,7 +3,6 @@ import QtQuick 2.0
 Rectangle {
     id: lightBarrier
     property bool active: false
-    property alias stoneColor: stone.color
 
     color: "transparent"
     border.color: "gray"
@@ -22,14 +21,6 @@ Rectangle {
         anchors.top:    lightSender.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: lightReceiver.top
-
-        Stone {
-            id: stone
-            visible: lightBarrier.active
-            width: lightBarrier.width * 0.9
-            height: width
-            anchors.centerIn: lightBeam
-        }
     }
 
     Image {

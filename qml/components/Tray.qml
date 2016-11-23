@@ -42,6 +42,5 @@ Item {
 //        anchors.horizontalCenter: parent.horizontalCenter
 //        anchors.right: parent.right
         anchors.centerIn: trayRect
-        stoneColor: trayColor
     }
 }
