@@ -2,14 +2,14 @@ import QtQuick 2.0
 
 Item {
     id: stoneObject
+    state: "created"
     property alias color: circle.color
     property int startPosX: 16
 
     property int startPosY: parent.height/2 - stoneObject.height/2
     property int stopPosY: startPosY + 100
-    property int colorId: 4
     property int conveyorSpeed: 800
-    property int toColorDetectionXPos: 300
+    property int lightbarrierAfterDetectorXPos: 300
     property int ejector1CenterXPos: 500
     property int ejector2CenterXPos: 600
     property int ejector3CenterXPos: 700
@@ -19,16 +19,145 @@ Item {
     property color trayThreeColor: "white"
     property color recognizedColor: "transparent"
 
-    signal startDetection();
-
-    onStartDetection: {
-        x = 0
-        y = startPosY
-        color = "transparent"
-        conveyorAnimation.stop()
-        ejectorChipAnimation.stop()
-        detectionAnimation.restart()
+    function startDetection() {
+        stoneObject.x = stoneObject.startPosX
+        stoneObject.y = stoneObject.startPosY
+        stoneObject.color = "transparent"
+        stoneObject.state = "detecting"
     }
+
+    function startEjecting() {
+        if("moving" === stoneObject.state) {
+            stoneObject.state = "moved"
+        }
+        if("moved" === stoneObject.state && colorRecognized()) {
+            stoneObject.state = "ejecting"
+        }
+    }
+
+    function moveConveyor() {
+        if("detecting" === stoneObject.state) {
+            stoneObject.state = "detected"
+        }
+        if("detected" === stoneObject.state) {
+            stoneObject.state = "moving"
+        }
+    }
+
+    function onColorDetected() {
+        if("detecting" === stoneObject.state || "detected" === stoneObject.state) {
+            stoneObject.color = stoneObject.recognizedColor
+        }
+    }
+
+    Component.onCompleted: {
+        websocketClient.detectedColorChanged.connect(onColorDetected)
+        websocketClient.valveEjected.connect(startEjecting)
+        websocketClient.lightbarrierTwoStateChanged.connect(moveConveyor)
+    }
+
+    states: [
+        State { name: "created" },
+        State { name: "detecting" },
+        State { name: "detected" },
+        State { name: "moving" },
+        State { name: "moved" },
+        State { name: "ejecting" },
+        State { name: "reached" }
+    ]
+
+    onStateChanged: {
+        console.log("state: " + state)
+    }
+
+    transitions: [
+        Transition {
+            from: "created";
+            to: "detecting";
+            animations:     PropertyAnimation {
+                id: detectionAnimation
+                loops: 1
+                alwaysRunToEnd: true
+                target: stoneObject
+                property: "x"
+                from: startPosX
+                to: lightbarrierAfterDetectorXPos
+                easing.type: Easing.Linear
+                duration: conveyorSpeed
+            }
+            onRunningChanged: {
+                if( running === false)
+                {
+                    stoneObject.state = "detected"
+                }
+            }
+        },
+        Transition {
+            from: "detecting";
+            to: "detected";
+            onRunningChanged: {
+                if( running === false)
+                {
+                    detectionAnimation.complete()
+                    stoneObject.x = detectionAnimation.to
+                }
+            }
+        },
+        Transition {
+            from: "detected";
+            to: "moving";
+            animations: NumberAnimation {
+                id: conveyorAnimation
+                loops: 1
+                alwaysRunToEnd: true
+                target: stoneObject
+                property: "x"
+                from: lightbarrierAfterDetectorXPos
+                to: trayXPosition()
+                easing.type: Easing.Linear
+                duration: conveyorSpeed //conveyorAnimationTime()
+            }
+            onRunningChanged: {
+                if( running === false)
+                {
+                    if(colorRecognized())
+                        state = "moved"
+                    else
+                        state = "reached"
+                }
+            }
+        },
+        Transition {
+            from: "moving";
+            to: "moved";
+            onRunningChanged: {
+                if( running === false)
+                {
+                    conveyorAnimation.complete()
+                    stoneObject.x = conveyorAnimation.to
+                }
+            }
+        },
+        Transition {
+            from: "moved";
+            to: "ejecting";
+            animations: NumberAnimation {
+                id: ejectorChipAnimation
+                target: stoneObject
+                property: "y"
+                from: stoneObject.startPosY
+                to: stoneObject.stopPosY
+                easing.type: Easing.Linear
+                duration: 300
+            }
+            onRunningChanged: {
+                if( running === false)
+                {
+                    state = "reached"
+                }
+            }
+        }
+    ]
 
     Rectangle {
         id: circle
@@ -44,57 +173,23 @@ Item {
         return (Qt.colorEqual(color, "blue") || Qt.colorEqual(color, "red") || Qt.colorEqual(color, "white"))
     }
 
-
-    PropertyAnimation {
-        id: detectionAnimation
-        loops: 1
-        alwaysRunToEnd: true
-        target: stoneObject; property: "x";
-        to: toColorDetectionXPos
-        easing.type: Easing.Linear
-        duration: conveyorSpeed
-
-        onStopped: {
-            if(stoneObject.x === toColorDetectionXPos) {
-                stoneObject.color = recognizedColor
-                // TODO: sync animation with colorDetection event
-                if(stoneObject.colorRecognized()) {
-                    console.log("color recognized")
-                    if(stoneObject.color === trayOneColor) {
-                        conveyorAnimation.to = ejector1CenterXPos
-                    } else if(stoneObject.color === trayTwoColor) {
-                        conveyorAnimation.to = ejector2CenterXPos
-                    } else {
-                        conveyorAnimation.to = ejector3CenterXPos
-                    }
-                } else {
-                    console.log("color not recognized")
-                    conveyorAnimation.to = trashBinCenterXPos
-                }
+    function trayXPosition() {
+        if(stoneObject.colorRecognized()) {
+            console.log("color recognized")
+            if(stoneObject.color === trayOneColor) {
+                return ejector1CenterXPos
+            } else if(stoneObject.color === trayTwoColor) {
+                return ejector2CenterXPos
+            } else {
+                return ejector3CenterXPos
             }
-            conveyorAnimation.duration = detectionAnimation.duration*(conveyorAnimation.to - stoneObject.x) / (detectionAnimation.to - stoneObject.startPosX)
-            conveyorAnimation.start()
-        }
-    } // detectionAnimation
-
-    NumberAnimation {
-        id: conveyorAnimation
-        target: stoneObject; property: "x";
-        easing.type: Easing.Linear; duration: conveyorSpeed
-
-        onStopped: {
-            if(stoneObject.colorRecognized()) {
-               ejectorChipAnimation.start()
-            }
+        } else {
+            console.log("color not recognized")
+            return trashBinCenterXPos
         }
     }
 
-   NumberAnimation {
-       id: ejectorChipAnimation
-       target: stoneObject; property: "y"
-       from: stoneObject.startPosY; to: stoneObject.stopPosY
-       easing.type: Easing.Linear; duration: 300
-
-       onStopped: stoneObject.colorId = 4
-   }
+    function conveyorAnimationTime() {
+        return conveyorSpeed / (detectionAnimation.to - detectionAnimation.from) * (conveyorAnimation.to - conveyorAnimation.from)
+    }
 }

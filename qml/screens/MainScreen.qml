@@ -155,23 +155,5 @@ Rectangle {
                 websocketClient.sendCompressorRunningRequest(false)
             }
         }
-
-        // ================================================================================
-        // For test only
-        // ================================================================================
-//        TestControl {
-//            id: testControl
-//            color: "white"
-//            Layout.row: 1
-//            Layout.rowSpan: 3
-//            Layout.column: 3
-//            Layout.columnSpan: 1
-//            Layout.fillHeight: true
-//            Layout.fillWidth : true
-//            Layout.preferredWidth: parent.width/4
-//            Layout.preferredHeight:simulator.height*5/6
-//            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-//            Layout.margins: 0
-//        }
     } // GridLayout
 }
