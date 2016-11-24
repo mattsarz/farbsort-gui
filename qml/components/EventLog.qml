@@ -8,11 +8,13 @@ import ".."
 Rectangle {
     id: statisticRect
     color: "white"
+    border.color: "transparent"
 
     RowLayout{
         id: titleLayout
         anchors{left:parent.left;right: parent.right; top: parent.top; }
         height: 40
+        spacing: Style.bigMargin
 
         Text {
             id:startStopTitle
@@ -33,7 +35,7 @@ Rectangle {
             }
 
             contentItem: Image {
-                source: "qrc:/"
+                source: "qrc:/arrow_up.png"
             }
         }
 
@@ -45,7 +47,7 @@ Rectangle {
             }
 
             contentItem: Image {
-                source: "qrc:/"
+                source: "qrc:/arrow_down.png"
             }
         }
     } // RowLayout
@@ -54,5 +56,9 @@ Rectangle {
         id: eventTableView
 
         anchors{left:parent.left;right: parent.right; bottom: parent.bottom; top: titleLayout.bottom}
+        anchors.margins: Style.smallMargin
+
+        Layout.fillHeight: true
+        Layout.fillWidth: true
     }
 }
