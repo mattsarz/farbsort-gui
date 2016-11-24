@@ -99,7 +99,7 @@ Rectangle {
             width: Style.controlFontSize
             height:Style.controlFontSize
             radius: height/2
-            color: "blue"
+            color: "#1E90FF"
             border.color: "gray"
             border.width: 2
 

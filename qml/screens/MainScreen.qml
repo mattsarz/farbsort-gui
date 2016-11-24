@@ -22,7 +22,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: parent.height/13
+        height: parent.height/12
 
         onSettingsButtonClicked: {
             settingsScreenRequested()
@@ -87,6 +87,7 @@ Rectangle {
             active: websocketClient.motorRunning
 
             onButtonToggled: {
+                websocketClient.sendCompressorRunningRequest(state)
                 websocketClient.sendProductionStart(state)
             }
         }

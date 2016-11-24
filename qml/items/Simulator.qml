@@ -39,7 +39,8 @@ Rectangle {
         height: parent.height/8
         width:  parent.height/8
         radius: 4
-        border.color: "gray"
+        border.color: "lightgray"
+        color: "#eceff1"
         border.width: 1
         anchors.right: parent.right
         anchors.rightMargin: Style.bigMargin
@@ -86,6 +87,12 @@ Rectangle {
             Layout.margins: 0
             Layout.rightMargin: Style.bigMargin
 
+            Text{
+                text:"S1"
+                color: Style.textColor
+                anchors.top: parent.top
+                anchors.right: parent.left
+            }
         }
 
         Item {
@@ -115,6 +122,14 @@ Rectangle {
             Layout.preferredHeight: parent.height*2/7
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             Layout.margins: 0
+
+            Text{
+                text:qsTr("Farberkennung")
+                color: Style.textColor
+                anchors.bottom: parent.top
+                anchors.bottomMargin: Style.smallMargin/2
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
         }
 
         LightBarrier {
@@ -129,6 +144,13 @@ Rectangle {
             Layout.preferredHeight: parent.height*2/7
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.margins: 0
+
+            Text{
+                text:"S2"
+                color: Style.textColor
+                anchors.top: parent.top
+                anchors.left: parent.right
+            }
         }
 
         Item {
@@ -160,6 +182,14 @@ Rectangle {
             Layout.alignment: Qt.AlignBottom| Qt.AlignHCenter
             Layout.margins: 0
             ejectDistance: conveyor.height/2
+
+            Text{
+                text:"A1"
+                color: Style.textColor
+                anchors.top: parent.top
+                anchors.left: parent.right
+                anchors.leftMargin: Style.smallMargin
+            }
         }
 
         Ejector {
@@ -174,6 +204,14 @@ Rectangle {
             Layout.alignment: Qt.AlignBottom| Qt.AlignHCenter
             Layout.margins: 0
             ejectDistance: conveyor.height/2
+
+            Text{
+                text:"A2"
+                color: Style.textColor
+                anchors.top: parent.top
+                anchors.left: parent.right
+                anchors.leftMargin: Style.smallMargin
+            }
         }
 
         Ejector {
@@ -189,6 +227,14 @@ Rectangle {
             Layout.preferredHeight: parent.height*3/8
             Layout.margins: 0
             ejectDistance: conveyor.height/2
+
+            Text{
+                text:"A3"
+                color: Style.textColor
+                anchors.top: parent.top
+                anchors.left: parent.right
+                anchors.leftMargin: Style.smallMargin
+            }
         }
 
         Tray {
@@ -205,6 +251,15 @@ Rectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             Layout.margins: 0
             Layout.bottomMargin: 5
+
+            Text{
+                text:"S3"
+                color: Style.textColor
+                anchors.top: parent.bottom
+                anchors.topMargin: -Style.smallMargin
+                anchors.left: parent.right
+                anchors.leftMargin: -(3*Style.smallMargin)
+            }
         }
 
         Tray {
@@ -221,6 +276,15 @@ Rectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             Layout.margins: 0
             Layout.bottomMargin: 5
+
+            Text{
+                text:"S4"
+                color: Style.textColor
+                anchors.top: parent.bottom
+                anchors.topMargin: -Style.smallMargin
+                anchors.left: parent.right
+                anchors.leftMargin: -(3*Style.smallMargin)
+            }
         }
 
         Item {
@@ -241,7 +305,7 @@ Rectangle {
 
         Tray {
             id: lightbarrierTrayThree
-            trayColor: "blue"
+            trayColor: "lightblue"
             lightbarrierInterruted: false
             Layout.row: 4
             Layout.rowSpan: 2
@@ -252,6 +316,15 @@ Rectangle {
             Layout.margins: 0
             Layout.bottomMargin: 5
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+
+            Text{
+                text:"S5"
+                color: Style.textColor
+                anchors.top: parent.bottom
+                anchors.topMargin: -Style.smallMargin
+                anchors.left: parent.right
+                anchors.leftMargin: -(3*Style.smallMargin)
+            }
         }
 
         Item {
@@ -287,31 +360,31 @@ Rectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             Layout.margins: 0
         }
-
-        Component {
-            id: preconfigureStone
-
-            Stone {
-                readonly property int diameter: conveyor.height*2 / 3
-                readonly property int radius: diameter  / 2
-                height: diameter
-                width: diameter
-                startPosX: layoutGrid.x + bevorColorRecognition.x + bevorColorRecognition.width / 2 - radius
-                startPosY: conveyor.y + conveyor.height / 2 - radius
-                stopPosY: layoutGrid.y + lightbarrierTrayOne.y + lightbarrierTrayOne.trayRectVerticalMiddle - radius
-                conveyorSpeed: 800
-                lightbarrierAfterDetectorXPos: layoutGrid.x + afterColorRecognition.x + afterColorRecognition.width / 2 - radius
-                ejector1CenterXPos: layoutGrid.x + lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - radius
-                ejector2CenterXPos: layoutGrid.x + lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - radius
-                ejector3CenterXPos: layoutGrid.x + lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - radius
-                trashBinCenterXPos: unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - radius
-                trayOneColor: lightbarrierTrayOne.trayColor
-                trayTwoColor: lightbarrierTrayTwo.trayColor
-                trayThreeColor: lightbarrierTrayThree.trayColor
-                recognizedColor: colorRecongnition.color
-            }
-        }
     } // GridLayout
+
+    Component {
+        id: preconfigureStone
+
+        Stone {
+            readonly property int diameter: conveyor.height*2 / 3
+            readonly property int radius:   diameter  / 2
+            height:             diameter
+            width:              diameter
+            startPosX:          layoutGrid.x + bevorColorRecognition.x + bevorColorRecognition.width / 2 - radius
+            startPosY:          conveyor.y + conveyor.height / 2 - radius
+            stopPosY:           layoutGrid.y + lightbarrierTrayOne.y + lightbarrierTrayOne.trayRectVerticalMiddle - radius
+            conveyorSpeed:      1500
+            lightbarrierAfterDetectorXPos: layoutGrid.x + afterColorRecognition.x + afterColorRecognition.width / 2 - radius
+            ejector1CenterXPos: layoutGrid.x + lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - radius
+            ejector2CenterXPos: layoutGrid.x + lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - radius
+            ejector3CenterXPos: layoutGrid.x + lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - radius
+            trashBinCenterXPos: unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - radius
+            trayOneColor:       lightbarrierTrayOne.trayColor
+            trayTwoColor:       lightbarrierTrayTwo.trayColor
+            trayThreeColor:     lightbarrierTrayThree.trayColor
+            recognizedColor:    colorRecongnition.color
+        }
+    }
 
     onValveEjected: {
         switch(number) {

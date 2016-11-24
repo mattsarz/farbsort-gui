@@ -33,7 +33,7 @@ Rectangle {
             }
 
             contentItem: Image {
-                source: "file"
+                source: "qrc:/"
             }
         }
 
@@ -45,7 +45,7 @@ Rectangle {
             }
 
             contentItem: Image {
-                source: "file"
+                source: "qrc:/"
             }
         }
     } // RowLayout

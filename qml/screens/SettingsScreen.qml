@@ -16,7 +16,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: parent.height/13 + 16
+        height: parent.height/13 + 20
 
         onExitClicked:{
             settingsExitClicked()

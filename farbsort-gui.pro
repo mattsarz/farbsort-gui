@@ -62,7 +62,8 @@ DISTFILES += \
     qml/screens/SettingsScreen/SettingsScreenTitle.qml \
     qml/screens/SettingsScreen/ConfigurationScreen.qml \
     qml/components/EventLog.qml \
-    qml/components/EventTableView.qml
+    qml/components/EventTableView.qml \
+    qml/components/bla.qml
 
 lupdate_only{
 SOURCES += $${DISTFILES}

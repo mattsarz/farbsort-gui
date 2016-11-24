@@ -11,13 +11,11 @@ Item {
     Rectangle {
         id: conveyorArea
         anchors.fill: parent
-        color: "#6fd4ff"
-        opacity: 0.21461188
-        border.color: "black"
+        color: "#eceff1"
 
-        property int numberOfElements: 15
-        property int beltElementWidth: conveyor.width / 61
-        property double offsetBetweenBeltElements: (conveyor.width - beltElementWidth) / numberOfElements
+        property int numberOfElements: 27
+        property int beltElementWidth: conveyor.width / 70
+        property double offsetBetweenBeltElements: conveyor.width / numberOfElements
 
         signal resized
 
@@ -26,7 +24,7 @@ Item {
         }
 
         Row {
-            spacing: 30
+            spacing: conveyorArea.beltElementWidth*2
 
             Repeater {
                 id: repeater
@@ -34,11 +32,11 @@ Item {
                 delegate:
                     Rectangle {
                         id: beltElement
-                        y: 5
+                        y: 0
                         x: startPosition
                         width: conveyorArea.beltElementWidth
-                        height: conveyorArea.height -10
-                        color: "#3d495a"
+                        height: conveyorArea.height
+                        color: "#b0bec5"
 
                         property int index: modelData
                         readonly property double startPosition: index * conveyorArea.offsetBetweenBeltElements
