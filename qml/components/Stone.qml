@@ -32,6 +32,7 @@ Item {
     }
 
     function moveConveyor() {
+        updateConveyorAnimationTime()
         if("detecting" === state) {
             state = "detected"
         }
@@ -60,8 +61,8 @@ Item {
         return trayId > 0
     }
 
-    function conveyorAnimationTime() {
-        return conveyorSpeed / (detectionAnimation.to - detectionAnimation.from) * (conveyorAnimation.to - conveyorAnimation.from)
+    function updateConveyorAnimationTime() {
+        conveyorAnimation.duration = conveyorSpeed / (lightbarrierAfterDetectorXPos - startPosX) * (destinationXPos - lightbarrierAfterDetectorXPos)
     }
 
     states: [
@@ -73,10 +74,6 @@ Item {
         State { name: "ejecting" },
         State { name: "reached" }
     ]
-
-    onStateChanged: {
-        console.log("state: " + state)
-    }
 
     transitions: [
         Transition {
