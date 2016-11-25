@@ -23,30 +23,36 @@ Item {
         stoneObject.x = stoneObject.startPosX
         stoneObject.y = stoneObject.startPosY
         stoneObject.color = "transparent"
-        stoneObject.state = "detecting"
+        state = "detecting"
     }
 
     function startEjecting() {
-        if("moving" === stoneObject.state) {
-            stoneObject.state = "moved"
+        if("moving" === state) {
+            state = "moved"
         }
-        if("moved" === stoneObject.state && colorRecognized()) {
-            stoneObject.state = "ejecting"
+        if("moved" === state && colorRecognized()) {
+            state = "ejecting"
         }
     }
 
     function moveConveyor() {
-        if("detecting" === stoneObject.state) {
-            stoneObject.state = "detected"
+        if("detecting" === state) {
+            state = "detected"
         }
-        if("detected" === stoneObject.state) {
-            stoneObject.state = "moving"
+        if("detected" === state) {
+            state = "moving"
         }
     }
 
     function onColorDetected() {
-        if("detecting" === stoneObject.state || "detected" === stoneObject.state) {
+        if("detecting" === state) {
             stoneObject.color = stoneObject.recognizedColor
+        }
+    }
+
+    function onDetectorEndReached() {
+        if("detecting" === state) {
+            state = "detected"
         }
     }
 
@@ -86,22 +92,10 @@ Item {
                 to: lightbarrierAfterDetectorXPos
                 easing.type: Easing.Linear
                 duration: conveyorSpeed
-            }
-            onRunningChanged: {
-                if( running === false)
-                {
-                    stoneObject.state = "detected"
-                }
-            }
-        },
-        Transition {
-            from: "detecting";
-            to: "detected";
-            onRunningChanged: {
-                if( running === false)
-                {
-                    detectionAnimation.complete()
-                    stoneObject.x = detectionAnimation.to
+                onRunningChanged: {
+                    if(!running) {
+                        state = "detected"
+                    }
                 }
             }
         },
@@ -168,6 +162,13 @@ Item {
         color: "red"
         border.color: "black"
         border.width: parent.width * 0.05
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                stoneObject.destroy();
+            }
+        }
     }
 
     // checks if the color is not set to transparent
@@ -177,7 +178,6 @@ Item {
 
     function trayXPosition() {
         if(stoneObject.colorRecognized()) {
-            console.log("color recognized")
             if(stoneObject.color === trayOneColor) {
                 return ejector1CenterXPos
             } else if(stoneObject.color === trayTwoColor) {
@@ -186,7 +186,6 @@ Item {
                 return ejector3CenterXPos
             }
         } else {
-            console.log("color not recognized")
             return trashBinCenterXPos
         }
     }

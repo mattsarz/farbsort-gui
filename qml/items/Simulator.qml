@@ -371,6 +371,7 @@ Rectangle {
         id: preconfigureStone
 
         Stone {
+            id: stoneInstance
             readonly property int diameter: conveyor.height*2 / 3
             readonly property int radius:   diameter  / 2
             height:             diameter

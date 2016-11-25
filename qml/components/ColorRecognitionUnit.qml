@@ -38,6 +38,7 @@ Rectangle {
         width: height
         y: colorRecongnition.height - height * 1.2
         x: (colorRecongnition.width - width) / 2
+        enabled: false
         // visible: { color.a > 0 }
     }
 
