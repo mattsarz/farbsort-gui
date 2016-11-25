@@ -25,12 +25,13 @@ Rectangle {
 
     Conveyor {
         id: conveyor
-            height: parent.height/8
-            anchors.left: parent.left
-            anchors.leftMargin: Style.bigMargin
-            anchors.right: unidentifiedObjectBin.left
-            anchors.rightMargin: Style.bigMargin
-            anchors.verticalCenter:   parent.verticalCenter
+        height: parent.height/8
+        anchors.left: parent.left
+        anchors.leftMargin: Style.bigMargin
+        anchors.right: unidentifiedObjectBin.left
+        anchors.rightMargin: Style.bigMargin
+        anchors.verticalCenter:   parent.verticalCenter
+        velocity: 5.7
     }
 
     Rectangle {
