@@ -8,12 +8,6 @@ Rectangle {
     color: "#0e6a8b"
     state: "NOTDETECT"
 
-    MouseArea {
-        anchors.fill: parent
-        onPressed: colorRecongnition.state = "DETECT"
-        onReleased: colorRecongnition.state = "NOTDETECT"
-    }
-
     states: [
         State {
             name: "DETECT"
