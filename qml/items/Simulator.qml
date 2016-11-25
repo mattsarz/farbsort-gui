@@ -434,7 +434,7 @@ Rectangle {
     }
 
     onLightbarrierBeforeColorDetectionStateChanged: {
-        if(lightbarrierBeforeColorDetectionState) {
+        if(lightbarrierBeforeColorDetectionState && conveyor.running) {
             var stone = preconfigureStone.createObject(simulator);
             stone.startDetection()
         }
