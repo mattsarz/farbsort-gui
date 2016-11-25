@@ -155,6 +155,7 @@ Rectangle {
             id: pushAllEjectorButton
             text: "Alle" + " " + qsTr("Ausstosser")
             enabled:  websocketClient.compressorRunning
+            visible: !simulationModeActive
 
             background: Rectangle{
                 color: pushAllEjectorButton.pressed ? Style.btnChecked : Style.btnUnchecked
@@ -192,6 +193,7 @@ Rectangle {
 
         Button {
             id: conveyorMotorButton
+            visible: !simulationModeActive
             checkable: true
             checked: websocketClient.motorRunning
             scale: checked ? 0.95 : 1.0
@@ -231,52 +233,52 @@ Rectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
         }
 
-//        Button {
-//            id: simulateLightbarrierOneActivated
-//            visible: simulationModeActive
-//            text: qsTr("Activate lightbarrier pre-color-detection")
-//            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-//            onPressedChanged: { websocketClient.lightbarrierActivated(1, pressed) }
-//        }
+        Button {
+            id: simulateLightbarrierOneActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier pre-color-detection")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onPressedChanged: { websocketClient.lightbarrierActivated(1, pressed) }
+        }
 
-//        Button {
-//            id: simulateLightbarrierTwoActivated
-//            visible: simulationModeActive
-//            text: qsTr("Activate lightbarrier post-color-detection")
-//            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-//            onPressedChanged: { websocketClient.lightbarrierActivated(2, pressed) }
-//        }
+        Button {
+            id: simulateLightbarrierTwoActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier post-color-detection")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onPressedChanged: { websocketClient.lightbarrierActivated(2, pressed) }
+        }
 
-//        Button {
-//            id: simulateLightbarrierThreeActivated
-//            visible: simulationModeActive
-//            text: qsTr("Activate lightbarrier Tray #1")
-//            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-//            onPressedChanged: { websocketClient.lightbarrierActivated(3, pressed) }
-//        }
+        Button {
+            id: simulateLightbarrierThreeActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier Tray #1")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onPressedChanged: { websocketClient.lightbarrierActivated(3, pressed) }
+        }
 
-//        Button {
-//            id: simulateLightbarrierFourActivated
-//            visible: simulationModeActive
-//            text: qsTr("Activate lightbarrier Tray #2")
-//            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-//            onPressedChanged: { websocketClient.lightbarrierActivated(4, pressed) }
-//        }
+        Button {
+            id: simulateLightbarrierFourActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier Tray #2")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onPressedChanged: { websocketClient.lightbarrierActivated(4, pressed) }
+        }
 
-//        Button {
-//            id: simulateLightbarrierFiveActivated
-//            visible: simulationModeActive
-//            text: qsTr("Activate lightbarrier Tray #3")
-//            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-//            onPressedChanged: { websocketClient.lightbarrierActivated(5, pressed) }
-//        }
+        Button {
+            id: simulateLightbarrierFiveActivated
+            visible: simulationModeActive
+            text: qsTr("Activate lightbarrier Tray #3")
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            onPressedChanged: { websocketClient.lightbarrierActivated(5, pressed) }
+        }
 
-//        RowLayout {
-//            Repeater {
-//                model: ["white", "blue", "red", "transparent"]
-
-//                Button {
-//                    text: modelData
+        RowLayout {
+            Repeater {
+                model: ["white", "blue", "red", "transparent"]
+                Button {
+                    text: modelData
+                    visible: simulationModeActive
 //                    style: ButtonStyle {
 //                        background: Rectangle {
 //                            border.width: control.activeFocus ? 2 : 1
@@ -287,11 +289,11 @@ Rectangle {
 //                            radius: 4
 //                        }
 //                    }
-//                    onClicked: {
-//                        websocketClient.sendDetectedColor(modelData)
-//                    }
-//                }
-//            }
-//        }
+                    onClicked: {
+                        websocketClient.sendDetectedColor(modelData)
+                    }
+                }
+            }
+        }
     }
 }
