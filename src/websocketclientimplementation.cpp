@@ -121,8 +121,8 @@ void WebSocketClientImplementation::onDisconnected()
 void WebSocketClientImplementation::onTextMessageReceived(QString message)
 {
     qDebug() << "wsc: received message: " << message;
-    if(message.startsWith("motor")) {
-        setMotorRunning(message.endsWith("start"));
+    if(message.startsWith("conveyor=")) {
+        setMotorRunning(message.endsWith("running"));
     } else if(message.startsWith("compressor")) {
         setCompressorRunning(message.endsWith("start"));
     } else if(message.startsWith("lightbarrier")) {
