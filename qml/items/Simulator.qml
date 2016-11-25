@@ -19,7 +19,7 @@ Rectangle {
     property alias lightbarrierTrayOne: lightbarrierTrayOne
     property alias lightbarrierTrayTwo: lightbarrierTrayTwo
     property alias lightbarrierTrayThree: lightbarrierTrayThree
-    property alias detectedColor: colorRecongnition.color
+    property alias detectedColor: colorRecongnition.detectedColor
 
 // The Conveyor has to be outside of the grid layout because of gridlayout warning "cell already taken"
 
@@ -387,7 +387,7 @@ Rectangle {
             trayOneColor:       lightbarrierTrayOne.trayColor
             trayTwoColor:       lightbarrierTrayTwo.trayColor
             trayThreeColor:     lightbarrierTrayThree.trayColor
-            recognizedColor:    colorRecongnition.color
+            recognizedColor:    colorRecongnition.detectedColor
         }
     }
 

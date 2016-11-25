@@ -223,9 +223,9 @@ Rectangle {
             }
         }
 
-        Rectangle {
+        Item {
             id: spacer0
-            color: "red"
+//            color: "red"
 
             Layout.preferredHeight: testControl.height
             Layout.preferredWidth: parent.width

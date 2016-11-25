@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 
 Item {
      id: eventTableView
@@ -7,8 +8,19 @@ Item {
 
      TableView{
          id:tableView
+         anchors.fill: parent
+         selectionMode: SelectionMode.NoSelection
 
-         headerDelegate:{}
+         style: TableViewStyle {
+                 frame: Rectangle {
+                            border.width: 0
+                        }
+             }
+
+         headerDelegate:Rectangle{
+            color: "transparent"
+            height:0
+         }
 
          model: ListModel {
                ListElement {
@@ -22,18 +34,16 @@ Item {
                    message:"dfnsaporqq"
                }
            }
-         anchors.fill: parent
-         selectionMode: SelectionMode.NoSelection
 
          rowDelegate: Rectangle{
-             color: "white"
-             anchors.fill: parent
+             width: childrenRect.width
+             height: tableView.height/4
              Rectangle{
-                 anchors.bottom: parent.bottom
-                 height: 1
-                 color: "lightgray"
-                 width: parent.width
-             }
+                  anchors.bottom: parent.bottom
+                  height: 1
+                  color: "lightgray"
+                  width: childrenRect.width
+              }
          }
 
          TableViewColumn {

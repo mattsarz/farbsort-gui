@@ -13,6 +13,7 @@ Rectangle {
     RowLayout{
         id: titleLayout
         anchors{left:parent.left;right: parent.right; top: parent.top; }
+        anchors.rightMargin: Style.smallMargin
         height: 40
         spacing: Style.bigMargin
 
@@ -27,6 +28,11 @@ Rectangle {
             font.pixelSize: Style.titleFontSize
         }
 
+        Item{
+            id: spacer
+            Layout.fillWidth: true
+        }
+
         Button {
             id: previousEventButton
             background: Rectangle{
@@ -37,6 +43,8 @@ Rectangle {
             contentItem: Image {
                 source: "qrc:/arrow_up.png"
             }
+
+            Layout.alignment: Qt.AlignRight
         }
 
         Button {
@@ -49,6 +57,8 @@ Rectangle {
             contentItem: Image {
                 source: "qrc:/arrow_down.png"
             }
+
+            Layout.alignment: Qt.AlignRight
         }
     } // RowLayout
 

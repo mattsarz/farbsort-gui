@@ -24,8 +24,11 @@ Rectangle {
 
     CircularGauge {
         id: statusGauge
-        anchors{ left: parent.left; right: parent.right;  top: startStopTitle.bottom }
+        anchors.top: startStopTitle.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.margins: Style.bigMargin
+        height: parent.width*3/4
+        width: height
         value: stateControl.running ? maximumValue : 0
 
 
@@ -51,7 +54,7 @@ Rectangle {
                   implicitWidth: outerRadius * 0.01
                   antialiasing: true
                   implicitHeight: outerRadius * 0.03
-                  color: "#b5bdc0"
+                  color: "darkgray"//"#b5bdc0"
               }
 
             foreground: Item {
