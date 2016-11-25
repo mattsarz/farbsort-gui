@@ -39,7 +39,7 @@ void WebSocketClientImplementation::sendCompressorRunningRequest(const bool comp
     }
 }
 
-void WebSocketClientImplementation::ejectValve(int number, const bool active)
+void WebSocketClientImplementation::sendValveStateRequest(int number, const bool active)
 {
     if(1 <= number && 3 >= number) {
         QString msg;
@@ -53,11 +53,11 @@ void WebSocketClientImplementation::ejectValve(int number, const bool active)
     }
 }
 
-void WebSocketClientImplementation::ejectAllValve(const bool active)
+void WebSocketClientImplementation::sendAllValveStateRequest(const bool active)
 {
     for(int i=1; i<=3; ++i)
     {
-        ejectValve(i, active);
+        sendValveStateRequest(i, active);
     }
 }
 
@@ -65,7 +65,7 @@ void WebSocketClientImplementation::sendProductionModeRequest(const bool active)
 {
     if(active)
     {
-        ejectAllValve(false);
+        sendAllValveStateRequest(false);
         sendCompressorRunningRequest(false);
         sendMotorRunningRequest(false);
 
@@ -132,7 +132,7 @@ void WebSocketClientImplementation::onTextMessageReceived(QString message)
     } else if(message.startsWith("valve")) {
         const bool valveState = message.endsWith("on");
         QStringRef valveNumber(&message, 5, 1);
-        emit valveEjected(valveNumber.toInt(), valveState); // TODO: Dont know how to fix this with the state for the valve
+        setValveState(valveNumber.toInt(), valveState);
     } else if(message.startsWith("color")) {
         QColor color = QColor(message.right(message.length() - 6));
         setDetectedColor(color);

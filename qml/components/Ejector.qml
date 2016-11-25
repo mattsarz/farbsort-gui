@@ -9,12 +9,16 @@ Item {
 //    color: "transparent"
 //    border.color: "gray"
 
-    signal eject
     readonly property alias state: ejectorPin.state
     property int ejectDistance: height / 3
+    property bool valveState: false
 
-    onEject: {
-        ejectorPin.state = "ejecting"
+    onValveStateChanged: {
+        if(valveState) {
+            ejectorPin.state = "ejecting";
+        } else {
+            ejectorPin.state = "pulling";
+        }
     }
 
     Rectangle {
@@ -28,6 +32,7 @@ Item {
 
     Image {
         id: ejectorPin
+        state: "idle"
         anchors.left: parent.left
         anchors.right: parent.right
         y: Style.medMargin
@@ -52,26 +57,17 @@ Item {
                 from: "idle";
                 to: "ejecting";
                 animations: PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: 150; }
-                onRunningChanged: {
-                    if( running == false)
-                    {
-                        ejectorPin.state = "pulling"
-                    }
-                }
             },
             Transition {
                 from: "ejecting";
                 to: "pulling";
-                animations: PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: 1000; }
+                animations: PropertyAnimation { property: "y"; easing.type: Easing.InOutQuad; duration: 600; }
                 onRunningChanged: {
-                    if( running == false)
-                    {
+                    if(!running) {
                         ejectorPin.state = "idle"
                     }
                 }
             }
         ]
-
-        state: "idle"
     }
 }

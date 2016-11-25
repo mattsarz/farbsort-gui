@@ -52,7 +52,9 @@ Item {
 
     Component.onCompleted: {
         websocketClient.detectedColorChanged.connect(onColorDetected)
-        websocketClient.valveEjected.connect(startEjecting)
+        websocketClient.valve1StateChanged.connect(startEjecting)
+        websocketClient.valve3StateChanged.connect(startEjecting)
+        websocketClient.valve2StateChanged.connect(startEjecting)
         websocketClient.lightbarrierTwoStateChanged.connect(moveConveyor)
     }
 

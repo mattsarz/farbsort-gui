@@ -65,10 +65,6 @@ Rectangle {
             Layout.preferredHeight: parent.height * 0.75
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
-
-            Component.onCompleted: {
-                websocketClient.valveEjected.connect(simulator.valveEjected)
-            }
         }
 
         StartStopControl {

@@ -13,6 +13,9 @@ WebSocketClient::WebSocketClient()
     , m_lightbarrierFourState(false)
     , m_lightbarrierFiveState(false)
     , m_detectedColor(QColor("transparent"))
+    , m_valve1State(false)
+    , m_valve2State(false)
+    , m_valve3State(false)
 {
 }
 
@@ -26,6 +29,7 @@ void WebSocketClient::setMotorRunning(const bool motorRunning)
 
 void WebSocketClient::setCompressorRunning(const bool compressorRunning)
 {
+    qDebug() << "setCompressorRunning: " << compressorRunning;
     if(compressorRunning != m_compressorRunning) {
         m_compressorRunning = compressorRunning;
         emit compressorRunningChanged();
@@ -86,6 +90,36 @@ void WebSocketClient::setDetectedColor(const QColor color)
     if(color != m_detectedColor) {
         m_detectedColor = color;
         emit detectedColorChanged();
+    }
+}
+
+void WebSocketClient::setValveState(const int valveId, const bool state)
+{
+    switch(valveId) {
+        case 1: {
+            if(state != m_valve1State) {
+                qDebug() << "wsc: valve 1 state changed " << state;
+                m_valve1State = state;
+                emit valve1StateChanged();
+            } break;
+        }
+        case 2: {
+            if(state != m_valve2State) {
+                qDebug() << "wsc: valve 2 state changed " << state;
+                m_valve2State = state;
+                emit valve2StateChanged();
+            } break;
+        }
+        case 3: {
+            if(state != m_valve3State) {
+                qDebug() << "wsc: valve 3 state changed " << state;
+                m_valve3State = state;
+                emit valve3StateChanged();
+            } break;
+        }
+        default: {
+            qWarning() << "wsc: received unknown valve id: " << valveId;
+        } break;
     }
 }
 

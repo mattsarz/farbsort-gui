@@ -20,16 +20,16 @@ void WebSocketClientSimulation::sendCompressorRunningRequest(const bool compress
     setCompressorRunning(compressorRunning);
 }
 
-void WebSocketClientSimulation::ejectValve(int number, const bool active)
+void WebSocketClientSimulation::sendValveStateRequest(int number, const bool active)
 {
-    emit valveEjected(number, active);
+    setValveState(number, active);
 }
 
-void WebSocketClientSimulation::ejectAllValve(const bool active)
+void WebSocketClientSimulation::sendAllValveStateRequest(const bool active)
 {
     for(int i=1; i<=3; ++i)
     {
-        ejectValve(i, active);
+        sendValveStateRequest(i, active);
     }
 }
 

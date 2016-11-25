@@ -20,7 +20,6 @@ Rectangle {
     property alias lightbarrierTrayTwo: lightbarrierTrayTwo
     property alias lightbarrierTrayThree: lightbarrierTrayThree
     property alias detectedColor: colorRecongnition.color
-    signal valveEjected(int number)
 
 // The Conveyor has to be outside of the grid layout because of gridlayout warning "cell already taken"
 
@@ -190,6 +189,8 @@ Rectangle {
                 anchors.left: parent.right
                 anchors.leftMargin: Style.smallMargin
             }
+
+            valveState: websocketClient.valve1State
         }
 
         Ejector {
@@ -212,6 +213,8 @@ Rectangle {
                 anchors.left: parent.right
                 anchors.leftMargin: Style.smallMargin
             }
+
+            valveState: websocketClient.valve2State
         }
 
         Ejector {
@@ -235,6 +238,8 @@ Rectangle {
                 anchors.left: parent.right
                 anchors.leftMargin: Style.smallMargin
             }
+
+            valveState: websocketClient.valve3State
         }
 
         Tray {
@@ -383,20 +388,6 @@ Rectangle {
             trayTwoColor:       lightbarrierTrayTwo.trayColor
             trayThreeColor:     lightbarrierTrayThree.trayColor
             recognizedColor:    colorRecongnition.color
-        }
-    }
-
-    onValveEjected: {
-        switch(number) {
-            case 1:  {
-                ejectorOne.eject()
-            } break;
-            case 2:  {
-                ejectorTwo.eject()
-            } break;
-            case 3:  {
-                ejectorThree.eject()
-            } break;
         }
     }
 

@@ -22,8 +22,8 @@ public slots:
     /** slot to set the compressor to switch on/off */
     void sendCompressorRunningRequest(const bool compressorRunning) override;
     /** sends a eject valve request with the given number */
-    void ejectValve(int number, const bool active) override;
-    void ejectAllValve(const bool active) override;
+    void sendValveStateRequest(int number, const bool active) override;
+    void sendAllValveStateRequest(const bool active) override;
     void sendProductionModeRequest(const bool active) override;
     void sendProductionStart(const bool active) override;
     void sendEmergencyStop() override;

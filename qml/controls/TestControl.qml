@@ -70,7 +70,7 @@ Rectangle {
         Button {
             id: pushEjectorOneButton
             text: "A1" + " " + qsTr("Ausstosser")
-            enabled: simulator.ejectorOne.state === "idle" && websocketClient.compressorRunning
+            enabled: websocketClient.compressorRunning
 
             background: Rectangle{
                 color: pushEjectorOneButton.pressed ? Style.btnChecked : Style.btnUnchecked
@@ -90,15 +90,15 @@ Rectangle {
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
-            onPressed: { scale=0.95; websocketClient.ejectValve(1, true) }
-            onReleased: { scale=1.0; websocketClient.ejectValve(1, false)}
+            onPressed: { scale=0.95; websocketClient.sendValveStateRequest(1, true) }
+            onReleased: { scale=1.0; websocketClient.sendValveStateRequest(1, false)}
             onEnabledChanged: {if(enabled) opacity=1; else opacity=0.5}
         }
 
         Button {
             id: pushEjectorTwoButton
             text: "A2" + " " + qsTr("Ausstosser")
-            enabled: simulator.ejectorTwo.state === "idle" && websocketClient.compressorRunning
+            enabled: websocketClient.compressorRunning
 
             background: Rectangle{
                 color: pushEjectorTwoButton.pressed ? Style.btnChecked : Style.btnUnchecked
@@ -118,15 +118,15 @@ Rectangle {
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
-            onPressed: { scale=0.95; websocketClient.ejectValve(2, true) }
-            onReleased: { scale=1.0; websocketClient.ejectValve(2, false)}
+            onPressed: { scale=0.95; websocketClient.sendValveStateRequest(2, true) }
+            onReleased: { scale=1.0; websocketClient.sendValveStateRequest(2, false)}
             onEnabledChanged: {if(enabled) opacity=1; else opacity=0.5}
         }
 
         Button {
             id: pushEjectorThreeButton
             text: "A3" + " " + qsTr("Ausstosser")
-            enabled: simulator.ejectorThree.state === "idle" && websocketClient.compressorRunning
+            enabled: websocketClient.compressorRunning
 
             background: Rectangle{
                 color: pushEjectorThreeButton.pressed ? Style.btnChecked : Style.btnUnchecked
@@ -146,8 +146,8 @@ Rectangle {
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
-            onPressed: { scale=0.95; websocketClient.ejectValve(3, true) }
-            onReleased: { scale=1.0; websocketClient.ejectValve(3, false)}
+            onPressed: { scale=0.95; websocketClient.sendValveStateRequest(3, true) }
+            onReleased: { scale=1.0; websocketClient.sendValveStateRequest(3, false)}
             onEnabledChanged: {if(pushEjectorThreeButton.enabled) pushEjectorThreeButton.opacity=1; else pushEjectorThreeButton.opacity=0.5}
         }
 
@@ -175,8 +175,8 @@ Rectangle {
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
-            onPressed: { scale=0.95; websocketClient.ejectAllValve(true) }
-            onReleased: { scale=1.0; websocketClient.ejectAllValve(false)}
+            onPressed: { scale=0.95; websocketClient.sendAllValveStateRequest(true) }
+            onReleased: { scale=1.0; websocketClient.sendAllValveStateRequest(false)}
             onEnabledChanged: {if(pushAllEjectorButton.enabled) pushAllEjectorButton.opacity=1; else pushAllEjectorButton.opacity=0.5}
         }
 
