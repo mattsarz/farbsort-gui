@@ -121,10 +121,15 @@ void WebSocketClientImplementation::onDisconnected()
 void WebSocketClientImplementation::onTextMessageReceived(QString message)
 {
     qDebug() << "wsc: received message: " << message;
-    if(message.startsWith("conveyor=")) {
+    if(message.startsWith("mode=")) {
+    } else if(message.startsWith("sort-order=")) {
+    } else if(message.startsWith("controller=")) {
+    } else if(message.startsWith("motor=")) {
+    } else if(message.startsWith("conveyor=")) {
         setMotorRunning(message.endsWith("running"));
-    } else if(message.startsWith("compressor")) {
+    } else if(message.startsWith("compressor=")) {
         setCompressorRunning(message.endsWith("start"));
+    } else if(message.startsWith("emergency-stop=")) {
     } else if(message.startsWith("lightbarrier")) {
         const bool lightbarrierState = message.endsWith("on");
         QStringRef lightbarrierNumber(&message, 12, 1);
@@ -133,9 +138,10 @@ void WebSocketClientImplementation::onTextMessageReceived(QString message)
         const bool valveState = message.endsWith("on");
         QStringRef valveNumber(&message, 5, 1);
         setValveState(valveNumber.toInt(), valveState);
-    } else if(message.startsWith("color")) {
+    } else if(message.startsWith("color=")) {
         QColor color = QColor(message.right(message.length() - 6));
         setDetectedColor(color);
+    } else if(message.startsWith("log:")) {
     } else {
         qWarning() << "wsc: message '" << message << "' was not handled";
     }
