@@ -12,14 +12,6 @@ Item {
     property int lightbarrierAfterDetectorXPos: 300
     property int trayId: 0
     property int destinationXPos: 300
-//    property int ejector1CenterXPos: 500
-//    property int ejector2CenterXPos: 600
-//    property int ejector3CenterXPos: 700
-//    property int trashBinCenterXPos: 950
-//    property color trayOneColor: "blue"
-//    property color trayTwoColor: "red"
-//    property color trayThreeColor: "white"
-//    property color recognizedColor: "transparent"
 
     function startDetection() {
         stoneObject.x = stoneObject.startPosX
@@ -65,7 +57,6 @@ Item {
         websocketClient.valve1StateChanged.connect(startEjecting)
         websocketClient.valve3StateChanged.connect(startEjecting)
         websocketClient.valve2StateChanged.connect(startEjecting)
-        websocketClient.lightbarrierTwoStateChanged.connect(moveConveyor)
     }
 
     states: [

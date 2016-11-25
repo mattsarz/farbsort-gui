@@ -401,6 +401,14 @@ Rectangle {
                 }
                 onColorDetected(detectedColor, _trayId, _finalPosition)
             }
+
+            // used to get informed about lightbarrier after detector state changes
+            readonly property bool lightbarrierAfterColorDetectorState: lightbarrierAfterColorDetectionState
+            // lightbarrier is triggered, moves the stone to the position and continues animation
+            onLightbarrierAfterColorDetectorStateChanged: {
+                if(lightbarrierAfterColorDetectorState)
+                    moveConveyor()
+            }
         }
     }
 
