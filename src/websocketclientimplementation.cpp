@@ -129,9 +129,10 @@ void WebSocketClientImplementation::onTextMessageReceived(QString message)
         const bool lightbarrierState = message.endsWith("on");
         QStringRef lightbarrierNumber(&message, 12, 1);
         setLightbarrierState(lightbarrierNumber.toInt(), lightbarrierState);
-    } else if(message.startsWith("valve") && message.endsWith("ejected")) {
+    } else if(message.startsWith("valve")) {
+        const bool valveState = message.endsWith("on");
         QStringRef valveNumber(&message, 5, 1);
-        emit valveEjected(valveNumber.toInt(), false); // TODO: Dont know how to fix this with the state for the valve
+        emit valveEjected(valveNumber.toInt(), valveState); // TODO: Dont know how to fix this with the state for the valve
     } else if(message.startsWith("color")) {
         QColor color = QColor(message.right(message.length() - 6));
         setDetectedColor(color);
