@@ -7,7 +7,7 @@ CountingLogic::CountingLogic()
   , m_redStoneCounter(0)
   , m_blueStoneCounter(0)
   , m_whiteStoneCounter(0)
-  , m_trayOneColor(0x1E,0x90,0xFF) // dogerblue
+  , m_trayOneColor(Qt::blue) //, m_trayOneColor(0x1E,0x90,0xFF) // dogerblue
   , m_trayTwoColor(Qt::red)
   , m_trayThreeColor(Qt::white)
 {
