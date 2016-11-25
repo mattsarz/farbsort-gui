@@ -10,14 +10,16 @@ Item {
     property int stopPosY: startPosY + 100
     property int conveyorSpeed: 800
     property int lightbarrierAfterDetectorXPos: 300
-    property int ejector1CenterXPos: 500
-    property int ejector2CenterXPos: 600
-    property int ejector3CenterXPos: 700
-    property int trashBinCenterXPos: 950
-    property color trayOneColor: "blue"
-    property color trayTwoColor: "red"
-    property color trayThreeColor: "white"
-    property color recognizedColor: "transparent"
+    property int trayId: 0
+    property int destinationXPos: 300
+//    property int ejector1CenterXPos: 500
+//    property int ejector2CenterXPos: 600
+//    property int ejector3CenterXPos: 700
+//    property int trashBinCenterXPos: 950
+//    property color trayOneColor: "blue"
+//    property color trayTwoColor: "red"
+//    property color trayThreeColor: "white"
+//    property color recognizedColor: "transparent"
 
     function startDetection() {
         stoneObject.x = stoneObject.startPosX
@@ -44,9 +46,12 @@ Item {
         }
     }
 
-    function onColorDetected() {
+    function onColorDetected(color, trayId, destinationXPos) {
         if("detecting" === state) {
-            stoneObject.color = stoneObject.recognizedColor
+            stoneObject.color = color
+            stoneObject.trayId = trayId
+            stoneObject.destinationXPos = destinationXPos
+            console.log("--- color detected event received: color=" + color + ", trayId=" + trayId + ", destinationXPos=" + destinationXPos)
         }
     }
 
@@ -57,7 +62,6 @@ Item {
     }
 
     Component.onCompleted: {
-        websocketClient.detectedColorChanged.connect(onColorDetected)
         websocketClient.valve1StateChanged.connect(startEjecting)
         websocketClient.valve3StateChanged.connect(startEjecting)
         websocketClient.valve2StateChanged.connect(startEjecting)
@@ -109,7 +113,7 @@ Item {
                 target: stoneObject
                 property: "x"
                 from: lightbarrierAfterDetectorXPos
-                to: trayXPosition()
+                to: destinationXPos
                 easing.type: Easing.Linear
                 duration: conveyorSpeed //conveyorAnimationTime()
             }
@@ -174,20 +178,6 @@ Item {
     // checks if the color is not set to transparent
     function colorRecognized() {
         return (Qt.colorEqual(color, "blue") || Qt.colorEqual(color, "red") || Qt.colorEqual(color, "white"))
-    }
-
-    function trayXPosition() {
-        if(stoneObject.colorRecognized()) {
-            if(stoneObject.color === trayOneColor) {
-                return ejector1CenterXPos
-            } else if(stoneObject.color === trayTwoColor) {
-                return ejector2CenterXPos
-            } else {
-                return ejector3CenterXPos
-            }
-        } else {
-            return trashBinCenterXPos
-        }
     }
 
     function conveyorAnimationTime() {

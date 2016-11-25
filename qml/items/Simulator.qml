@@ -381,14 +381,26 @@ Rectangle {
             stopPosY:           layoutGrid.y + lightbarrierTrayOne.y + lightbarrierTrayOne.trayRectVerticalMiddle - radius
             conveyorSpeed:      1500
             lightbarrierAfterDetectorXPos: layoutGrid.x + afterColorRecognition.x + afterColorRecognition.width / 2 - radius
-            ejector1CenterXPos: layoutGrid.x + lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - radius
-            ejector2CenterXPos: layoutGrid.x + lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - radius
-            ejector3CenterXPos: layoutGrid.x + lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - radius
-            trashBinCenterXPos: unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - radius
-            trayOneColor:       lightbarrierTrayOne.trayColor
-            trayTwoColor:       lightbarrierTrayTwo.trayColor
-            trayThreeColor:     lightbarrierTrayThree.trayColor
-            recognizedColor:    colorRecongnition.detectedColor
+            destinationXPos:    unidentifiedObjectBin.x + unidentifiedObjectBin.width / 2 - radius
+
+            // used to get informed about color detector events
+            readonly property color detectedColor: colorRecongnition.detectedColor
+            // when the color is changed, set the color, the tray id of the same color and the distance to the tray
+            onDetectedColorChanged: {
+                var _finalPosition = destinationXPos
+                var _trayId = 0
+                if(detectedColor === lightbarrierTrayOne.trayColor) {
+                    _finalPosition = layoutGrid.x + lightbarrierTrayOne.x + lightbarrierTrayOne.width / 2 - radius
+                    _trayId = 1
+                } else if(detectedColor === lightbarrierTrayTwo.trayColor) {
+                    _finalPosition = layoutGrid.x + lightbarrierTrayTwo.x + lightbarrierTrayTwo.width / 2 - radius
+                    _trayId = 2
+                } else if(detectedColor === lightbarrierTrayThree.trayColor) {
+                    _finalPosition = layoutGrid.x + lightbarrierTrayThree.x + lightbarrierTrayThree.width / 2 - radius
+                    _trayId = 3
+                }
+                onColorDetected(detectedColor, _trayId, _finalPosition)
+            }
         }
     }
 
