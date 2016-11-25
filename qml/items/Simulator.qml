@@ -409,6 +409,27 @@ Rectangle {
                 if(lightbarrierAfterColorDetectorState)
                     moveConveyor()
             }
+
+            // send ejectorOne valve state to stone
+            readonly property bool ejectorOneValveState: ejectorOne.valveState
+            onEjectorOneValveStateChanged: {
+                if(ejectorOneValveState)
+                    startEjecting(1)
+            }
+
+            // send ejectorTwo valve state to stone
+            readonly property bool ejectorTwoValveState: ejectorTwo.valveState
+            onEjectorTwoValveStateChanged: {
+                if(ejectorTwoValveState)
+                    startEjecting(2)
+            }
+
+            // send ejectorThree valve state to stone
+            readonly property bool ejectorThreeValveState: ejectorThree.valveState
+            onEjectorThreeValveStateChanged: {
+                if(ejectorThreeValveState)
+                    startEjecting(3)
+            }
         }
     }
 

@@ -20,12 +20,14 @@ Item {
         state = "detecting"
     }
 
-    function startEjecting() {
-        if("moving" === state) {
-            state = "moved"
-        }
-        if("moved" === state && colorRecognized()) {
-            state = "ejecting"
+    function startEjecting(trayId) {
+        if(trayId === stoneObject.trayId) {
+            if("moving" === state) {
+                state = "moved"
+            }
+            if("moved" === state && needsEjection()) {
+                state = "ejecting"
+            }
         }
     }
 
@@ -53,10 +55,13 @@ Item {
         }
     }
 
-    Component.onCompleted: {
-        websocketClient.valve1StateChanged.connect(startEjecting)
-        websocketClient.valve3StateChanged.connect(startEjecting)
-        websocketClient.valve2StateChanged.connect(startEjecting)
+    // checks if a valid ejector id was set
+    function needsEjection() {
+        return trayId > 0
+    }
+
+    function conveyorAnimationTime() {
+        return conveyorSpeed / (detectionAnimation.to - detectionAnimation.from) * (conveyorAnimation.to - conveyorAnimation.from)
     }
 
     states: [
@@ -111,7 +116,7 @@ Item {
             onRunningChanged: {
                 if( running === false)
                 {
-                    if(colorRecognized())
+                    if(needsEjection())
                         state = "moved"
                     else
                         state = "reached"
@@ -164,14 +169,5 @@ Item {
                 stoneObject.destroy();
             }
         }
-    }
-
-    // checks if the color is not set to transparent
-    function colorRecognized() {
-        return (Qt.colorEqual(color, "blue") || Qt.colorEqual(color, "red") || Qt.colorEqual(color, "white"))
-    }
-
-    function conveyorAnimationTime() {
-        return conveyorSpeed / (detectionAnimation.to - detectionAnimation.from) * (conveyorAnimation.to - conveyorAnimation.from)
     }
 }
