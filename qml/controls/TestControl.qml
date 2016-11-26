@@ -233,6 +233,29 @@ Rectangle {
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
         }
 
+        RowLayout {
+            Repeater {
+                model: ["white", "blue", "red", "transparent"]
+                Button {
+                    text: modelData
+                    visible: simulationModeActive
+//                    style: ButtonStyle {
+//                        background: Rectangle {
+//                            border.width: control.activeFocus ? 2 : 1
+//                            border.color: "black"
+//                            implicitWidth: testControl.width / 5
+//                            implicitHeight: implicitWidth / 3
+//                            color: modelData
+//                            radius: 4
+//                        }
+//                    }
+                    onClicked: {
+                        websocketClient.sendDetectedColor(modelData)
+                    }
+                }
+            }
+        }
+
         Button {
             id: simulateLightbarrierOneActivated
             visible: simulationModeActive
@@ -271,29 +294,6 @@ Rectangle {
             text: qsTr("Activate lightbarrier Tray #3")
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             onPressedChanged: { websocketClient.lightbarrierActivated(5, pressed) }
-        }
-
-        RowLayout {
-            Repeater {
-                model: ["white", "blue", "red", "transparent"]
-                Button {
-                    text: modelData
-                    visible: simulationModeActive
-//                    style: ButtonStyle {
-//                        background: Rectangle {
-//                            border.width: control.activeFocus ? 2 : 1
-//                            border.color: "black"
-//                            implicitWidth: testControl.width / 5
-//                            implicitHeight: implicitWidth / 3
-//                            color: modelData
-//                            radius: 4
-//                        }
-//                    }
-                    onClicked: {
-                        websocketClient.sendDetectedColor(modelData)
-                    }
-                }
-            }
         }
     }
 }

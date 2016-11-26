@@ -5,7 +5,6 @@ Item {
     state: "created"
     property alias color: circle.color
     property int startPosX: 16
-
     property int startPosY: parent.height/2 - stoneObject.height/2
     property int stopPosY: startPosY + 100
     property int conveyorSpeed: 800
@@ -42,7 +41,8 @@ Item {
     }
 
     function onColorDetected(color, trayId, destinationXPos) {
-        if("detecting" === state) {
+        // stone must be under the color detector and no color was assigned before
+        if("detecting" === state && 0 === stoneObject.color.a) {
             stoneObject.color = color
             stoneObject.trayId = trayId
             stoneObject.destinationXPos = destinationXPos
