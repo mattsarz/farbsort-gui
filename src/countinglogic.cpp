@@ -13,27 +13,6 @@ CountingLogic::CountingLogic()
 {
 }
 
-void CountingLogic::trayOneLightbarrierActivationChanged(const bool active)
-{
-    if(active) {
-        incrementStoneCounter(trayOneColor());
-    }
-}
-
-void CountingLogic::trayTwoLightbarrierActivationChanged(const bool active)
-{
-    if(active) {
-        incrementStoneCounter(trayTwoColor());
-    }
-}
-
-void CountingLogic::trayThreeLightbarrierActivationChanged(const bool active)
-{
-    if(active) {
-        incrementStoneCounter(trayThreeColor());
-    }
-}
-
 void CountingLogic::resetRedStoneCounter()
 {
     if(0 != m_redStoneCounter) {
@@ -86,12 +65,15 @@ void CountingLogic::incrementStoneCounter(const QColor color)
 {
     if(color == QColor(Qt::blue)) {
         m_blueStoneCounter++;
+        qDebug() << "counting: blue stone received ( total=" << m_blueStoneCounter << ")";
         emit blueStoneCounterChanged();
     } else if(color == QColor(Qt::red)) {
         m_redStoneCounter++;
+        qDebug() << "counting: red stone received ( total=" << m_redStoneCounter << ")";
         emit redStoneCounterChanged();
     } else if(color == QColor(Qt::white)) {
         m_whiteStoneCounter++;
+        qDebug() << "counting: white stone received ( total=" << m_whiteStoneCounter << ")";
         emit whiteStoneCounterChanged();
     } else {
         qCritical() << "received untracked color: " << color;

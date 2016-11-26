@@ -28,15 +28,13 @@ signals:
     void trayThreeColorChanged();
 
 public slots:
-    void trayOneLightbarrierActivationChanged(const bool active);
-    void trayTwoLightbarrierActivationChanged(const bool active);
-    void trayThreeLightbarrierActivationChanged(const bool active);
+    void incrementStoneCounter(const QColor color);
 
 protected:
     // getter
-    int redStoneCounter() const { return m_redStoneCounter; }
-    int blueStoneCounter() const { return m_blueStoneCounter; }
-    int whiteStoneCounter() const { return m_whiteStoneCounter; }
+    int redStoneCounter() const { return m_redStoneCounter / 2; }     // FIXME: counters are incremented twice, as there exist two simulator objects (a stone for each simulator)
+    int blueStoneCounter() const { return m_blueStoneCounter / 2; }   // FIXME: counters are incremented twice, as there exist two simulator objects (a stone for each simulator)
+    int whiteStoneCounter() const { return m_whiteStoneCounter / 2; } // FIXME: counters are incremented twice, as there exist two simulator objects (a stone for each simulator)
     QColor trayOneColor() const { return m_trayOneColor; }
     QColor trayTwoColor() const { return m_trayTwoColor; }
     QColor trayThreeColor() const { return m_trayThreeColor; }
@@ -47,8 +45,6 @@ protected:
     void setTrayOneColor(const QColor color);
     void setTrayTwoColor(const QColor color);
     void setTrayThreeColor(const QColor color);
-    // helpers
-    void incrementStoneCounter(const QColor color);
 
 private:
     unsigned int m_redStoneCounter;

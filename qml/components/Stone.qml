@@ -13,6 +13,8 @@ Item {
     property int trayId: 0
     property int destinationXPos: 300
 
+    signal trayReached(int trayId)
+
     function startDetection() {
         stoneObject.x = stoneObject.startPosX
         stoneObject.y = stoneObject.startPosY
@@ -66,13 +68,13 @@ Item {
     }
 
     states: [
-        State { name: "created" },
-        State { name: "detecting" },
-        State { name: "detected" },
-        State { name: "moving" },
-        State { name: "moved" },
-        State { name: "ejecting" },
-        State { name: "reached" }
+        State { name: "created" },   // created and placed on instrument
+        State { name: "detecting" }, // moving under the color detecting unit
+        State { name: "detected" },  // sensor after color detecting unit reached
+        State { name: "moving" },    // moving to ejector or bin
+        State { name: "moved" },     // reached position under ejector
+        State { name: "ejecting" },  // ejecting to tray
+        State { name: "reached" }    // reached target position
     ]
 
     transitions: [
@@ -108,10 +110,10 @@ Item {
                 from: lightbarrierAfterDetectorXPos
                 to: destinationXPos
                 easing.type: Easing.Linear
-                duration: conveyorSpeed //conveyorAnimationTime()
+                duration: conveyorSpeed
             }
             onRunningChanged: {
-                if( running === false)
+                if(!running)
                 {
                     if(needsEjection())
                         state = "moved"
@@ -144,12 +146,21 @@ Item {
                 duration: 300
             }
             onRunningChanged: {
-                if( running === false)
+                if(!running && "ejecting" === state)
                 {
                     state = "reached"
                 }
             }
+        },
+        Transition {
+            to: "reached"
+            onRunningChanged: {
+                if(!running) {
+                    trayReached(trayId)
+                }
+            }
         }
+
     ]
 
     Rectangle {

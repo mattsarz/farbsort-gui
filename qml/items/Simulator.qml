@@ -431,6 +431,20 @@ Rectangle {
                 if(ejectorThreeValveState)
                     startEjecting(3)
             }
+
+            onTrayReached: {
+                switch(trayId) {
+                    case 1: {
+                        countingLogic.incrementStoneCounter(lightbarrierTrayOne.trayColor)
+                    } break;
+                    case 2: {
+                        countingLogic.incrementStoneCounter(lightbarrierTrayTwo.trayColor)
+                    } break;
+                    case 3: {
+                        countingLogic.incrementStoneCounter(lightbarrierTrayThree.trayColor)
+                    } break;
+                }
+            }
         }
     }
 
@@ -438,6 +452,7 @@ Rectangle {
         if(lightbarrierBeforeColorDetectionState && conveyor.running) {
             var stone = preconfigureStone.createObject(simulator);
             stone.startDetection()
+            console.log("---- stone added")
         }
     }
 }

@@ -43,9 +43,6 @@ int main(int argc, char *argv[])
 //    qmlRegisterType<WebSocketClient>("com.mycompany.qmlcomponents", 1, 0, "Slider");
 
     CountingLogic countingLogic;
-    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierThreeStateChanged(bool)), &countingLogic, SLOT(trayOneLightbarrierActivationChanged(bool)));
-    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierFourStateChanged(bool)), &countingLogic, SLOT(trayTwoLightbarrierActivationChanged(bool)));
-    QObject::connect(webSocketClient.data(), SIGNAL(lightbarrierFiveStateChanged(bool)), &countingLogic, SLOT(trayThreeLightbarrierActivationChanged(bool)));
 
     // start application
     QResource::registerResource("qml.qrc");
