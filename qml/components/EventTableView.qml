@@ -22,19 +22,6 @@ Item {
             height:0
          }
 
-         model: ListModel {
-               ListElement {
-                   icon: "value 1"
-                   date: "value 2"
-                   message:"fnjdlanhglvwrng"
-               }
-               ListElement {
-                   icon: "value 1"
-                   date: "28.11.1972"
-                   message:"dfnsaporqq"
-               }
-           }
-
          rowDelegate: Rectangle{
              width: childrenRect.width
              height: tableView.height/4
@@ -52,6 +39,18 @@ Item {
              movable: false
              resizable: false
              width: tableView.viewport.width - dateColumn.width - msgColumn.width
+
+             delegate: Item {
+                         height: 32
+                         width: 32
+                         Image {
+                             mipmap: true
+                             source: styleData.value
+                             width: 32
+                             height: 32
+                             anchors.centerIn: parent
+                         }
+                     }
          }
 
          TableViewColumn {
@@ -69,5 +68,28 @@ Item {
              resizable: false
              width: tableView.viewport.width / 2
          }
+
+         model: ListModel {
+               ListElement {
+                   icon: "qrc:/checkmark.png"
+                   date: "20.10.2016, 13:37"
+                   message:"fnjdlanhglvwrng"
+               }
+               ListElement {
+                   icon: ""
+                   date: "18.10.2016, 08:46"
+                   message:"dfnsaporqq"
+               }
+               ListElement {
+                   icon: ""
+                   date: "18.10.2016, 09:33"
+                   message:"fnjdlanhglvwrng"
+               }
+               ListElement {
+                   icon: ""
+                   date: "18.10.2016, 09:53"
+                   message:"dfnsaporqq"
+               }
+           }
      }
 }
