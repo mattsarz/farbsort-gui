@@ -15,7 +15,7 @@ Rectangle {
     color: "#9aa6ac"
 
     GridLayout{
-        id: mainGrid
+        id: diagGrid
         anchors.fill: parent
         anchors.margins: Style.bigMargin
         anchors.topMargin: 0
@@ -87,8 +87,8 @@ Rectangle {
             Layout.margins: 0
         }
 
-        Legend {
-            id: legendRect
+        EventLog {
+            id: eventLog
 
             Layout.row: 4
             Layout.rowSpan: 2
@@ -96,14 +96,14 @@ Rectangle {
             Layout.columnSpan: 2
             Layout.fillHeight: true
             Layout.fillWidth : true
-            Layout.preferredWidth: parent.width/3
+            Layout.preferredWidth: parent.width*2/4
             Layout.preferredHeight:parent.height/3
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
         }
 
-        EventLog {
-            id: eventLog
+        Statistic {
+            id: statisticRect
 
             Layout.row: 4
             Layout.rowSpan: 2
@@ -111,10 +111,19 @@ Rectangle {
             Layout.columnSpan: 1
             Layout.fillHeight: true
             Layout.fillWidth : true
-            Layout.preferredWidth: parent.width/3
+            Layout.preferredWidth: parent.width/4
             Layout.preferredHeight:parent.height/3
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
         }
     } // GridLayout
+
+    LegendContent{
+        id:legendContent
+        x: 2*Style.bigMargin
+        y: simulator.y + simulator.height - height - Style.bigMargin
+        width:  simulator.width/3
+        height: simulator.height/4
+
+    }
 }

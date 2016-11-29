@@ -56,5 +56,6 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("simulationModeActive", QVariant(parser.isSet("simulation")));
     engine.rootContext()->setContextProperty("countingLogic", &countingLogic);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
     return app.exec();
 }

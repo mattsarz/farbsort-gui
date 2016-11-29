@@ -113,7 +113,7 @@ Rectangle {
             Layout.columnSpan: 2
             Layout.fillHeight: true
             Layout.fillWidth : true
-            Layout.preferredWidth: parent.width/3
+            Layout.preferredWidth: parent.width*2/4
             Layout.preferredHeight:parent.height/3
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0
@@ -128,7 +128,7 @@ Rectangle {
             Layout.columnSpan: 1
             Layout.fillHeight: true
             Layout.fillWidth : true
-            Layout.preferredWidth: parent.width/3
+            Layout.preferredWidth: parent.width/4
             Layout.preferredHeight:parent.height/3
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Layout.margins: 0

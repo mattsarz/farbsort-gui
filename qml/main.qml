@@ -15,6 +15,8 @@ Window {
     height: 768
     visible: true
 
+//    visibility: Window.FullScreen
+
     StackView {
         id: mainStackView
         initialItem: mainScreen

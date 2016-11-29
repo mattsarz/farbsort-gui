@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
+import ".."
+
 Item {
      id: eventTableView
      property alias model: tableView.model
@@ -22,32 +24,21 @@ Item {
             height:0
          }
 
-         rowDelegate: Rectangle{
-             width: childrenRect.width
-             height: tableView.height/4
-             Rectangle{
-                  anchors.bottom: parent.bottom
-                  height: 1
-                  color: "lightgray"
-                  width: childrenRect.width
-              }
-         }
-
          TableViewColumn {
              id: markColumn
              role: "icon"
              movable: false
              resizable: false
-             width: tableView.viewport.width - dateColumn.width - msgColumn.width
+             width: tableView.viewport.width/12 // - dateColumn.width - msgColumn.width
 
              delegate: Item {
-                         height: 32
-                         width: 32
+                         height: 24
+                         width: 24
                          Image {
-                             mipmap: true
+                             //mipmap: true
                              source: styleData.value
-                             width: 32
-                             height: 32
+                             height: 24
+                             width: 24
                              anchors.centerIn: parent
                          }
                      }
@@ -58,7 +49,39 @@ Item {
              role: "date"
              movable: false
              resizable: false
-             width: tableView.viewport.width / 3
+             width: tableView.viewport.width*4/12
+         }
+
+         TableViewColumn {
+             id: noColumn
+             role: "no"
+             movable: false
+             resizable: false
+             width: tableView.viewport.width / 12
+
+         }
+
+         TableViewColumn {
+             id: colorColumn
+             role: "color"
+             movable: false
+             resizable: true
+             width: tableView.viewport.width / 24
+
+             delegate:   Item{
+                 Rectangle{
+                     id: colorIcon
+                     width:  Style.controlFontSize
+                     height: width
+
+                     radius: height/2
+                     color: styleData.value
+                     border.color: "gray"
+                     border.width: 2
+                     visible: styleData.value !== "transparent"
+                     anchors.centerIn: parent
+                 }
+             }
          }
 
          TableViewColumn {
@@ -73,23 +96,42 @@ Item {
                ListElement {
                    icon: "qrc:/checkmark.png"
                    date: "20.10.2016, 13:37"
-                   message:"fnjdlanhglvwrng"
+                   no:   "1"
+                   color: "red"
+                   message:"Fördermenge angekommen"
                }
                ListElement {
-                   icon: ""
+                   icon: "qrc:/warning.png"
                    date: "18.10.2016, 08:46"
-                   message:"dfnsaporqq"
+                   no:   ""
+                   color: "transparent"
+                   message:"Störung Ausstosser A2"
                }
                ListElement {
-                   icon: ""
+                   icon: "qrc:/checkmark.png"
                    date: "18.10.2016, 09:33"
-                   message:"fnjdlanhglvwrng"
+                   no:   "1"
+                   color: "blue"
+                   message:"Fördermenge angekommen"
                }
                ListElement {
-                   icon: ""
+                   icon: "qrc:/checkmark.png"
                    date: "18.10.2016, 09:53"
-                   message:"dfnsaporqq"
+                   no:   "1"
+                   color: "white"
+                   message:"Fördermenge angekommen"
                }
            }
+
+         rowDelegate: Rectangle{
+             width: childrenRect.width
+             height: tableView.height/4
+             Rectangle{
+                  anchors.bottom: parent.bottom
+                  height: 1
+                  color: "lightgray"
+                  width: childrenRect.width
+              }
+         }
      }
 }

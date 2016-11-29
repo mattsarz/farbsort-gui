@@ -44,6 +44,9 @@ Rectangle {
                 source: "qrc:/arrow_up.png"
             }
 
+            onPressed: scale = 0.9
+            onReleased: scale = 1.0
+
             Layout.alignment: Qt.AlignRight
         }
 
@@ -57,6 +60,9 @@ Rectangle {
             contentItem: Image {
                 source: "qrc:/arrow_down.png"
             }
+
+            onPressed: scale = 0.9
+            onReleased: scale = 1.0
 
             Layout.alignment: Qt.AlignRight
         }
