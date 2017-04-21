@@ -92,7 +92,9 @@ Item {
              width: tableView.viewport.width / 2
          }
 
-         model: ListModel {
+         model: logList
+
+             /*ListModel {
                ListElement {
                    icon: "qrc:/checkmark.png"
                    date: "20.10.2016, 13:37"
@@ -121,7 +123,7 @@ Item {
                    color: "white"
                    message:"Fördermenge angekommen"
                }
-           }
+           }*/
 
          rowDelegate: Rectangle{
              width: childrenRect.width
