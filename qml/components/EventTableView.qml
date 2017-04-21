@@ -7,6 +7,7 @@ import ".."
 Item {
      id: eventTableView
      property alias model: tableView.model
+     property alias tableView: tableView
 
      TableView{
          id:tableView
@@ -93,37 +94,6 @@ Item {
          }
 
          model: logList
-
-             /*ListModel {
-               ListElement {
-                   icon: "qrc:/checkmark.png"
-                   date: "20.10.2016, 13:37"
-                   no:   "1"
-                   color: "red"
-                   message:"Fördermenge angekommen"
-               }
-               ListElement {
-                   icon: "qrc:/warning.png"
-                   date: "18.10.2016, 08:46"
-                   no:   ""
-                   color: "transparent"
-                   message:"Störung Ausstosser A2"
-               }
-               ListElement {
-                   icon: "qrc:/checkmark.png"
-                   date: "18.10.2016, 09:33"
-                   no:   "1"
-                   color: "blue"
-                   message:"Fördermenge angekommen"
-               }
-               ListElement {
-                   icon: "qrc:/checkmark.png"
-                   date: "18.10.2016, 09:53"
-                   no:   "1"
-                   color: "white"
-                   message:"Fördermenge angekommen"
-               }
-           }*/
 
          rowDelegate: Rectangle{
              width: childrenRect.width
