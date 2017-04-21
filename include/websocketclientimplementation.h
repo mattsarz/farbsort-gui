@@ -36,7 +36,7 @@ private Q_SLOTS:
 private:
     QWebSocket m_webSocket;
     const QUrl m_url;
-    bool m_firstDisconnected = true;
+    bool m_wasConnectedBefore = true;
 };
 
 #endif // WEBSOCKETCLIENTIMPLEMENTATION_H

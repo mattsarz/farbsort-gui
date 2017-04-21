@@ -14,6 +14,9 @@ WebSocketClientImplementation::WebSocketClientImplementation(const QString ipAdd
     // signal/slot is connected on every new (re-)connect => comment left for possible troubleshooting
     connect(&m_webSocket, &QWebSocket::textMessageReceived, this, &WebSocketClientImplementation::onTextMessageReceived);
     m_webSocket.open(m_url);
+
+    // Manually invoke onDisconnected() to reconnect fast, if server is not reachable on startup
+    onDisconnected();
 }
 
 WebSocketClientImplementation::~WebSocketClientImplementation()
@@ -105,6 +108,13 @@ void WebSocketClientImplementation::sendEmergencyStop()
 void WebSocketClientImplementation::reconnectService()
 {
     qDebug() << "wsc: reconnect to service";
+
+    // Emit logMessage from here, as this this does not conflict with startup
+    if(m_wasConnectedBefore && (QAbstractSocket::UnconnectedState == m_webSocket.state()))
+    {
+        emit logMessageToBeDisplayed("Websocket disconnected!",LogEntry::LogLevel::Error);
+        m_wasConnectedBefore = false;
+    }
     m_webSocket.open(m_url);
 }
 
@@ -112,7 +122,7 @@ void WebSocketClientImplementation::onConnected()
 {
     qDebug() << "wsc: WebSocket connected";
     m_connected = true;
-    m_firstDisconnected = true;
+    m_wasConnectedBefore = true;
     emit connectedChanged();
     emit logMessageToBeDisplayed("Websocket connected",LogEntry::LogLevel::Info);
 }
@@ -128,11 +138,6 @@ void WebSocketClientImplementation::onDisconnected()
         setLightbarrierState(number, false);
     }
     QTimer::singleShot(500, this, SLOT(reconnectService()));
-    if(m_firstDisconnected)
-    {
-        emit logMessageToBeDisplayed("Websocket disconnected!",LogEntry::LogLevel::Error);
-        m_firstDisconnected = false;
-    }
 }
 
 void WebSocketClientImplementation::onTextMessageReceived(QString message)
