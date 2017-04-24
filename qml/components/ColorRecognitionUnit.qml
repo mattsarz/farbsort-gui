@@ -42,27 +42,13 @@ Rectangle {
         // visible: { color.a > 0 }
     }
 
-    // This is used to make the recognized color available in QML
-    Rectangle {
-        id: recognizedColor
-        color: "transparent"
-        opacity: 0
-    }
-
-    Connections {
-        target: websocketClient
-        onDetectedColorChanged: {
-            recognizedColor.color=color
-        }
-    }
-
-    // Only change state, if recognized color is not transparent
-    // If color != transparent detected, set state to DETECT and reset after 1s
+    // Only change state, if detectedColor is not transparent
+    // If detectedColor != transparent detected, set state to DETECT and reset after 1s
     function onColorDetected() {
-        if(recognizedColor.color != "#00000000")
+        if(detectedColor != "#00000000")
         {
             colorRecongnition.state = "DETECT"
-            delayedStateReset(1000)
+            delayedStateReset(500)
         }
     }
 
