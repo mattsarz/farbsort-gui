@@ -104,7 +104,7 @@ void WebSocketClient::setDetectedColor(const QColor color)
         m_detectedColor = color;
         if(0 != color.alpha())
             emit logMessageToBeDisplayed("Color detected", LogEntry::LogLevel::Info, "", color);
-        emit detectedColorChanged();
+        emit detectedColorChanged(color);
     }
 }
 

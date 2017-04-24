@@ -31,7 +31,7 @@ Q_SIGNALS:
     void lightbarrierThreeStateChanged(const bool active);
     void lightbarrierFourStateChanged(const bool active);
     void lightbarrierFiveStateChanged(const bool active);
-    void detectedColorChanged();
+    void detectedColorChanged(QColor color);
     void valve1StateChanged();
     void valve2StateChanged();
     void valve3StateChanged();
