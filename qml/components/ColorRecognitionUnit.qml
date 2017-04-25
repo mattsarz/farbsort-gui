@@ -65,7 +65,6 @@ Rectangle {
     }
 
     function resetState() {
-        console.log("Reset State...")
         colorRecongnition.state = "NOTDETECT"
     }
 

@@ -14,9 +14,6 @@ WebSocketClientImplementation::WebSocketClientImplementation(const QString ipAdd
     // signal/slot is connected on every new (re-)connect => comment left for possible troubleshooting
     connect(&m_webSocket, &QWebSocket::textMessageReceived, this, &WebSocketClientImplementation::onTextMessageReceived);
     m_webSocket.open(m_url);
-
-    // Manually invoke onDisconnected() to reconnect fast, if server is not reachable on startup
-    onDisconnected();
 }
 
 WebSocketClientImplementation::~WebSocketClientImplementation()
