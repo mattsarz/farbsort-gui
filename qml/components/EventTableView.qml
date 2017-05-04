@@ -55,7 +55,7 @@ Item {
 
          TableViewColumn {
              id: noColumn
-             role: "no"
+             role: "number"
              movable: false
              resizable: false
              width: tableView.viewport.width / 12

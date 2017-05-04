@@ -14,16 +14,16 @@ public:
         Error
     };
 
-    LogEntry(const QString message, const LogLevel logLevel = LogLevel::Info, const QString no = "", const QColor color = Qt::transparent);
-    QString message() const;
-    QString no() const;
-    QString icon() const;
-    QString color() const;
-    QString date() const;
+    LogEntry(const QString message, const LogLevel logLevel = LogLevel::Info, const QString number = "", const QColor color = Qt::transparent);
+    const QString& message() const;
+    const QString& number() const;
+    const QString& icon() const;
+    const QString& color() const;
+    const QString& date() const;
 
 private:
     QString m_message;
-    QString m_no;
+    QString m_number;
     QString m_icon;
     QString m_color;
     QString m_date;
@@ -38,7 +38,7 @@ public:
     enum EventLogRoles {
         IconRole = Qt::UserRole + 1,
         DateRole,
-        NoRole,
+        NumberRole,
         ColorRole,
         MessageRole,
     };
@@ -48,7 +48,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 public slots:
-    void addLogEntry(const QString message, const LogEntry::LogLevel logLevel, const QString no, const QColor color);
+    void addLogEntry(const QString message, const LogEntry::LogLevel logLevel, const QString number, const QColor color);
 
 protected:
     QHash<int, QByteArray> roleNames() const;

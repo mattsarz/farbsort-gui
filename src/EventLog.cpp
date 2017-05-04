@@ -2,9 +2,9 @@
 #include <QDateTime>
 
 // LogEntry Class start
-LogEntry::LogEntry(const QString message, const LogEntry::LogLevel logLevel, const QString no, const QColor color)
+LogEntry::LogEntry(const QString message, const LogEntry::LogLevel logLevel, const QString number, const QColor color)
     : m_message(message.trimmed())
-    , m_no(no)
+    , m_number(number)
 {
     switch(logLevel)
     {
@@ -30,27 +30,27 @@ LogEntry::LogEntry(const QString message, const LogEntry::LogLevel logLevel, con
 }
 
 // getters for private members
-QString LogEntry::message() const
+const QString& LogEntry::message() const
 {
     return m_message;
 }
 
-QString LogEntry::no() const
+const QString& LogEntry::number() const
 {
-    return m_no;
+    return m_number;
 }
 
-QString LogEntry::icon() const
+const QString& LogEntry::icon() const
 {
     return m_icon;
 }
 
-QString LogEntry::color() const
+const QString& LogEntry::color() const
 {
     return m_color;
 }
 
-QString LogEntry::date() const
+const QString& LogEntry::date() const
 {
     return m_date;
 }
@@ -81,8 +81,8 @@ QVariant EventLog::data(const QModelIndex &index, int role) const
     case DateRole :
         return logEntry.date();
         break;
-    case NoRole :
-        return logEntry.no();
+    case NumberRole :
+        return logEntry.number();
         break;
     case ColorRole :
         return logEntry.color();
@@ -108,7 +108,7 @@ QHash<int, QByteArray> EventLog::roleNames() const
     QHash<int, QByteArray> roles;
     roles[IconRole] = "icon";
     roles[DateRole] = "date";
-    roles[NoRole] = "no";
+    roles[NumberRole] = "number";
     roles[ColorRole] = "color";
     roles[MessageRole] = "message";
     return roles;
